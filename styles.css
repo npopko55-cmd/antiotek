@@ -1,0 +1,1949 @@
+/* =============================================================
+   Стройные и здоровые ноги — интенсив от клуба «Шагай Дома»
+   Палитра, типографика и сетка — прямая калька walk-walk.ru
+   (дизайн-система переснята с лендинга sanatoriy).
+   Брендовый красный #CE2C01 + жёлтый акцент #FFB600. Без зелёного.
+   ============================================================= */
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1f1300;
+  --color-muted: #6b6b6b;
+  --color-line: #e5e5e5;
+
+  --color-primary: #ce2c01;       /* брендовый красный */
+  --color-primary-hover: #ffb600; /* hover / жёлтый акцент */
+  --color-accent-dark: #ca4f00;
+  --color-soft: #f5f5f5;          /* фон карточек/секций */
+  --color-dark: #1f1300;          /* футер */
+  --color-discount: #cf2c02;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(31, 19, 0, 0.06);
+  --shadow-md: 0 10px 30px rgba(31, 19, 0, 0.10);
+
+  --font-h: 'Unbounded', Arial, sans-serif;
+  --font-b: 'Inter', Arial, sans-serif;
+
+  --container: 1200px;
+  --gutter: 24px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-b);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+h1, h2, h3 { overflow-wrap: break-word; word-break: keep-all; hyphens: manual; text-wrap: balance; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+ul { list-style: none; padding: 0; margin: 0; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ======================== TYPOGRAPHY =========================== */
+h1, h2, h3 { font-family: var(--font-h); font-weight: 500; margin: 0; line-height: 1.15; }
+.section { padding: 80px 0; }
+.section__title {
+  font-size: 45px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 32px;
+}
+@media (max-width: 768px) {
+  .section__title { font-size: 30px; }
+}
+.section__lead {
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-muted);
+  max-width: 760px;
+  margin: -12px auto 40px;
+  line-height: 1.55;
+}
+
+/* ======================== BUTTONS ============================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
+  white-space: nowrap;
+  min-height: 44px;
+}
+.btn:active { transform: translateY(1px); }
+.btn--sm { padding: 10px 18px; font-size: 14px; min-height: 40px; }
+.btn--lg { font-size: 16px; padding: 18px 36px; }
+.btn--block { width: 100%; }
+
+.btn--primary { background: var(--color-primary); color: #fff; }
+.btn--white { background: #fff; color: var(--color-text); border-color: #fff; font-family: var(--font-b); font-weight: 400; }
+.btn--outline { background: transparent; color: var(--color-text); border-color: var(--color-discount); }
+.btn--outline-white { background: transparent; color: #fff; border-color: #fff; }
+
+/* Жёлтый hover/нажатие — единый стиль для всех CTA */
+@media (hover: hover) {
+  .btn--primary:hover,
+  .btn--white:hover,
+  .btn--outline:hover,
+  .btn--outline-white:hover {
+    background: var(--color-primary-hover);
+    color: #1f1300;
+    border-color: var(--color-primary-hover);
+  }
+}
+.btn--primary:active, .btn--primary:focus,
+.btn--white:active, .btn--white:focus,
+.btn--outline:active, .btn--outline:focus,
+.btn--outline-white:active, .btn--outline-white:focus {
+  background: var(--color-primary-hover);
+  color: #1f1300;
+  border-color: var(--color-primary-hover);
+}
+
+/* ======================== TOPBAR (sticky + таймер) ============= */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: linear-gradient(90deg, #ce2c01, #ca4f00);
+  color: #fff;
+}
+.topbar__inner {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  min-height: 46px; padding: 7px 20px; flex-wrap: wrap;
+}
+.topbar__text { font-size: 14px; font-weight: 500; }
+.topbar__text strong { font-weight: 700; }
+.topbar__timer { display: flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; }
+.topbar__unit {
+  display: inline-flex; flex-direction: column; align-items: center; line-height: 1;
+  background: rgba(255,255,255,.16); border-radius: 6px; padding: 4px 6px; min-width: 30px;
+}
+.topbar__unit b { font-family: var(--font-h); font-weight: 600; font-size: 15px; }
+.topbar__unit i { font-style: normal; font-size: 9px; opacity: .85; margin-top: 2px; }
+.topbar__sep { opacity: .5; font-weight: 700; }
+@media (max-width: 640px) {
+  .topbar__inner { gap: 10px; }
+  .topbar__unit i { display: none; }
+  .topbar__unit { min-width: 24px; padding: 3px 5px; }
+  .topbar__text { font-size: 13px; }
+}
+
+/* ======================== HEADER =============================== */
+/* Закреп держит топбар; шапка скроллится (как на walk-walk). */
+.header {
+  position: static;
+  z-index: 50;
+  background: var(--color-soft);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow .2s, background .2s;
+}
+.header.is-scrolled { box-shadow: var(--shadow-sm); background: rgba(245,245,245,.95); backdrop-filter: blur(6px); }
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px var(--gutter);
+}
+.header__actions { flex-shrink: 0; display: flex; gap: 12px; align-items: center; }
+.header__burger {
+  width: 40px; height: 40px;
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+  border: 0; background: transparent; padding: 0;
+}
+@media (max-width: 959px) {
+  .header__burger { display: flex; }
+}
+.header__burger span { width: 22px; height: 2px; background: var(--color-text); border-radius: 2px; display: block; }
+.header__logo {
+  display: inline-flex !important;
+  align-items: center;
+  flex-shrink: 0;
+  visibility: visible;
+  opacity: 1;
+}
+.header__logo svg,
+.header__logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .header__logo svg, .header__logo img { height: 28px; }
+  .header__inner { gap: 8px; }
+}
+@media (max-width: 420px) {
+  .header__actions .btn--sm { padding: 8px 14px; font-size: 13px; }
+}
+
+/* ======================== OVERLAY NAV =========================== */
+.overlay-nav__backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  opacity: 0; visibility: hidden; transition: opacity .25s; z-index: 99;
+}
+.overlay-nav__backdrop.is-open { opacity: 1; visibility: visible; }
+.overlay-nav {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: min(360px, 90vw); background: var(--color-primary);
+  color: #fff; padding: 28px 28px 24px;
+  transform: translateX(-100%); transition: transform .3s ease;
+  z-index: 100; display: flex; flex-direction: column; gap: 24px;
+  overflow-y: auto;
+}
+.overlay-nav.is-open { transform: translateX(0); }
+.overlay-nav__close {
+  align-self: flex-end; background: transparent; color: #fff;
+  border: 0; font-size: 32px; line-height: 1; padding: 0; margin-bottom: -10px;
+  width: 44px; height: 44px;
+}
+.overlay-nav__list { display: flex; flex-direction: column; gap: 14px; font-size: 16px; }
+.overlay-nav__list a:hover { color: var(--color-primary-hover); }
+.overlay-nav__socials { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.overlay-nav__socials a {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.16);
+  color: #fff;
+  transition: background .2s;
+}
+.overlay-nav__socials a:hover { background: #fff; color: var(--color-primary); }
+.overlay-nav__socials svg { width: 18px; height: 18px; }
+.overlay-nav__cta { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+
+/* ======================== HERO ================================ */
+.hero { padding: 32px 0 64px; }
+/* minmax(0, 1fr) во второй колонке — не косметика, а обязательное условие.
+   У обычного 1fr автоминимум = min-content, а .hero__image задаёт
+   aspect-ratio: у него min-content-ширина считается ОТ ВЫСОТЫ строки
+   (высота 651px × 4/3 = 868px). Такой трек распирал бы фото-колонку до
+   868px и сжимал красную карточку до ~260px — H1 рассыпался по слогам.
+   minmax(0, …) снимает этот порог: ширину диктует трек, а не пропорция. */
+.hero__card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.hero__card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: url('https://static.tildacdn.com/tild3562-3535-4166-b634-663130393766/SVG.png') no-repeat center center / cover;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.hero__card > * { position: relative; z-index: 1; }
+
+/* Chip «Премьера · новый интенсив» */
+.hero__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: rgba(255,255,255,0.18);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.hero__chip-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary-hover);
+  box-shadow: 0 0 0 4px rgba(255,182,0,0.25);
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(255,182,0,0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(255,182,0,0.10); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__chip-dot { animation: none; }
+}
+
+/* H1 — белый Unbounded, жёлтая молния-подчёркивание на слове */
+.hero__title {
+  color: #fff;
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: clamp(30px, 4.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+  margin: 0;
+}
+.hero__title-boltword {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.18em;
+  white-space: nowrap;
+}
+.hero__title-boltline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.22em;
+  pointer-events: none;
+}
+@media (max-width: 480px) {
+  .hero__title-boltword { white-space: normal; }
+}
+
+.hero__lead {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 0;
+  color: #fff;
+  opacity: .96;
+}
+
+/* Плашка «Старт 27 июля» — жёлтая точка (без зелёного) */
+.hero__startbadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  background: rgba(31,19,0,0.32);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 8px 16px 8px 14px;
+  border-radius: 999px;
+  font-family: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.hero__startbadge strong {
+  font-weight: 700;
+  color: #FFB600;
+}
+.hero__startbadge-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #FFB600;
+  box-shadow: 0 0 0 4px rgba(255,182,0,0.28);
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* CTA со стрелкой в кружке — жёлтый акцент на красном фоне */
+.hero__cta {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 14px 18px !important;
+  background: #FFB600 !important;
+  color: #1f1300 !important;
+  border-color: #FFB600 !important;
+  font-weight: 500;
+}
+.hero__cta-arrow {
+  display: inline-flex;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #1f1300;
+  color: #FFB600;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 0;
+  transition: transform .2s, background .2s, color .2s;
+  flex-shrink: 0;
+}
+.hero__cta-arrow svg { display: block; margin-left: -2px; }
+@media (hover: hover) {
+  .hero__cta:hover .hero__cta-arrow {
+    transform: translateX(4px);
+    background: #FFB600;
+    color: #1f1300;
+  }
+}
+.hero__cta:active .hero__cta-arrow,
+.hero__cta:focus .hero__cta-arrow {
+  background: #FFB600 !important;
+  color: #1f1300 !important;
+}
+
+/* Социальный пруф с аватар-стрипом */
+.hero__social-proof {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+.hero__avatars { display: flex; flex-shrink: 0; }
+.hero__avatars--strip { display: block; flex-shrink: 0; height: 42px; }
+.hero__avatars--strip img {
+  width: auto; height: 100%;
+  border-radius: 0; border: 0; margin: 0; background: transparent;
+}
+.hero__social-text {
+  font-size: 13px;
+  line-height: 1.35;
+  color: #fff;
+  opacity: .92;
+}
+.hero__social-text strong { color: var(--color-primary-hover); font-weight: 600; }
+
+/* Правая колонка — светлая карта-заглушка с цифрами (фото добавим позже) */
+.hero__image-wrap {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+}
+/* Фото двух девушек на всю карточку, плитки-сноски — поверх нижнего края кадра.
+   width/height: 100% обязательны вместе: когда обе величины определены
+   (десктоп, 2 колонки), слот = трек × высота строки, и aspect-ratio ниже
+   намеренно не применяется — иначе пропорция распёрла бы колонку по ширине.
+   На ≤900px колонка одна, высота строки становится неопределённой — там
+   height: 100% уже не разрешается и форму кадра держит именно aspect-ratio 4/3.
+   background-position: center top — фигуры в кадре по центру, поэтому center
+   по горизонтали обязателен (на десктопе cover режет именно бока, видно
+   центральные ~63% кадра — обе фигуры целиком). `top`, а не `center 25%`:
+   если слот окажется ниже 4:3, срежется пустой пол снизу, а не руки-сердечко. */
+.hero__image {
+  position: relative;
+  background-color: #f0ece7;
+  background-size: cover;
+  background-position: center top;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;      /* исходник 1400x1050 (min-height нельзя: распирает по ширине) */
+  box-shadow: 0 20px 60px rgba(31,19,0,0.12);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+/* minmax(0,1fr) вместо 1fr: подписи плиток длинные («Вебинар-консультация
+   с флебологом»), и обычный 1fr имеет min-content-порог — на 320-360px
+   треки распёрло бы шире контейнера. minmax(0,…) снимает этот порог. */
+.hero__image-badges {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+}
+.hero__stat-tile {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(31,19,0,0.10);
+}
+.hero__stat-tile b {
+  display: block;
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.hero__stat-tile span {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--color-muted);
+  line-height: 1.25;
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 900px) {
+  .hero__card { padding: 28px; }
+}
+@media (max-width: 768px) {
+  .hero__lead { font-size: 16px; }
+  .hero__chip { font-size: 12px; padding: 6px 12px; }
+  .hero__avatars--strip { height: 36px; }
+}
+/* На узком — 3 плитки в ряд, но компактнее.
+   Подписи длинные (до 3 строк по 10px), поэтому 1 колонка отпадает:
+   3 плитки в столбик съели бы ~2/3 высоты кадра и выдавили само фото.
+   Полоска из 3 плиток занимает ~1/3 низа кадра — как в прототипе. */
+@media (max-width: 560px) {
+  .hero__image-badges { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 10px; }
+  .hero__stat-tile { padding: 9px 4px; border-radius: 10px; }
+  .hero__stat-tile b { font-size: 24px; }
+  .hero__stat-tile span { font-size: 10px; line-height: 1.22; margin-top: 5px; letter-spacing: -0.01em; }
+}
+
+/* ======================== БЛОК «ЗНАКОМО?» — боли с фото-слотом === */
+.pains-block { padding: 80px 0; background: var(--color-soft); }
+.pains-block .section__title { margin-bottom: 12px; }
+.pains {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+.pain-card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 24px;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.pain-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-primary); }
+/* Фото-слот: реальное фото задаётся inline через
+   style="background-image:url('assets/pains/pain-N.webp')".
+   background-color — мягкий бежевый fallback, если картинка не загрузится. */
+.pain-photo {
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  background-color: #f4ece2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 16px;
+}
+.pain-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--color-text);
+  font-weight: 500;
+  padding: 0 4px;
+}
+.pains__note {
+  text-align: center;
+  max-width: 760px;
+  margin: 36px auto 0;
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.5;
+  color: var(--color-text);
+  font-weight: 500;
+}
+.pains__note strong { color: var(--color-primary); }
+.pains__heart {
+  display: inline-block;
+  vertical-align: -0.28em;
+  margin-right: 8px;
+}
+@media (max-width: 900px) { .pains { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) {
+  .pains-block { padding: 56px 0; }
+  .pains { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* --- «ЗНАКОМО?»: фото слева + bullet-список справа (актуальная вёрстка) ---
+   Колонки почти равные, фото чуть уже (1fr против 1.05fr), выровнены по верху.
+   Классы .pains/.pain-card/.pain-photo выше больше не используются. */
+.pains__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 36px;
+  align-items: start;
+  margin-top: 36px;
+}
+.pains__photo img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.pains__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.pains__list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: clamp(17px, 1.9vw, 20px);
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--color-text);
+}
+/* Точка центрируется по первой строке: середина строки = 0.75em (line-height 1.5),
+   минус половина диаметра точки. Не зависит от текущего font-size. */
+.pains__list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: calc(0.75em - 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+@media (max-width: 900px) {
+  .pains__layout { grid-template-columns: 1fr; gap: 26px; }
+  .pains__photo { max-width: 520px; margin: 0 auto; }
+  .pains__list { gap: 14px; }
+}
+
+/* ======================== БЛОК «КАК УСТРОЕНА НЕДЕЛЯ» =========== */
+/* Градиент возвращается в белый к низу секции: сразу под .week идёт
+   «Специалисты» (.experts-people, фон #fff5ef). Если оставить градиент
+   с кремовым финалом, стык двух одинаковых кремовых фонов исчезает и
+   два блока читаются как один. Кремовая полоса в середине сохранена —
+   белые плитки .week__stat по-прежнему на тёплом фоне. */
+.week {
+  background: linear-gradient(180deg, #fff 0%, #fff5ef 50%, #fff 100%);
+  padding: 100px 0;
+}
+.week__title { text-align: center; max-width: 900px; margin: 0 auto 16px; text-wrap: balance; }
+.week__title-mark { color: var(--color-primary); }
+.week__lead {
+  text-align: center;
+  font-size: clamp(16px, 1.7vw, 18px);
+  line-height: 1.55;
+  color: var(--color-text);
+  max-width: 780px;
+  margin: 0 auto 52px;
+}
+.week__stats {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 20px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.week__stat {
+  background: #fff;
+  border: 1px solid rgba(31,19,0,0.06);
+  border-radius: 20px;
+  padding: 32px 26px;
+  text-align: center;
+}
+.week__stat--hero {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 16px 40px rgba(206,44,1,0.25);
+}
+.week__stat-num {
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: clamp(42px, 5vw, 64px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-primary);
+}
+.week__stat--hero .week__stat-num { color: #FFB600; }
+.week__stat-num sup {
+  font-size: 0.4em;
+  font-weight: 500;
+  margin-left: 2px;
+  vertical-align: 0.55em;
+  opacity: 0.85;
+}
+.week__stat p { margin: 14px 0 0; font-size: 15px; line-height: 1.45; color: inherit; }
+.week__stat:not(.week__stat--hero) p { color: var(--color-text); }
+@media (max-width: 900px) {
+  .week { padding: 64px 0; }
+  .week__lead { margin-bottom: 36px; }
+  .week__stats { grid-template-columns: 1fr; gap: 14px; max-width: 460px; }
+}
+
+/* ======================== БЛОК «ЧТО ВНУТРИ» =================== */
+.inside { padding: 100px 0; }
+.inside__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+}
+.inside-card {
+  position: relative;
+  background: var(--color-soft);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px 26px;
+  transition: transform .2s, box-shadow .2s;
+}
+.inside-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.inside-card__num {
+  font-family: var(--font-h); font-weight: 600; font-size: 30px;
+  color: var(--color-primary); opacity: 0.45; line-height: 1; display: block; margin-bottom: 12px;
+}
+/* Иконка на месте бывшего номера 01–06. Файлы уже в брендовом красном
+   (#CF2C02), fill-based — перекрашивать через CSS не нужно и нельзя (<img>). */
+.inside-card__icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;   /* тот же отступ, что был у .inside-card__num */
+}
+.inside-card h3 {
+  font-family: var(--font-h); font-weight: 600; font-size: 19px;
+  margin: 0 0 8px; letter-spacing: -0.01em;
+}
+.inside-card p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--color-muted); }
+@media (max-width: 900px)  { .inside__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .inside__grid { grid-template-columns: 1fr; } .inside { padding: 56px 0; } }
+
+/* ======================== БЛОК «РАЗБОРЫ» (эксперты) =========== */
+.experts { background: var(--color-soft); padding: 100px 0; }
+.expert-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 34px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.expert-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-primary); }
+.expert-card__badge {
+  position: absolute;
+  top: -12px; left: 24px;
+  background: var(--color-primary-hover);
+  color: #1f1300;
+  font-family: var(--font-b);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  white-space: nowrap;
+}
+.expert-card h3 {
+  font-family: var(--font-h); font-weight: 600; font-size: 20px;
+  line-height: 1.25; margin: 0; letter-spacing: -0.01em;
+}
+.expert-card__lead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.expert-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 2px;
+}
+.expert-card__list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+.expert-card__list li::before {
+  content: "";
+  position: absolute; left: 0; top: 2px;
+  width: 18px; height: 18px;
+  background: var(--color-primary) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>') center/10px no-repeat;
+  border-radius: 50%;
+}
+@media (max-width: 900px) {
+  .experts { padding: 64px 0; }
+}
+
+/* ======================== БЛОК «ЧТО ИЗМЕНИТСЯ» (результат) ===== */
+.result { padding: 100px 0; }
+.result__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 40px 0 36px;
+}
+.result__item {
+  background: var(--color-soft);
+  border-radius: var(--radius-md);
+  padding: 26px 24px;
+}
+.result__item span { font-size: 30px; display: block; margin-bottom: 10px; }
+.result__item b {
+  font-family: var(--font-h); font-weight: 500; font-size: 17px;
+  display: block; line-height: 1.3; color: var(--color-text);
+}
+.result__cta-wrap { text-align: center; margin: 0; }
+@media (max-width: 900px) { .result__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .result { padding: 56px 0; } .result__grid { grid-template-columns: 1fr; } }
+
+/* ======================== RATES BANNER ======================== */
+.rates-banner {
+  padding: 56px 0 32px;
+  text-align: center;
+}
+.rates-banner h2 {
+  font-size: clamp(24px, 3.4vw, 42px);
+  font-family: var(--font-h);
+  font-weight: 600;
+  max-width: 900px; margin: 0 auto;
+}
+.rates-banner .accent { color: var(--color-discount); }
+
+/* ======================== RATES =============================== */
+.rates { padding-top: 16px; padding-bottom: 80px; }
+.rates__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.rate-card {
+  position: relative;
+  background: var(--color-soft);
+  border-radius: 15px;
+  padding: 32px 22px 28px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.rate-card .btn--block { margin-top: auto; }
+.rate-card--featured {
+  background: var(--color-primary);
+  color: #fff;
+}
+.rate-card__discount {
+  align-self: flex-start;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  line-height: 16px;
+}
+.rate-card--featured .rate-card__discount { background: #fff; color: var(--color-primary); }
+.rate-card__badge-top {
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary-hover);
+  color: #1f1300;
+  font-family: var(--font-b);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  white-space: nowrap;
+}
+.rate-card__title {
+  font-size: 22px;
+  font-family: var(--font-h);
+  font-weight: 500;
+  min-height: 64px;
+  display: flex;
+  align-items: flex-start;
+}
+@media (max-width: 540px) {
+  .rate-card__title { min-height: 0; }
+}
+.rate-card__price { display: flex; flex-direction: column; gap: 4px; }
+.rate-card__new {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.rate-card__monthly { font-size: 13px; opacity: 0.7; }
+.rate-card__features {
+  display: flex; flex-direction: column; gap: 10px;
+  font-size: 14px; margin: 8px 0;
+  flex: 1;
+}
+.rate-card__features li { position: relative; padding-left: 30px; }
+.rate-card__features li::before {
+  content: "";
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px;
+  background: var(--color-primary) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>') center/10px no-repeat;
+  border-radius: 50%;
+}
+.rate-card--featured .rate-card__features li::before {
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="%23ce2c01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
+}
+/* Hero-строки состава — с молнией вместо галочки */
+.rate-card__features-hero {
+  font-size: 16px;
+  margin-bottom: 2px;
+  padding-left: 30px;
+  position: relative;
+}
+.rate-card__features-hero + .rate-card__features-hero { margin-top: 6px; }
+.rate-card__features-hero::before {
+  content: "⚡" !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  font-size: 18px;
+  line-height: 1;
+  top: 0 !important;
+  left: 2px !important;
+}
+.rate-card__features-hero strong { color: var(--color-primary); font-weight: 600; }
+.rate-card--featured .rate-card__features-hero strong { color: var(--color-primary-hover); }
+/* Яркие emoji-пункты (начинка интенсива) */
+.rate-card__features-bright {
+  padding-left: 0 !important;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-left: 6px;
+}
+.rate-card__features-bright::before { display: none !important; }
+.rate-card__bullet-emoji { font-size: 18px; line-height: 1.1; flex-shrink: 0; }
+
+/* «У меня уже есть абонемент» — ссылка-кнопка под CTA */
+.rate-card__alt-link {
+  display: block;
+  margin: 10px auto 0;
+  padding: 12px 18px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: transparent;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+@media (hover: hover) {
+  .rate-card__alt-link:hover {
+    background: var(--color-primary-hover);
+    color: #1f1300;
+    border-color: var(--color-primary-hover);
+  }
+}
+.rate-card__alt-link:active,
+.rate-card__alt-link:focus {
+  background: var(--color-primary-hover);
+  color: #1f1300;
+  border-color: var(--color-primary-hover);
+}
+.rate-card__alt-link--on-red {
+  color: #fff;
+  border-color: rgba(255,255,255,0.9);
+}
+@media (hover: hover) {
+  .rate-card__alt-link--on-red:hover {
+    background: var(--color-primary-hover);
+    color: #1f1300;
+    border-color: var(--color-primary-hover);
+  }
+}
+.rate-card__alt-link--on-red:active,
+.rate-card__alt-link--on-red:focus {
+  background: var(--color-primary-hover);
+  color: #1f1300;
+  border-color: var(--color-primary-hover);
+}
+.rates__note { text-align: center; color: var(--color-muted); font-size: 14px; margin: 24px auto 0; max-width: 640px; line-height: 1.5; }
+@media (max-width: 900px) {
+  .rates__grid { grid-template-columns: minmax(0, 1fr); max-width: 460px; margin: 0 auto; }
+  .rate-card--featured { transform: none; }
+}
+
+/* ======================== CASES + MARQUEE ===================== */
+.cases .section__title-sub {
+  display: block;
+  font-size: 0.55em;
+  color: var(--color-muted);
+  font-weight: 400;
+  margin-top: 6px;
+}
+.marquee {
+  position: relative;
+  margin: 24px -20px 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee__track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(calc(-50% - 6px), 0, 0); }
+}
+.marquee--cases .case-tile {
+  flex: 0 0 220px;
+  width: 220px;
+  height: 220px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #eee;
+  box-shadow: 0 12px 36px rgba(0,0,0,.14);
+  transition: transform .25s, box-shadow .25s;
+}
+.marquee--cases .case-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.marquee--cases .case-tile:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.18); }
+@media (max-width: 768px) {
+  .marquee { margin-left: -16px; margin-right: -16px; }
+  .marquee__track { gap: 10px; }
+  .marquee--cases .case-tile { flex-basis: 180px; width: 180px; height: 180px; border-radius: 18px; }
+  @keyframes marquee-scroll-mobile {
+    0%   { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(calc(-50% - 5px), 0, 0); }
+  }
+  .marquee__track { animation-name: marquee-scroll-mobile; animation-duration: 30s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+  .marquee { overflow-x: auto; }
+}
+/* На мобиле — палец-скролл со snap, без авто-анимации */
+@media (max-width: 768px) {
+  .marquee {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .marquee::-webkit-scrollbar { display: none; }
+  .marquee__track {
+    animation: none !important;
+    width: max-content;
+    padding-right: 24px;
+  }
+  .marquee__track > [aria-hidden="true"] { display: none; }
+  .marquee--cases .case-tile { scroll-snap-align: start; }
+}
+
+/* ======================== HELP ================================ */
+/* Серая подложка: сверху теперь идёт .result (белый), снизу — .footer
+   (белая обёртка с красной картой). Белый фон сливался бы с .result. */
+.help { background: var(--color-soft); }
+.help__inner { text-align: center; max-width: 720px; margin: 0 auto; }
+.help__sub { color: var(--color-muted); margin: 0 0 32px; font-size: 16px; }
+.help__buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 480px) {
+  .help__buttons { flex-direction: column; }
+  .help__buttons .btn { width: 100%; }
+}
+
+/* ======================== FOOTER ============================== */
+.footer { background: #fff; color: #fff; padding: 40px 0 24px; }
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+  background: var(--color-primary);
+  border-radius: 15px;
+  padding: 60px 60px 40px;
+  margin: 0 20px;
+  max-width: calc(100% - 40px);
+}
+.footer__brand { font-size: 45px; font-weight: 500; margin-bottom: 28px; }
+@media (max-width: 768px) {
+  .footer__brand { font-size: 30px; }
+  .footer__grid { padding: 36px 28px 28px; margin: 0 12px; }
+}
+.footer__phones { margin-bottom: 28px; font-size: 15px; }
+.footer__phones a { color: #fff; }
+.footer__phones-title { font-weight: 600; margin-bottom: 8px; }
+.footer__phones p { margin: 4px 0; opacity: .85; }
+.footer__links { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+.footer__links a { opacity: .85; }
+.footer__links a:hover { opacity: 1; color: var(--color-primary-hover); }
+.footer__col--legal p { margin: 6px 0; font-size: 14px; opacity: .85; }
+.footer__socials { display: flex; gap: 10px; margin: 24px 0; flex-wrap: wrap; }
+.footer__socials a {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff;
+  transition: background .2s, color .2s, transform .15s;
+}
+.footer__socials a:hover { background: #fff; color: var(--color-primary); transform: translateY(-2px); }
+.footer__socials svg { width: 22px; height: 22px; display: block; }
+.footer__bottom { margin-top: 24px; padding: 12px 0 0; }
+.footer__bottom-inner { font-size: 13px; color: var(--color-text); opacity: .7; text-align: center; }
+@media (max-width: 900px) {
+  .footer__grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ======================== BACK TO TOP ========================= */
+.back-to-top {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--color-primary); color: #fff;
+  border: 0; font-size: 20px;
+  box-shadow: var(--shadow-md);
+  opacity: 0; visibility: hidden;
+  transform: translateY(10px); transition: opacity .25s, transform .25s, background .2s;
+  z-index: 60;
+}
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+.back-to-top:hover { background: var(--color-primary-hover); color: #1f1300; }
+
+/* ======================== STICKY MOBILE CTA =================== */
+.sticky-cta {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 70;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.92) 30%);
+  display: none;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+.sticky-cta.is-visible { display: flex; }
+.sticky-cta__btn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-family: var(--font-b);
+  font-weight: 500;
+  font-size: 15px;
+  white-space: nowrap;
+  box-shadow: 0 10px 26px rgba(206, 44, 1, .35);
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+.sticky-cta__btn:active { transform: scale(.98); }
+.sticky-cta__btn:hover { background: #b32500; }
+.sticky-cta__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,.18);
+  border-radius: 50%;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .back-to-top { bottom: 88px; }
+  body { padding-bottom: 72px; }
+}
+
+/* ======================== A11Y / POLISH ====================== */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #FFB600;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.btn:focus-visible,
+.rate-card__alt-link:focus-visible,
+.sticky-cta__btn:focus-visible,
+.hero__cta:focus-visible { outline-offset: 4px; }
+
+/* Якоря не приземляются под sticky-топбар */
+section[id],
+.rates-banner { scroll-margin-top: 80px; }
+
+/* ======================== ANTI-TILDA ========================= */
+/* На walk-walk.ru Тильда подмешивает стили на <a>/.t-btn — защищаем цвета. */
+.btn.btn--primary {
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  border-color: var(--color-primary) !important;
+}
+.btn.btn--white {
+  background: #fff !important;
+  color: var(--color-text) !important;
+}
+@media (hover: hover) {
+  .btn.btn--primary:hover,
+  .btn.btn--white:hover {
+    background: var(--color-primary-hover) !important;
+    color: #1f1300 !important;
+    border-color: var(--color-primary-hover) !important;
+  }
+}
+/* Hero-CTA жёлтая даже под Тильдой */
+.btn.hero__cta {
+  background: #FFB600 !important;
+  color: #1f1300 !important;
+  border-color: #FFB600 !important;
+}
+/* Footer socials — Тильда красит <a> в чёрный, защищаем */
+.footer .footer__socials a {
+  background: rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+.footer .footer__socials a svg { fill: currentColor !important; }
+@media (hover: hover) {
+  .footer .footer__socials a:hover {
+    background: #fff !important;
+    color: var(--color-primary) !important;
+  }
+}
+.footer .footer__socials a:active,
+.footer .footer__socials a:focus {
+  background: #fff !important;
+  color: var(--color-primary) !important;
+}
+
+/* =============================================================
+   HERO: плитки с иконками (вместо цифр)
+   ============================================================= */
+/* Специфичность выше, чем у общего .hero__stat-tile span */
+.hero__stat-tile .hero__stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;              /* отступ до подписи даёт margin-top у самой подписи */
+  height: 30px;
+  font-size: 0;
+  line-height: 0;
+}
+.hero__stat-tile .hero__stat-icon svg { display: block; }
+@media (max-width: 560px) {
+  .hero__stat-tile .hero__stat-icon { height: 26px; }
+  .hero__stat-tile .hero__stat-icon svg { width: 26px; height: 26px; }
+}
+
+/* =============================================================
+   БЛОК «СПЕЦИАЛИСТЫ» + ВИДЕО-ИНТЕРВЬЮ
+   ============================================================= */
+.experts-people { background: #fff5ef; }
+.experts-people .section__title { margin-bottom: 40px; }
+
+.specialists__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.specialist-card {
+  display: flex;
+  gap: 22px;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+@media (hover: hover) {
+  .specialist-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-primary); }
+}
+
+/* Фото-слот. Фото задаётся inline вместе со своим background-position:
+   gavrilov — «center top» (портрет по грудь, лицо на ~30% высоты),
+   ksenia   — «center center» (фигура целиком, ноги в кадре).
+   background-color — бежевый fallback, если картинка не загрузится. */
+.specialist-photo {
+  flex: 0 0 190px;
+  width: 190px;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  background-color: #f4ece2;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.specialist-photo span {
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #b8a894;
+}
+
+.specialist-card__body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.specialist-card__name {
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.specialist-card__role {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.specialist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+.specialist-list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-text);
+}
+.specialist-list li::before {
+  content: "";
+  position: absolute; left: 0; top: 3px;
+  width: 18px; height: 18px;
+  background: var(--color-primary) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>') center/10px no-repeat;
+  border-radius: 50%;
+}
+
+/* Видео-интервью (9:16). Превью = заблюренный первый кадр + Play.
+   Позже .video-slot заменится на Kinescope-iframe. */
+.specialists__video-title {
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: clamp(20px, 2.4vw, 28px);
+  text-align: center;
+  margin: 56px 0 28px;
+  letter-spacing: -0.01em;
+}
+.specialists__videos {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.video-slot-wrap { width: 280px; max-width: 100%; }
+.video-slot {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  background-color: #f4ece2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(31,19,0,0.10);
+}
+/* Заблюренный первый кадр. scale(1.08) — чтобы blur не оголял края:
+   при blur(6px) на слоте ~280px нужно минимум +4.3%, берём с запасом.
+   z-index обязателен: без него абсолютный слой перекрыл бы кнопку Play. */
+.video-slot__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #f4ece2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(6px);
+  transform: scale(1.08);
+  pointer-events: none;
+}
+.video-slot__play {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 10px 26px rgba(206,44,1,.35);
+  flex-shrink: 0;
+}
+.video-slot__play svg { display: block; margin-left: 3px; }
+.video-slot__caption {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* Живой Kinescope-плеер. Ролики вертикальные (9:16), поэтому пропорции держит
+   обёртка, а iframe растягивается по ней абсолютом — так плеер не «прыгает»
+   до загрузки. Тёмная подложка вместо бежевой: у плеера свой чёрный фон,
+   бежевый просвечивал бы полосами по краям при letterbox.
+   Классы .video-slot/.video-slot__bg/.video-slot__play выше больше не нужны. */
+.video-embed {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #1f1300;
+  box-shadow: 0 12px 32px rgba(31,19,0,0.10);
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+@media (max-width: 900px) {
+  .specialists__grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+}
+@media (max-width: 620px) {
+  .specialist-card { flex-direction: column; gap: 16px; padding: 18px; }
+  /* Портретный кроп 3/4, а не 4/3: оба кадра вертикальные (700x1243 и
+     700x1135). В ландшафтном слоте cover срезал бы Гаврилову подбородок,
+     а у Ксении оставил бы только голову вместо фигуры целиком. */
+  .specialist-photo {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    aspect-ratio: 3 / 4;
+  }
+  .specialist-card__name { font-size: 20px; }
+  .specialists__video-title { margin: 40px 0 22px; }
+  /* На мобиле плееры в столбик по центру: два вертикальных 9:16 в ряд дают
+     ~150px ширины на каждый — управление Kinescope в таком не помещается. */
+  .specialists__videos { gap: 28px; flex-direction: column; align-items: center; }
+  .video-slot-wrap { width: 100%; max-width: 300px; }
+  .video-embed { max-width: 300px; }
+}
+
+/* =============================================================
+   БЛОК «ЧТО ПРОИЗОЙДЁТ ЗА 7 ДНЕЙ» — список + акцентная плашка
+   ============================================================= */
+.result__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 860px;
+  margin: 40px auto 28px;
+}
+.result__list li {
+  position: relative;
+  background: var(--color-soft);
+  border-radius: var(--radius-md);
+  padding: 18px 22px 18px 58px;
+  font-size: clamp(15px, 1.7vw, 17px);
+  line-height: 1.45;
+  font-weight: 500;
+  color: var(--color-text);
+}
+.result__list li::before {
+  content: "";
+  position: absolute; left: 22px; top: 19px;
+  width: 22px; height: 22px;
+  background: var(--color-primary) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>') center/12px no-repeat;
+  border-radius: 50%;
+}
+.result__highlight {
+  max-width: 860px;
+  margin: 0 auto 36px;
+  background: #fff5ef;
+  border: 1.5px solid rgba(206,44,1,0.22);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  text-align: center;
+  font-size: clamp(17px, 2.2vw, 22px);
+  line-height: 1.45;
+  font-weight: 500;
+  color: var(--color-text);
+}
+.result__highlight strong { color: var(--color-primary); font-weight: 600; }
+@media (max-width: 560px) {
+  .result__list { margin: 28px auto 22px; gap: 10px; }
+  .result__list li { padding: 15px 18px 15px 50px; }
+  .result__list li::before { left: 17px; top: 16px; width: 20px; height: 20px; }
+  .result__highlight { padding: 20px 18px; margin-bottom: 28px; }
+}
+
+/* Две колонки: текст слева, вертикальное фото 2:3 справа. Отступ сверху
+   переносим с .result__list на сам грид — иначе колонки разъезжаются
+   по верхнему краю (у списка свой margin-top: 40px, у фото его нет). */
+.result__layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 360px);
+  gap: 40px;
+  align-items: start;
+  margin-top: 40px;
+}
+.result__main .result__list { margin-top: 0; }
+.result__photo img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 900px) {
+  .result__layout { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+  /* Фото уходит под текст и не растягивается на всю ширину секции */
+  .result__photo { max-width: 420px; margin: 0 auto; width: 100%; }
+}
+
+/* =============================================================
+   КЕЙСЫ — подзаголовок под H2 + 3 коллажа «до / после»
+   ============================================================= */
+.cases__sub {
+  text-align: center;
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.5;
+  color: var(--color-muted);
+  max-width: 720px;
+  margin: -16px auto 4px;
+}
+
+/* Коллажи с надписями («До/После», «БЫЛО 58 СМ») нельзя обрезать,
+   поэтому <img> без object-fit: width 100% / height auto.
+   Пропорции у трёх файлов разные (1:1, 1:0.87, 1:1.04) —
+   align-items: start не даёт сетке растягивать карточки под самую высокую. */
+.legcases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+  margin-top: 32px;
+}
+.legcase-card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 10px;
+  transition: transform .2s, box-shadow .2s;
+}
+@media (hover: hover) {
+  .legcase-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+}
+.legcase-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+@media (max-width: 768px) {
+  .legcases {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ---- Чередование фонов после удаления .week и .experts ---- */
+/* Было 5 белых секций подряд (inside→cases→баннер→тарифы→result) — слипались в одно полотно. */
+.cases { background: var(--color-soft); }        /* серый: отделяет от белого .inside и белых тарифов */
+.result { background: #fff5ef; }                  /* кремовый: отделяет от белых тарифов и серого .help */
+.result__list li { background: #fff; }            /* на кремовом фоне пункты — белые (были --color-soft) */
+.result__highlight { background: #fff; }          /* плашка тоже белая, чтобы читалась на кремовом */
+
+/* ============================================================
+   АНТИОТЁЧНОСТЬ — блоки, которых не было в базовом лендинге
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+.hero__badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  padding: 7px 16px;
+  margin-bottom: 18px;
+}
+.hero__accent { color: var(--color-primary-hover); }
+.hero__note {
+  margin: 18px 0 0;
+  font-weight: 600;
+  font-size: 17px;
+}
+.hero__cta { margin-top: 26px; }
+.hero__media { min-width: 0; }
+.hero__photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+}
+/* Три обещания под первым экраном */
+.hero__promises {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.hero__promise {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--color-soft);
+  border-radius: var(--radius-card);
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.hero__promise-icon {
+  flex: none;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: minmax(0, 1fr); }
+  .hero__promises { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 24px; }
+}
+
+/* ---------- ЧЕРЕЗ 7 ДНЕЙ ---------- */
+.seven__list {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  max-width: 900px;
+}
+.seven__item {
+  position: relative;
+  padding: 16px 20px 16px 56px;
+  background: var(--color-soft);
+  border-radius: var(--radius-card);
+  font-size: 17px;
+  line-height: 1.45;
+}
+/* Галочка нарисована на CSS: одним запросом меньше */
+.seven__item::before {
+  content: "";
+  position: absolute;
+  left: 20px; top: 50%;
+  width: 22px; height: 22px;
+  margin-top: -11px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.seven__item::after {
+  content: "";
+  position: absolute;
+  left: 27px; top: 50%;
+  width: 8px; height: 4px;
+  margin-top: -3px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+.seven__quote {
+  margin-top: 30px;
+  padding: 26px 30px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-card);
+  max-width: 900px;
+}
+.seven__quote p { margin: 0 0 8px; font-size: 18px; line-height: 1.4; }
+.seven__quote strong { font-family: var(--font-h); font-size: 20px; }
+@media (max-width: 700px) {
+  .seven__item { font-size: 16px; padding: 14px 16px 14px 50px; }
+  .seven__quote { padding: 20px 18px; }
+  .seven__quote p { font-size: 16px; }
+  .seven__quote strong { font-size: 18px; }
+}
+
+/* ---------- ОТЗЫВЫ (скриншоты) ---------- */
+.reviews { background: var(--color-soft); }
+.reviews__grid {
+  margin-top: 32px;
+  columns: 3;
+  column-gap: 18px;
+}
+.review {
+  break-inside: avoid;
+  margin: 0 0 18px;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.review img { width: 100%; height: auto; display: block; }
+@media (max-width: 1000px) { .reviews__grid { columns: 2; } }
+@media (max-width: 640px) { .reviews__grid { columns: 1; max-width: 420px; margin-left: auto; margin-right: auto; } }
+
+/* ---------- СПЕЦИАЛИСТЫ ---------- */
+.experts__grid {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.expert {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.expert__photo { aspect-ratio: 3 / 4; background: var(--color-soft); }
+.expert__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.expert__name {
+  font-family: var(--font-h);
+  font-size: 19px;
+  margin: 18px 20px 0;
+  line-height: 1.2;
+}
+.expert__name span {
+  display: block;
+  font-family: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-top: 5px;
+}
+.expert__text { margin: 12px 20px 22px; font-size: 15px; line-height: 1.5; color: var(--color-muted); }
+@media (max-width: 900px) { .experts__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }
+@media (max-width: 560px) { .experts__grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin-left: auto; margin-right: auto; } }
+
+/* Социальное доказательство */
+.proof {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-card);
+  padding: 26px 32px;
+}
+.proof__num { font-family: var(--font-h); font-size: clamp(34px, 5vw, 54px); line-height: 1; }
+.proof__text { font-size: 17px; line-height: 1.4; }
+@media (max-width: 640px) { .proof { flex-direction: column; align-items: flex-start; gap: 10px; padding: 22px 20px; } }
+
+/* ---------- ФЕЙС-ФИТНЕС И ТЕЙПЫ ---------- */
+.extras { background: var(--color-soft); }
+.extras__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.extra {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  padding: 32px;
+}
+.extra--accent { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+.extra__tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: var(--color-soft);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+}
+.extra__tag--new { background: var(--color-primary-hover); color: #1f1300; }
+.extra__title { font-family: var(--font-h); font-size: clamp(21px, 2.2vw, 27px); margin: 16px 0 0; line-height: 1.2; }
+.extra__text { margin: 12px 0 0; font-size: 16px; line-height: 1.5; }
+.extra:not(.extra--accent) .extra__text { color: var(--color-muted); }
+.extra__list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.extra__list li { position: relative; padding-left: 26px; font-size: 16px; line-height: 1.45; }
+.extra__list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 8px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--color-primary-hover);
+}
+@media (max-width: 860px) { .extras__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; } .extra { padding: 24px 20px; } }
+
+/* ---------- ТАРИФЫ: перечёркнутая цена и рассрочка ---------- */
+.rate-card__price-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.rate-card__old { color: var(--color-muted); font-size: 17px; }
+.rate-card--featured .rate-card__old { color: rgba(255,255,255,.72); }
+.rate-card__instalment { display: block; margin-top: 6px; font-size: 14px; color: var(--color-muted); }
+.rate-card--featured .rate-card__instalment { color: rgba(255,255,255,.82); }
+.rates-banner__sub { margin: 12px 0 0; font-size: 17px; }
+
+/* ---------- КЕЙСЫ ---------- */
+.cases__grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.case {
+  margin: 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  background: var(--color-soft);
+}
+.case img { width: 100%; height: auto; display: block; }
+@media (max-width: 900px) { .cases__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
+@media (max-width: 520px) { .cases__grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin-left: auto; margin-right: auto; } }
+
+/* ---------- ЗАВЕРШАЮЩИЙ БЛОК «ЧЕРЕЗ НЕДЕЛЮ» ---------- */
+.fork__grid {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+.fork__col {
+  border-radius: var(--radius-card);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+/* Левая колонка намеренно приглушена: это состояние «как сейчас»,
+   она не должна конкурировать за внимание с правой. */
+.fork__col--now { background: var(--color-soft); border: 1px solid var(--color-line); }
+.fork__col--after { background: var(--color-primary); color: #fff; }
+.fork__title { font-family: var(--font-h); font-size: clamp(19px, 2vw, 24px); margin: 0 0 18px; line-height: 1.2; }
+.fork__col--now .fork__title { color: var(--color-muted); }
+.fork__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.fork__list li { position: relative; padding-left: 30px; font-size: 16px; line-height: 1.45; }
+.fork__col--now .fork__list li { color: var(--color-muted); }
+.fork__col--now .fork__list li::before {
+  content: "";
+  position: absolute;
+  left: 4px; top: 9px;
+  width: 12px; height: 2px;
+  background: var(--color-muted);
+}
+.fork__col--after .fork__list li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: 4px;
+  width: 16px; height: 8px;
+  border-left: 2.5px solid var(--color-primary-hover);
+  border-bottom: 2.5px solid var(--color-primary-hover);
+  transform: rotate(-45deg);
+}
+.fork__cta { margin-top: auto; padding-top: 0; }
+.fork__col--after .fork__cta { margin-top: 26px; }
+@media (max-width: 860px) { .fork__grid { grid-template-columns: minmax(0, 1fr); gap: 14px; } .fork__col { padding: 24px 20px; } }
+
+/* ---------- ФИНАЛЬНЫЙ МИНИ-БЛОК ---------- */
+.result__inner { text-align: center; padding: 56px 0; }
+.result__title { font-family: var(--font-h); font-size: clamp(26px, 4vw, 44px); margin: 0; line-height: 1.15; }
+.result__text { margin: 14px 0 28px; font-size: 18px; color: var(--color-muted); }
+
+/* ---------- ЖЁЛТАЯ КНОПКА ---------- */
+.btn--yellow { background: var(--color-primary-hover); color: #1f1300; border-color: var(--color-primary-hover); }
+@media (hover: hover) { .btn--yellow:hover { background: #f0aa00; border-color: #f0aa00; } }
+
+/* ---------- ЗАКРЕПЛЁННЫЙ БАННЕР: оффер + таймер + кнопка ----------
+   По ТЗ баннер закреплён и на десктопе, и на мобильном, и несёт короткий
+   призывной оффер. Базовый лендинг прятал кнопку на узких экранах — здесь
+   она остаётся: именно она собирает клики с мобильного трафика.
+   На мобильном ужимаем всё: оффер сокращается до сути, подписи под
+   цифрами таймера скрываются, кнопка становится компактной. */
+.topbar__offer {
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+.topbar__offer b { color: var(--color-primary-hover); font-weight: 600; }
+
+@media (max-width: 960px) {
+  .topbar__offer { font-size: 14px; }
+  .topbar__text { font-size: 13px; }
+}
+@media (max-width: 640px) {
+  .topbar__inner { gap: 8px; padding: 6px 12px; min-height: 44px; flex-wrap: nowrap; }
+  /* Дату убираем: она есть в первом экране и в блоке тарифов, а в узкой
+     полосе конкурирует с оффером и таймером за место. */
+  .topbar__text { display: none; }
+  .topbar__offer { font-size: 12.5px; white-space: normal; line-height: 1.15; }
+  .topbar__cta {
+    display: inline-flex;
+    padding: 7px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 400px) {
+  .topbar__offer { font-size: 11.5px; }
+  .topbar__cta { padding: 6px 10px; font-size: 11.5px; }
+}
+
+/* Hero-фото вертикальное (портрет тренера): без ограничения по высоте
+   первый экран вытягивается на полтора экрана и кнопка уезжает за сгиб. */
+.hero__media { display: flex; justify-content: center; }
+.hero__photo { max-height: 520px; width: auto; max-width: 100%; object-fit: cover; }
+@media (max-width: 900px) { .hero__photo { max-height: 380px; } }
+
+/* Портреты специалистов: при трёх колонках пропорция 3:4 давала почти
+   500px высоты на карточку, и блок растягивался на два экрана. Ограничиваем
+   кадр — лица всё равно в верхней трети, поэтому object-position: center top. */
+.expert__photo { aspect-ratio: auto; height: 320px; }
+@media (max-width: 900px) { .expert__photo { height: 300px; } }
+@media (max-width: 560px) { .expert__photo { height: 340px; } }
+
+/* В белой карточке жёлтый маркер почти не виден — там берём красный */
+.extra:not(.extra--accent) .extra__list li::before { background: var(--color-primary); }

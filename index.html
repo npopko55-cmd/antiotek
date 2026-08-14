@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <title>Антиотёчность — интенсив от клуба Шагай Дома</title>
+  <meta name="description" content="Система, которая избавляет от отёков и уменьшает объёмы за неделю. Без сложных диет и изнуряющих упражнений: шагательные тренировки, меню и самомассаж, запускающие лимфоток. Старт 17 августа." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://walk-walk.ru/antiotek" />
+  <meta property="og:title" content="Антиотёчность — интенсив от клуба Шагай Дома" />
+  <meta property="og:description" content="Минус 2–4 кг воды за 7 дней. 15 минут в день онлайн: шагательные тренировки, фейс-фитнес, тейпы и меню «Антиотёк»." />
+  <link rel="canonical" href="https://walk-walk.ru/antiotek" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.tildacdn.com/tild3062-6234-4366-b031-623462313965/Frame_76.png" />
+  <link rel="apple-touch-icon" href="https://static.tildacdn.com/tild6330-6138-4737-b163-386235663363/Frame_76.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://static.tildacdn.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
+
+  <link rel="preload" as="image" href="assets/hero/hero-antiotek-760.webp" fetchpriority="high"
+        imagesrcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
+        imagesizes="(max-width: 900px) 92vw, 40vw" />
+
+  <link rel="stylesheet" href="styles.css?v=anti-B" />
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <div class="container topbar__inner">
+    <span class="topbar__offer">Минус <b>2–4&nbsp;кг воды</b> за&nbsp;7&nbsp;дней</span>
+    <span class="topbar__text">Старт <strong>17&nbsp;августа</strong></span>
+    <div class="topbar__timer" id="topTimer" aria-label="До старта интенсива">
+      <span class="topbar__unit"><b id="tbD">00</b><i>дн</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbH">00</b><i>ч</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbM">00</b><i>м</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbS">00</b><i>с</i></span>
+    </div>
+    <a href="#rates" class="topbar__cta" data-metrika-goal="anti-topbar-cta">Присоединиться</a>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- HEADER (шапка скроллится, топбар остаётся закреплён)          -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="Шагай Дома">
+      <svg viewBox="0 0 106.01 49.13" fill="none" aria-hidden="true">
+        <path d="M27.36 36.85L22.19 37.4V20.22L14.26 20.6V38.26L8.68 38.86V20.87L0 21.28V45.81L34.6 41.41V19.62L27.36 19.97V36.85Z" fill="#CF2C02"/>
+        <path d="M45.94 19.08L37.8 41.01L44.66 40.14L45.69 36.55L52.88 35.73L53.87 38.97L60.11 38.17L52.84 18.75L45.94 19.08ZM47.1 31.89L49.36 24.26L51.6 31.46L47.1 31.89Z" fill="#CF2C02"/>
+        <path d="M76.12 17.63L62.29 18.29V37.9L67.87 37.19V22.73L76.12 22.18V17.63Z" fill="#CF2C02"/>
+        <path d="M87 34.76L91.75 34.15L86.22 17.15L81.01 17.4L74.91 36.29L80.05 35.64L80.83 32.55L86.25 31.93L87 34.76ZM81.88 28.52L83.58 21.92L85.28 28.19L81.88 28.52Z" fill="#CF2C02"/>
+        <path d="M102.2 23.79V32.82L105.92 32.35V16.2L102.22 16.38L97.21 25.93V16.62L93.16 16.81V33.97L97.21 33.46L102.2 23.79Z" fill="#CF2C02"/>
+        <path d="M99.07 18.22L103.82 6.75L100.67 6.76L101.32 0L96.48 11.33L99.58 11.26L99.07 18.22Z" fill="#CF2C02"/>
+      </svg>
+    </a>
+
+    <div class="header__actions">
+      <a href="#rates" class="btn btn--primary btn--sm" data-metrika-goal="anti-header-cta">Присоединиться</a>
+      <button class="header__burger" id="burgerBtn" type="button" aria-label="Открыть меню" aria-controls="overlayNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE / OVERLAY NAV -->
+<div class="overlay-nav" id="overlayNav" aria-hidden="true">
+  <button class="overlay-nav__close" id="closeNavBtn" aria-label="Закрыть меню">×</button>
+  <nav class="overlay-nav__list" aria-label="Меню">
+    <a href="#seven">Через 7 дней</a>
+    <a href="#specialists">Специалисты</a>
+    <a href="#inside">Что внутри</a>
+    <a href="#cases">Результаты</a>
+    <a href="#rates">Тарифы</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <div class="overlay-nav__socials">
+    <a href="https://vk.com/walk_is_love" target="_blank" rel="noopener" aria-label="ВКонтакте">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.785 16.241s.288-.032.435-.193c.135-.148.13-.426.13-.426s-.018-1.298.582-1.49c.591-.188 1.35 1.254 2.155 1.808.609.42 1.072.328 1.072.328l2.155-.031s1.127-.07.593-.96c-.044-.073-.311-.659-1.604-1.864-1.354-1.262-1.172-1.058.458-3.249.993-1.334 1.39-2.149 1.266-2.498-.118-.332-.853-.244-.853-.244l-2.446.015s-.181-.025-.315.056c-.131.08-.215.265-.215.265s-.385.99-.9 1.831c-1.083 1.775-1.516 1.869-1.693 1.755-.412-.266-.31-1.075-.31-1.65 0-1.795.272-2.543-.531-2.738-.266-.064-.462-.107-1.143-.114-.874-.009-1.613.003-2.032.208-.279.136-.494.439-.363.456.162.022.529.099.724.365.252.342.243 1.113.243 1.113s.144 2.116-.337 2.378c-.331.18-.785-.187-1.751-1.852-.495-.852-.869-1.794-.869-1.794s-.072-.176-.201-.27c-.156-.114-.374-.15-.374-.15l-2.325.015s-.349.01-.477.161c-.114.135-.009.413-.009.413s1.821 4.259 3.884 6.406c1.892 1.967 4.04 1.838 4.04 1.838h.973z"/></svg>
+    </a>
+    <a href="https://dzen.ru/walkislove" target="_blank" rel="noopener" aria-label="Дзен">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c1.244 5.376 2.124 6.256 7.5 7.5-5.376 1.244-6.256 2.124-7.5 7.5-1.244-5.376-2.124-6.256-7.5-7.5 5.376-1.244 6.256-2.124 7.5-7.5z"/></svg>
+    </a>
+    <a href="https://ok.ru/group/70000006886921" target="_blank" rel="noopener" aria-label="Одноклассники">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 3.6c-2.04 0-3.696 1.66-3.696 3.7 0 2.04 1.656 3.696 3.696 3.696S15.696 9.34 15.696 7.3C15.696 5.26 14.04 3.6 12 3.6zm0 5.16c-.804 0-1.464-.66-1.464-1.46 0-.804.66-1.464 1.464-1.464.804 0 1.464.66 1.464 1.464 0 .8-.66 1.46-1.464 1.46zm5.236 5.04c-.276-.564-.984-1.036-2.072-.16-1.476 1.176-3.852 1.176-3.852 1.176s-2.376 0-3.852-1.176c-1.088-.876-1.796-.404-2.072.16-.48.984.09 1.452.708 1.984.528.456 2.508 1.224 4.36 1.392l-1.548 1.548c-.612.612-.224 1.572.604 1.572.512 0 1.024-.512 1.024-.512l1.776-1.776 1.776 1.776s.512.512 1.024.512c.828 0 1.216-.96.604-1.572l-1.548-1.548c1.852-.168 3.832-.936 4.36-1.392.618-.532 1.188-1 .708-1.984z"/></svg>
+    </a>
+    <a href="https://wa.me/905510983369" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+  </div>
+  <div class="overlay-nav__cta">
+    <a href="#rates" class="btn btn--white btn--block" data-metrika-goal="anti-menu-cta">Присоединиться</a>
+  </div>
+</div>
+<div class="overlay-nav__backdrop" id="overlayBackdrop"></div>
+
+<!-- ============================================================ -->
+<!-- 1. HERO                                                      -->
+
+<!-- ============================================================ -->
+<!-- 1. HERO                                                      -->
+<!-- ============================================================ -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__card">
+        <span class="hero__badge">Интенсив «Антиотёчность»</span>
+        <h1 class="hero__title">Минус <span class="hero__accent">2–4&nbsp;кг воды</span> и&nbsp;объёмов за&nbsp;7&nbsp;дней</h1>
+        <p class="hero__lead">Система, которая избавляет от&nbsp;отёков и&nbsp;уменьшает объёмы всего за&nbsp;неделю. Без сложных диет и&nbsp;упражнений, после которых болит всё тело: только простые шагательные тренировки и&nbsp;меню, которые запускают лимфоток и&nbsp;возвращают энергию.</p>
+        <p class="hero__note">Всего 15&nbsp;минут в&nbsp;день онлайн</p>
+        <a href="#rates" class="btn btn--yellow btn--lg hero__cta" data-metrika-goal="anti-hero-cta">Присоединиться к&nbsp;интенсиву</a>
+      </div>
+
+      <div class="hero__media">
+        <img class="hero__photo"
+             src="assets/hero/hero-antiotek.webp"
+             srcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
+             sizes="(max-width: 900px) 92vw, 40vw"
+             alt="Тренер клуба «Шагай Дома»"
+             width="900" height="1003" fetchpriority="high" />
+      </div>
+    </div>
+
+    <!-- Три обещания: то, что человек замечает первым -->
+    <ul class="hero__promises">
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>
+        </span>
+        <span>Появилась энергия и&nbsp;бодрость, будто сбросили тяжёлый рюкзак</span>
+      </li>
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.2 2.1 1.8 3.5 1.8s2.5-.6 3.5-1.8M9 9.5h.01M15 9.5h.01"/></svg>
+        </span>
+        <span>Лицо стало чётче, подтянулся овал, уменьшился второй подбородок</span>
+      </li>
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5c0 5.1-7 9.5-7 9.5Z"/></svg>
+        </span>
+        <span>Кольца снова налезают, обувь не&nbsp;сдавливает, брюки свободно застёгиваются</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. ЧТО БУДЕТ ЧЕРЕЗ 7 ДНЕЙ                                    -->
+<!-- ============================================================ -->
+<section class="section seven" id="seven">
+  <div class="container">
+    <h2 class="section__title">Уже через 7&nbsp;дней вы заметите, что:</h2>
+
+    <ul class="seven__list">
+      <li class="seven__item"><b>2–4&nbsp;кг воды</b> уйдут из&nbsp;вашего тела</li>
+      <li class="seven__item">Заметно уменьшатся <b>объёмы живота, ног и&nbsp;лица</b></li>
+      <li class="seven__item">Отражение в&nbsp;зеркале будет радовать <b>в&nbsp;любое время суток</b></li>
+      <li class="seven__item">Одежда <b>перестанет врезаться</b> в&nbsp;тело</li>
+      <li class="seven__item">К&nbsp;вечеру появятся <b>силы и&nbsp;энергия</b> вместо желания лежать на&nbsp;диване</li>
+    </ul>
+
+    <div class="seven__quote">
+      <p>А&nbsp;вы&nbsp;помните, какую лёгкость в&nbsp;теле чувствовали 15–20&nbsp;лет назад?</p>
+      <strong>Давайте вернём это ощущение вместе!</strong>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 3. ОТЗЫВЫ УЧАСТНИЦ (скриншоты из чата)                       -->
+<!-- ============================================================ -->
+<section class="section reviews" id="reviews">
+  <div class="container">
+    <h2 class="section__title">Отзывы участниц</h2>
+    <p class="section__lead">Как есть, из&nbsp;чата интенсива.</p>
+
+    <div class="reviews__grid">
+      <figure class="review"><img src="assets/reviews/review-1.webp" alt="Отзыв участницы интенсива" width="560" height="840" loading="lazy" /></figure>
+      <figure class="review"><img src="assets/reviews/review-2.webp" alt="Отзыв участницы интенсива" width="520" height="412" loading="lazy" /></figure>
+      <figure class="review"><img src="assets/reviews/review-3.webp" alt="Отзыв участницы интенсива" width="560" height="706" loading="lazy" /></figure>
+      <figure class="review"><img src="assets/reviews/review-4.webp" alt="Отзыв участницы интенсива" width="560" height="734" loading="lazy" /></figure>
+      <figure class="review"><img src="assets/reviews/review-5.webp" alt="Отзыв участницы интенсива" width="560" height="480" loading="lazy" /></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. СПЕЦИАЛИСТЫ                                               -->
+<!-- ============================================================ -->
+<section class="section experts-people" id="specialists">
+  <div class="container">
+    <h2 class="section__title">Кто приведёт вас к&nbsp;результату</h2>
+
+    <div class="experts__grid">
+      <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/anastasia.webp" alt="Анастасия, тренер" width="600" height="698" loading="lazy" /></div>
+        <h3 class="expert__name">Анастасия <span>тренер</span></h3>
+        <p class="expert__text">КМС по&nbsp;художественной гимнастике. Тренер с&nbsp;опытом 12&nbsp;лет, инструктор по&nbsp;функциональному тренингу. Покажет, как заниматься правильно и&nbsp;весело.</p>
+      </article>
+
+      <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/masha.webp" alt="Маша, тренер" width="600" height="672" loading="lazy" /></div>
+        <h3 class="expert__name">Маша <span>тренер</span></h3>
+        <p class="expert__text">Инструктор танцевального и&nbsp;функционального фитнеса, опыт более 10&nbsp;лет. Подготовила танцевальные тренировки специально для интенсива&nbsp;— лёгкие и&nbsp;заряжающие.</p>
+      </article>
+
+      <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/ksenia.webp" alt="Ксения, тренер по фейс-фитнесу" width="600" height="800" loading="lazy" /></div>
+        <h3 class="expert__name">Ксения <span>тренер по фейс-фитнесу</span></h3>
+        <p class="expert__text">Специалист по&nbsp;естественному омоложению лица. Поможет наладить лимфоток и&nbsp;убрать отёчность лица несложными и&nbsp;эффективными упражнениями.</p>
+      </article>
+
+      <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/yulia.webp" alt="Юлия, косметолог и массажист" width="600" height="800" loading="lazy" /></div>
+        <h3 class="expert__name">Юлия <span>косметолог, массажист, специалист по тейпированию</span></h3>
+        <p class="expert__text">Научит мягкими тейпами убирать отёки и&nbsp;разглаживать морщины, возвращая лицу свежесть и&nbsp;рельефность.</p>
+      </article>
+
+      <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/galina.webp" alt="Галина, диетолог" width="600" height="800" loading="lazy" /></div>
+        <h3 class="expert__name">Галина <span>диетолог</span></h3>
+        <p class="expert__text">Дипломированный врач-диетолог. Откроет секреты лимфодренажного питания и&nbsp;развенчает устоявшиеся мифы.</p>
+      </article>
+    </div>
+
+    <!-- Социальное доказательство сразу под специалистами -->
+    <div class="proof">
+      <b class="proof__num">2100+</b>
+      <span class="proof__text">человек уже прошли интенсив «Антиотёчность» и&nbsp;остались довольны результатом</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. ЧТО ВАС ЖДЁТ НА ИНТЕНСИВЕ                                 -->
+<!-- ============================================================ -->
+<section class="section inside" id="inside">
+  <div class="container">
+    <h2 class="section__title">Что вас ждёт на&nbsp;интенсиве?</h2>
+
+    <div class="inside__grid">
+      <article class="inside-card">
+        <span class="inside-card__num">1</span>
+        <h3>14 шагательных тренировок</h3>
+        <p>Для разгона лимфы&nbsp;— по&nbsp;15&nbsp;минут, в&nbsp;любое удобное время.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">2</span>
+        <h3>Вебинар с&nbsp;диетологом</h3>
+        <p>Галина Минаева разберёт, как при помощи питания избавиться от&nbsp;отёков навсегда.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">3</span>
+        <h3>Уроки самомассажа</h3>
+        <p>Чтобы отёки уходили ещё быстрее.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">4</span>
+        <h3>План питания «Антиотёк»</h3>
+        <p>И&nbsp;мини-подкасты от&nbsp;диетолога: секреты и&nbsp;фишки, которые не&nbsp;оставят отёкам шанса.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">5</span>
+        <h3>Закрытые чаты</h3>
+        <p>Общение и&nbsp;поддержка в&nbsp;Telegram и&nbsp;MAX.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">6</span>
+        <h3>Диагностический гайд</h3>
+        <p>Список анализов и&nbsp;памятка по&nbsp;расшифровке результатов.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">7</span>
+        <h3>Естественное омоложение</h3>
+        <p>Без «уколов красоты»&nbsp;— только упражнения, массаж и&nbsp;тейпы.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. ФЕЙС-ФИТНЕС + ТЕЙПЫ (две карточки-возможности)            -->
+<!-- ============================================================ -->
+<section class="section extras" id="extras">
+  <div class="container">
+    <div class="extras__grid">
+      <article class="extra">
+        <span class="extra__tag">Лицо, шея, зона декольте</span>
+        <h3 class="extra__title">Фейс-фитнес + лимфодренаж</h3>
+        <p class="extra__text">Упражнения для снятия отёчности и&nbsp;асимметрии напряжения. Это мягкая подтяжка без инъекций.</p>
+        <ul class="extra__list">
+          <li>работаем с&nbsp;лицом, шеей и&nbsp;зоной декольте</li>
+          <li>налаживаем лимфоток&nbsp;— отёк уходит, овал становится чётче</li>
+          <li>естественное омоложение без «уколов красоты»</li>
+        </ul>
+      </article>
+
+      <article class="extra extra--accent">
+        <span class="extra__tag extra__tag--new">Впервые в&nbsp;клубе!</span>
+        <h3 class="extra__title">Тейп-терапия</h3>
+        <p class="extra__text">Вы&nbsp;отдыхаете&nbsp;— тейпы работают. Что они дают:</p>
+        <ul class="extra__list">
+          <li>улучшают кровообращение и&nbsp;лимфоток</li>
+          <li>расслабляют перенапряжённые мышцы и&nbsp;включают ослабленные</li>
+          <li>разглаживают мимические морщины</li>
+          <li>подтягивают овал лица за&nbsp;счёт эффекта «памяти» мышц</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 7. БАННЕР ПЕРЕД ТАРИФАМИ                                     -->
+<!-- ============================================================ -->
+<section class="rates-banner">
+  <div class="container">
+    <h2>Запишитесь на&nbsp;интенсив и&nbsp;получите <span class="accent">доступ ко&nbsp;всем программам Шагай&nbsp;Дома!</span></h2>
+    <p class="rates-banner__sub">Выбирайте подходящий срок доступа к&nbsp;тренировкам</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 8. ТАРИФЫ                                                    -->
+<!-- Цены и составы перенесены с walk-walk.ru/swelling.           -->
+<!-- ============================================================ -->
+<section class="section rates" id="rates">
+  <div class="container">
+    <div class="rates__grid">
+
+      <article class="rate-card">
+        <span class="rate-card__badge-top">Старт</span>
+        <h3 class="rate-card__title">Интенсив + клуб на&nbsp;2&nbsp;месяца</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">9&nbsp;590&nbsp;₽</s>
+            <span class="rate-card__discount">Скидка 58%</span>
+          </span>
+          <span class="rate-card__new">3&nbsp;990&nbsp;₽</span>
+          <span class="rate-card__monthly">1&nbsp;995&nbsp;₽ в&nbsp;месяц</span>
+          <span class="rate-card__instalment">Рассрочка: 6&nbsp;платежей по&nbsp;665&nbsp;₽</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>Участие в&nbsp;интенсиве «Антиотёчность»</strong></li>
+          <li>25&nbsp;программ, 320+ шагательных тренировок</li>
+          <li>60&nbsp;рецептов полезной еды, вебинары про здоровье</li>
+          <li>30&nbsp;тренировок для здоровья спины и&nbsp;растяжек</li>
+          <li>Поддержка чата участников и&nbsp;куратора</li>
+          <li>Бесплатное пополнение тренировок и&nbsp;программ</li>
+        </ul>
+        <a href="https://walk-walk.ru/antiotek/tarif_1" class="btn btn--primary btn--block" data-metrika-goal="anti-rate-2m-click">Оформить абонемент</a>
+        <a href="https://my.walk-walk.ru/antiotek" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="anti-have-subscription-2m">У меня уже есть абонемент</a>
+      </article>
+
+      <article class="rate-card rate-card--featured">
+        <span class="rate-card__badge-top">Хит продаж</span>
+        <h3 class="rate-card__title">Интенсив + клуб на&nbsp;6&nbsp;месяцев</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">13&nbsp;190&nbsp;₽</s>
+            <span class="rate-card__discount">Скидка 63%</span>
+          </span>
+          <span class="rate-card__new">4&nbsp;990&nbsp;₽</span>
+          <span class="rate-card__monthly">832&nbsp;₽ в&nbsp;месяц</span>
+          <span class="rate-card__instalment">Рассрочка: 6&nbsp;платежей по&nbsp;832&nbsp;₽</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>Участие в&nbsp;интенсиве «Антиотёчность»</strong></li>
+          <li>25&nbsp;программ, 320+ шагательных тренировок</li>
+          <li>60&nbsp;рецептов полезной еды, вебинары про здоровье</li>
+          <li>30&nbsp;тренировок для здоровья спины и&nbsp;растяжек</li>
+          <li>Поддержка чата участников и&nbsp;куратора</li>
+          <li>Бесплатное пополнение тренировок и&nbsp;программ</li>
+        </ul>
+        <a href="https://walk-walk.ru/antiotek/tarif_2" class="btn btn--white btn--block" data-metrika-goal="anti-rate-6m-click">Оформить абонемент</a>
+        <a href="https://my.walk-walk.ru/antiotek" class="rate-card__alt-link rate-card__alt-link--on-red" target="_blank" rel="noopener" data-metrika-goal="anti-have-subscription-6m">У меня уже есть абонемент</a>
+      </article>
+
+      <article class="rate-card">
+        <span class="rate-card__badge-top">По максимуму</span>
+        <h3 class="rate-card__title">Интенсив + клуб на&nbsp;2&nbsp;года</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">23&nbsp;240&nbsp;₽</s>
+            <span class="rate-card__discount">Скидка 65%</span>
+          </span>
+          <span class="rate-card__new">8&nbsp;190&nbsp;₽</span>
+          <span class="rate-card__monthly">342&nbsp;₽ в&nbsp;месяц</span>
+          <span class="rate-card__instalment">Рассрочка: 6&nbsp;платежей по&nbsp;1&nbsp;365&nbsp;₽</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>Участие в&nbsp;интенсиве «Антиотёчность»</strong></li>
+          <li>25&nbsp;программ, 320+ шагательных тренировок</li>
+          <li>60&nbsp;рецептов полезной еды, вебинары про здоровье</li>
+          <li>30&nbsp;тренировок для здоровья спины и&nbsp;растяжек</li>
+          <li>Поддержка чата участников и&nbsp;куратора</li>
+          <li>Бесплатное пополнение тренировок и&nbsp;программ</li>
+        </ul>
+        <a href="https://walk-walk.ru/antiotek/tarif_3" class="btn btn--primary btn--block" data-metrika-goal="anti-rate-2y-click">Оформить абонемент</a>
+        <a href="https://my.walk-walk.ru/antiotek" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="anti-have-subscription-2y">У меня уже есть абонемент</a>
+      </article>
+
+    </div>
+    <p class="rates__note">Абонемент можно оформить в&nbsp;рассрочку: нажмите «Оформить абонемент», введите почту и&nbsp;на&nbsp;странице оплаты выберите вариант «Рассрочка».</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 9. КЕЙСЫ УЧАСТНИЦ                                            -->
+<!-- ============================================================ -->
+<section class="section cases" id="cases">
+  <div class="container">
+    <h2 class="section__title">Посмотрите, как преображаются наши участницы</h2>
+
+    <div class="cases__grid">
+      <figure class="case"><img src="assets/cases/case-1.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+      <figure class="case"><img src="assets/cases/case-2.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+      <figure class="case"><img src="assets/cases/case-3.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+      <figure class="case"><img src="assets/cases/case-4.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+      <figure class="case"><img src="assets/cases/case-5.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+      <figure class="case"><img src="assets/cases/case-6.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 10. ЗАВЕРШАЮЩИЙ БЛОК — «через неделю» (по ТЗ, новый)          -->
+<!-- Развилка перед решением: слева то, что человек знает про себя -->
+<!-- сегодня, справа — то же самое через 7 дней. Работает лучше    -->
+<!-- очередного перечисления выгод, потому что вторая колонка       -->
+<!-- дословно отвечает на первую.                                   -->
+<!-- ============================================================ -->
+<section class="section fork" id="fork">
+  <div class="container">
+    <h2 class="section__title">Через неделю вы&nbsp;будете в&nbsp;одном из&nbsp;двух состояний</h2>
+    <p class="section__lead">Разница&nbsp;— всего 15&nbsp;минут в&nbsp;день.</p>
+
+    <div class="fork__grid">
+      <article class="fork__col fork__col--now">
+        <h3 class="fork__title">Если оставить как есть</h3>
+        <ul class="fork__list">
+          <li>Утром лицо припухшее, овал «плывёт»</li>
+          <li>Кольцо снимается с&nbsp;трудом, обувь жмёт уже к&nbsp;обеду</li>
+          <li>Любимые брюки застёгиваются через раз</li>
+          <li>К&nbsp;вечеру ноги гудят, сил хватает только на&nbsp;диван</li>
+          <li>Весы стоят, хотя вы&nbsp;вроде «ничего такого не&nbsp;ели»</li>
+        </ul>
+      </article>
+
+      <article class="fork__col fork__col--after">
+        <h3 class="fork__title">Если пройти интенсив</h3>
+        <ul class="fork__list">
+          <li>Минус <b>2–4&nbsp;кг воды</b> и&nbsp;чёткий овал лица</li>
+          <li>Кольца и&nbsp;обувь снова впору&nbsp;— и&nbsp;утром, и&nbsp;вечером</li>
+          <li>Объёмы живота и&nbsp;ног заметно меньше</li>
+          <li>Вечером есть силы на&nbsp;себя, а&nbsp;не&nbsp;только на&nbsp;диван</li>
+          <li>Понятно, <b>что именно</b> держало воду&nbsp;— и&nbsp;как не&nbsp;вернуть это снова</li>
+        </ul>
+        <a href="#rates" class="btn btn--yellow btn--block fork__cta" data-metrika-goal="anti-fork-cta">Выбрать тариф</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 11. ФИНАЛЬНЫЙ МИНИ-БЛОК                                      -->
+<!-- ============================================================ -->
+<section class="result">
+  <div class="container result__inner">
+    <h2 class="result__title">Забудьте про отёки!</h2>
+    <p class="result__text">Отражение в&nbsp;зеркале будет вас радовать.</p>
+    <a href="#rates" class="btn btn--yellow btn--lg" data-metrika-goal="anti-result-cta">Присоединиться к&nbsp;интенсиву</a>
+  </div>
+</section>
+
+<section class="section help" id="contacts">
+  <div class="container help__inner">
+    <h2 class="section__title">Нужна помощь?</h2>
+    <p class="help__sub">Напишите нам&nbsp;— поможем выбрать тариф и&nbsp;ответим на&nbsp;вопросы про интенсив.</p>
+    <div class="help__buttons">
+      <a class="btn btn--primary btn--lg" target="_blank" rel="noopener" href="https://vk.com/walk_is_love">Написать в&nbsp;ВКонтакте</a>
+      <a class="btn btn--primary btn--lg" target="_blank" rel="noopener" href="https://max.ru/u/f9LHodD0cOLsgLHI5aFkynmQFtVDv8Yk8kyyWLTi-7oDXXItbJp_HIFZlRE">Написать в&nbsp;MAX</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__col footer__col--main">
+      <h2 class="footer__brand">Шагай Дома</h2>
+      <div class="footer__phones">
+        <p class="footer__phones-title">Телефоны наших менеджеров:</p>
+        <p><a href="tel:+79990668100">+7&nbsp;(999)&nbsp;066-81-00</a> — Отдел заботы о&nbsp;клиентах (Анна и&nbsp;Катя)</p>
+        <p><a href="tel:+905510983369">+90&nbsp;(551)&nbsp;098-33-69</a> — Отдел заботы о&nbsp;клиентах (Александра)</p>
+      </div>
+      <ul class="footer__links">
+        <li><a href="https://walk-walk.ru/privacy" target="_blank" rel="noopener">Политика конфиденциальности</a></li>
+        <li><a href="https://walk-walk.ru/offer" target="_blank" rel="noopener">Публичная оферта</a></li>
+        <li><a href="https://walk-walk.ru/ad" target="_blank" rel="noopener">Согласие на&nbsp;рекламную рассылку</a></li>
+        <li><a href="https://walk-walk.ru/approval" target="_blank" rel="noopener">Согласие на&nbsp;обработку персональных данных</a></li>
+        <li><a href="https://walk-walk.ru/safe" target="_blank" rel="noopener">Список противопоказаний</a></li>
+        <li><a href="https://walk-walk.ru/education" target="_blank" rel="noopener">Сведения об&nbsp;образовательной организации</a></li>
+        <li><a href="https://edu.gov.ru/" target="_blank" rel="noopener">Министерство просвещения РФ</a></li>
+      </ul>
+    </div>
+    <div class="footer__col footer__col--legal">
+      <p>ИП Кириченко Дмитрий Павлович</p>
+      <p>ОГРНИП: 316222500086383</p>
+      <p>ИНН: 222391942312</p>
+      <div class="footer__socials">
+        <a href="https://vk.com/walk_is_love" target="_blank" rel="noopener" aria-label="ВКонтакте">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12.785 16.241s.288-.032.435-.193c.135-.148.13-.426.13-.426s-.018-1.298.582-1.49c.591-.188 1.35 1.254 2.155 1.808.609.42 1.072.328 1.072.328l2.155-.031s1.127-.07.593-.96c-.044-.073-.311-.659-1.604-1.864-1.354-1.262-1.172-1.058.458-3.249.993-1.334 1.39-2.149 1.266-2.498-.118-.332-.853-.244-.853-.244l-2.446.015s-.181-.025-.315.056c-.131.08-.215.265-.215.265s-.385.99-.9 1.831c-1.083 1.775-1.516 1.869-1.693 1.755-.412-.266-.31-1.075-.31-1.65 0-1.795.272-2.543-.531-2.738-.266-.064-.462-.107-1.143-.114-.874-.009-1.613.003-2.032.208-.279.136-.494.439-.363.456.162.022.529.099.724.365.252.342.243 1.113.243 1.113s.144 2.116-.337 2.378c-.331.18-.785-.187-1.751-1.852-.495-.852-.869-1.794-.869-1.794s-.072-.176-.201-.27c-.156-.114-.374-.15-.374-.15l-2.325.015s-.349.01-.477.161c-.114.135-.009.413-.009.413s1.821 4.259 3.884 6.406c1.892 1.967 4.04 1.838 4.04 1.838h.973z"/></svg>
+        </a>
+        <a href="https://dzen.ru/walkislove" target="_blank" rel="noopener" aria-label="Дзен">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c1.244 5.376 2.124 6.256 7.5 7.5-5.376 1.244-6.256 2.124-7.5 7.5-1.244-5.376-2.124-6.256-7.5-7.5 5.376-1.244 6.256-2.124 7.5-7.5z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@walk_is_love" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"/></svg>
+        </a>
+        <a href="https://ok.ru/group/70000006886921" target="_blank" rel="noopener" aria-label="Одноклассники">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 1.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3.66 6.6a8.32 8.32 0 0 1-2.18.93l1.99 2a1.65 1.65 0 1 1-2.34 2.34L12 17.34l-2.12 2.13a1.65 1.65 0 0 1-2.34-2.34l1.99-2a8.32 8.32 0 0 1-2.19-.93 1.65 1.65 0 0 1 1.73-2.8c1.83 1.13 4.05 1.13 5.87 0a1.65 1.65 0 0 1 1.73 2.8z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>© ИП Кириченко Д.П., <span id="footerYear">2026</span>&nbsp;· Шагай Дома</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCTA">
+  <a href="#rates" class="sticky-cta__btn" data-metrika-goal="anti-sticky-cta">
+    <span class="sticky-cta__label">Присоединиться</span>
+    <span class="sticky-cta__icon" aria-hidden="true">→</span>
+  </a>
+</div>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
+
+<script src="script.js?v=anti-B"></script>
+</body>
+</html>
