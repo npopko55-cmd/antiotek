@@ -26,7 +26,7 @@
         imagesrcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
         imagesizes="(max-width: 900px) 92vw, 40vw" />
 
-  <link rel="stylesheet" href="styles.css?v=anti-B" />
+  <link rel="stylesheet" href="styles.css?v=anti-E" />
 </head>
 <body>
 
@@ -114,41 +114,51 @@
     <div class="hero__grid">
       <div class="hero__card">
         <span class="hero__badge">Интенсив «Антиотёчность»</span>
-        <h1 class="hero__title">Минус <span class="hero__accent">2–4&nbsp;кг воды</span> и&nbsp;объёмов за&nbsp;7&nbsp;дней</h1>
-        <p class="hero__lead">Система, которая избавляет от&nbsp;отёков и&nbsp;уменьшает объёмы всего за&nbsp;неделю. Без сложных диет и&nbsp;упражнений, после которых болит всё тело: только простые шагательные тренировки и&nbsp;меню, которые запускают лимфоток и&nbsp;возвращают энергию.</p>
-        <p class="hero__note">Всего 15&nbsp;минут в&nbsp;день онлайн</p>
+        <!-- «2–4 кг воды» держим неразрывно: при переносе число разрывалось
+             на «2–» и «4 кг воды», и заголовок читался как ошибка вёрстки. -->
+        <h1 class="hero__title">Минус <span class="hero__accent">2–4&nbsp;кг воды</span><br />и&nbsp;объёмов за&nbsp;7&nbsp;дней</h1>
+        <p class="hero__lead">Система, которая избавляет от&nbsp;отёков и&nbsp;уменьшает объёмы всего за&nbsp;неделю&nbsp;— без сложных диет и&nbsp;упражнений, после которых болит всё тело.</p>
+
+        <ul class="hero__facts">
+          <li><b>15</b><span>минут в&nbsp;день</span></li>
+          <li><b>14</b><span>тренировок</span></li>
+          <li><b>5</b><span>специалистов</span></li>
+        </ul>
+
         <a href="#rates" class="btn btn--yellow btn--lg hero__cta" data-metrika-goal="anti-hero-cta">Присоединиться к&nbsp;интенсиву</a>
+        <p class="hero__under">Старт 17&nbsp;августа · осталось мало мест</p>
       </div>
 
       <div class="hero__media">
         <img class="hero__photo"
              src="assets/hero/hero-antiotek.webp"
-             srcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
-             sizes="(max-width: 900px) 92vw, 40vw"
+             srcset="assets/hero/hero-antiotek-760.webp 560w, assets/hero/hero-antiotek.webp 820w"
+             sizes="(max-width: 900px) 92vw, 42vw"
              alt="Тренер клуба «Шагай Дома»"
-             width="900" height="1003" fetchpriority="high" />
+             width="820" height="993" fetchpriority="high" />
+        <span class="hero__sticker hero__sticker--top">Лимфоток<br />запускается<br />с первого дня</span>
+        <span class="hero__sticker hero__sticker--bottom"><b>2100+</b> уже прошли</span>
       </div>
     </div>
 
-    <!-- Три обещания: то, что человек замечает первым -->
     <ul class="hero__promises">
       <li class="hero__promise">
         <span class="hero__promise-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>
         </span>
-        <span>Появилась энергия и&nbsp;бодрость, будто сбросили тяжёлый рюкзак</span>
+        <span>Энергия и&nbsp;бодрость, будто сбросили тяжёлый рюкзак</span>
       </li>
       <li class="hero__promise">
         <span class="hero__promise-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.2 2.1 1.8 3.5 1.8s2.5-.6 3.5-1.8M9 9.5h.01M15 9.5h.01"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.2 2.1 1.8 3.5 1.8s2.5-.6 3.5-1.8M9 9.5h.01M15 9.5h.01"/></svg>
         </span>
-        <span>Лицо стало чётче, подтянулся овал, уменьшился второй подбородок</span>
+        <span>Лицо чётче, подтянулся овал, меньше второй подбородок</span>
       </li>
       <li class="hero__promise">
         <span class="hero__promise-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5c0 5.1-7 9.5-7 9.5Z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5c0 5.1-7 9.5-7 9.5Z"/></svg>
         </span>
-        <span>Кольца снова налезают, обувь не&nbsp;сдавливает, брюки свободно застёгиваются</span>
+        <span>Кольца налезают, обувь не&nbsp;жмёт, брюки застёгиваются</span>
       </li>
     </ul>
   </div>
@@ -162,11 +172,11 @@
     <h2 class="section__title">Уже через 7&nbsp;дней вы заметите, что:</h2>
 
     <ul class="seven__list">
-      <li class="seven__item"><b>2–4&nbsp;кг воды</b> уйдут из&nbsp;вашего тела</li>
-      <li class="seven__item">Заметно уменьшатся <b>объёмы живота, ног и&nbsp;лица</b></li>
-      <li class="seven__item">Отражение в&nbsp;зеркале будет радовать <b>в&nbsp;любое время суток</b></li>
-      <li class="seven__item">Одежда <b>перестанет врезаться</b> в&nbsp;тело</li>
-      <li class="seven__item">К&nbsp;вечеру появятся <b>силы и&nbsp;энергия</b> вместо желания лежать на&nbsp;диване</li>
+      <li class="seven__item"><span class="seven__num">−4</span><span class="seven__txt"><b>кг воды</b> уйдут из&nbsp;вашего тела</span></li>
+      <li class="seven__item"><span class="seven__num">−2</span><span class="seven__txt"><b>размера</b> в&nbsp;объёмах живота, ног и&nbsp;лица</span></li>
+      <li class="seven__item"><span class="seven__num">24/7</span><span class="seven__txt">Отражение в&nbsp;зеркале радует <b>в&nbsp;любое время суток</b></span></li>
+      <li class="seven__item"><span class="seven__num">0</span><span class="seven__txt">Следов от&nbsp;резинок&nbsp;— одежда <b>перестанет врезаться</b></span></li>
+      <li class="seven__item"><span class="seven__num">+1</span><span class="seven__txt">Свободный вечер: <b>силы и&nbsp;энергия</b> вместо дивана</span></li>
     </ul>
 
     <div class="seven__quote">
@@ -553,6 +563,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=anti-B"></script>
+<script src="script.js?v=anti-E"></script>
 </body>
 </html>
