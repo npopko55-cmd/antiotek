@@ -1830,8 +1830,12 @@ section[id],
   border-bottom: 2.5px solid var(--color-primary-hover);
   transform: rotate(-45deg);
 }
+/* Кнопка прижата к низу карточки, а зазор от списка задаём отступом самого
+   списка. Раньше рядом стояло .fork__col--after .fork__cta { margin-top: 26px },
+   и оно перебивало margin-top: auto по специфичности — кнопка вставала сразу
+   под списком, а внизу карточки оставалось пустое красное поле. */
 .fork__cta { margin-top: auto; padding-top: 0; }
-.fork__col--after .fork__cta { margin-top: 26px; }
+.fork__col--after .fork__list { margin-bottom: 26px; }
 @media (max-width: 860px) { .fork__grid { grid-template-columns: minmax(0, 1fr); gap: 14px; } .fork__col { padding: 24px 20px; } }
 
 /* ---------- ФИНАЛЬНЫЙ МИНИ-БЛОК ---------- */
