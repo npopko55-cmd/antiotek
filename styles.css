@@ -1618,7 +1618,7 @@ section[id],
   align-items: flex-start;
   gap: 12px;
   background: var(--color-soft);
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   padding: 18px 20px;
   font-size: 15px;
   line-height: 1.45;
@@ -1643,7 +1643,7 @@ section[id],
   padding: 26px 30px;
   background: var(--color-primary);
   color: #fff;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   }
 .seven__quote p { margin: 0 0 8px; font-size: 18px; line-height: 1.4; }
 .seven__quote strong { font-family: var(--font-h); font-size: 20px; }
@@ -1666,7 +1666,7 @@ section[id],
   margin: 0 0 18px;
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
 }
@@ -1684,7 +1684,7 @@ section[id],
 .expert {
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1717,7 +1717,7 @@ section[id],
   gap: 22px;
   background: var(--color-primary);
   color: #fff;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   padding: 26px 32px;
 }
 .proof__num { font-family: var(--font-h); font-size: clamp(34px, 5vw, 54px); line-height: 1; }
@@ -1734,7 +1734,7 @@ section[id],
 .extra {
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   padding: 32px;
 }
 .extra--accent { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
@@ -1782,7 +1782,7 @@ section[id],
 }
 .case {
   margin: 0;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--color-line);
   background: var(--color-soft);
@@ -1800,7 +1800,7 @@ section[id],
   align-items: stretch;
 }
 .fork__col {
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   padding: 32px;
   display: flex;
   flex-direction: column;
@@ -1941,14 +1941,14 @@ section[id],
   max-height: none;
   object-fit: cover;
   object-position: center top;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
 }
 /* Стикеры поверх фото — то, что оживляет статичный кадр */
 .hero__sticker {
   position: absolute;
   z-index: 2;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-md);
   padding: 12px 16px;
   font-size: 13px;
   line-height: 1.25;
@@ -2019,7 +2019,7 @@ section[id],
   gap: 20px;
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   padding: 22px 26px;
   transition: transform .2s, box-shadow .2s, border-color .2s;
