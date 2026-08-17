@@ -26,7 +26,7 @@
         imagesrcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
         imagesizes="(max-width: 900px) 92vw, 40vw" />
 
-  <link rel="stylesheet" href="styles.css?v=anti-J" />
+  <link rel="stylesheet" href="styles.css?v=anti-K" />
 </head>
 <body>
 
@@ -195,12 +195,20 @@
     <h2 class="section__title">Отзывы участниц</h2>
     <p class="section__lead">Как есть, из&nbsp;чата интенсива.</p>
 
-    <div class="reviews__grid">
-      <figure class="review"><img src="assets/reviews/review-1.webp" alt="Отзыв участницы интенсива" width="560" height="840" loading="lazy" /></figure>
-      <figure class="review"><img src="assets/reviews/review-2.webp" alt="Отзыв участницы интенсива" width="520" height="412" loading="lazy" /></figure>
-      <figure class="review"><img src="assets/reviews/review-3.webp" alt="Отзыв участницы интенсива" width="560" height="706" loading="lazy" /></figure>
-      <figure class="review"><img src="assets/reviews/review-4.webp" alt="Отзыв участницы интенсива" width="560" height="734" loading="lazy" /></figure>
-      <figure class="review"><img src="assets/reviews/review-5.webp" alt="Отзыв участницы интенсива" width="560" height="480" loading="lazy" /></figure>
+    <div class="reviews__carousel">
+      <button class="reviews__nav reviews__nav--prev" type="button" aria-label="Предыдущие отзывы" aria-controls="reviewsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      </button>
+      <div class="reviews__track" id="reviewsTrack" tabindex="0" role="group" aria-label="Отзывы участниц, прокручивается вбок">
+        <figure class="review"><img src="assets/reviews/review-1.webp" alt="Отзыв участницы интенсива" width="560" height="840" loading="lazy" /></figure>
+        <figure class="review"><img src="assets/reviews/review-2.webp" alt="Отзыв участницы интенсива" width="520" height="412" loading="lazy" /></figure>
+        <figure class="review"><img src="assets/reviews/review-3.webp" alt="Отзыв участницы интенсива" width="560" height="706" loading="lazy" /></figure>
+        <figure class="review"><img src="assets/reviews/review-4.webp" alt="Отзыв участницы интенсива" width="560" height="734" loading="lazy" /></figure>
+        <figure class="review"><img src="assets/reviews/review-5.webp" alt="Отзыв участницы интенсива" width="560" height="480" loading="lazy" /></figure>
+      </div>
+      <button class="reviews__nav reviews__nav--next" type="button" aria-label="Следующие отзывы" aria-controls="reviewsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -251,43 +259,34 @@
 <!-- ============================================================ -->
 <section class="section inside" id="inside">
   <div class="container">
-    <h2 class="section__title">Что вас ждёт на&nbsp;интенсиве?</h2>
+    <h2 class="section__title">Как похудеть на&nbsp;интенсиве?</h2>
+    <p class="section__lead">Пять простых действий каждый день&nbsp;— всё, что нужно делать.</p>
 
     <div class="inside__grid">
       <article class="inside-card">
         <span class="inside-card__num">1</span>
-        <h3>14 шагательных тренировок</h3>
-        <p>Для разгона лимфы&nbsp;— по&nbsp;15&nbsp;минут, в&nbsp;любое удобное время.</p>
+        <h3>Делать шаговую тренировку дома</h3>
+        <p>На&nbsp;~2500&nbsp;шагов&nbsp;— это 20&nbsp;минут в&nbsp;день.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">2</span>
-        <h3>Вебинар с&nbsp;диетологом</h3>
-        <p>Галина Минаева разберёт, как при помощи питания избавиться от&nbsp;отёков навсегда.</p>
+        <h3>Послушать вебинар от&nbsp;диетолога</h3>
+        <p>Как с&nbsp;помощью питания избавиться от&nbsp;отёков навсегда.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">3</span>
-        <h3>Уроки самомассажа</h3>
-        <p>Чтобы отёки уходили ещё быстрее.</p>
+        <h3>Делать самомассаж</h3>
+        <p>5&nbsp;минут в&nbsp;день&nbsp;— чтобы отёки уходили быстрее.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">4</span>
-        <h3>План питания «Антиотёк»</h3>
-        <p>И&nbsp;мини-подкасты от&nbsp;диетолога: секреты и&nbsp;фишки, которые не&nbsp;оставят отёкам шанса.</p>
+        <h3>Питаться по&nbsp;простому плану питания</h3>
+        <p>Меню «Антиотёк» и&nbsp;мини-подкасты от&nbsp;диетолога.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">5</span>
-        <h3>Закрытые чаты</h3>
-        <p>Общение и&nbsp;поддержка в&nbsp;Telegram и&nbsp;MAX.</p>
-      </article>
-      <article class="inside-card">
-        <span class="inside-card__num">6</span>
-        <h3>Вспомогательные материалы</h3>
-        <p>Памятки и&nbsp;чек-листы, которые помогут закрепить результат.</p>
-      </article>
-      <article class="inside-card">
-        <span class="inside-card__num">7</span>
-        <h3>Естественное омоложение</h3>
-        <p>Без «уколов красоты»&nbsp;— только упражнения, массаж и&nbsp;тейпы.</p>
+        <h3>Общаться в&nbsp;чате</h3>
+        <p>Закрытые чаты в&nbsp;Telegram и&nbsp;MAX: поддержка и&nbsp;ответы на&nbsp;вопросы.</p>
       </article>
     </div>
   </div>
@@ -557,6 +556,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=anti-J"></script>
+<script src="script.js?v=anti-K"></script>
 </body>
 </html>

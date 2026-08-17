@@ -1656,11 +1656,6 @@ section[id],
 
 /* ---------- ОТЗЫВЫ (скриншоты) ---------- */
 .reviews { background: var(--color-soft); }
-.reviews__grid {
-  margin-top: 32px;
-  columns: 3;
-  column-gap: 18px;
-}
 .review {
   break-inside: avoid;
   margin: 0 0 18px;
@@ -1671,8 +1666,6 @@ section[id],
   box-shadow: var(--shadow-sm);
 }
 .review img { width: 100%; height: auto; display: block; }
-@media (max-width: 1000px) { .reviews__grid { columns: 2; } }
-@media (max-width: 640px) { .reviews__grid { columns: 1; max-width: 420px; margin-left: auto; margin-right: auto; } }
 
 /* ---------- СПЕЦИАЛИСТЫ ---------- */
 /* Специалистов четверо: в три колонки вторая строка вышла бы с одной
@@ -2090,4 +2083,89 @@ section[id],
   .hero__facts b { font-size: 24px; }
   .hero__sticker { font-size: 12px; padding: 9px 12px; }
   .experts__grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin-left: auto; margin-right: auto; }
+}
+
+/* ---------- Ховер главной кнопки первого экрана ----------
+   Раньше на наведение менялся только фон — эффект почти незаметный.
+   Теперь кнопка приподнимается и получает тень своего цвета: понятно,
+   что она нажимается. transition уже описан у .btn, добавляем тень. */
+.hero__cta { transition: background .2s, border-color .2s, transform .18s, box-shadow .18s; }
+@media (hover: hover) {
+  .hero__cta:hover {
+    background: #f0aa00;
+    border-color: #f0aa00;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(255, 182, 0, .42);
+  }
+  .hero__cta:active { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(255, 182, 0, .34); }
+}
+
+/* ---------- Сетка «Как похудеть»: 5 карточек без дырки ----------
+   При трёх колонках вторая строка выходила «2 карточки + пустое место».
+   Считаем в шести колонках: первые три карточки по 2, последние две по 3 —
+   получается ровный ряд 3 + ряд 2 во всю ширину. */
+.inside__grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.inside__grid > .inside-card { grid-column: span 2; }
+.inside__grid > .inside-card:nth-child(4),
+.inside__grid > .inside-card:nth-child(5) { grid-column: span 3; }
+@media (max-width: 900px) {
+  .inside__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .inside__grid > .inside-card,
+  .inside__grid > .inside-card:nth-child(4),
+  .inside__grid > .inside-card:nth-child(5) { grid-column: auto; }
+  /* пятая карточка одна в последней строке — растягиваем на всю ширину */
+  .inside__grid > .inside-card:nth-child(5) { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .inside__grid { grid-template-columns: minmax(0, 1fr); }
+  .inside__grid > .inside-card:nth-child(5) { grid-column: auto; }
+}
+
+/* ---------- ОТЗЫВЫ: горизонтальная лента ----------
+   Были masonry-колонки: скриншоты разной высоты складывались в три столбца
+   и блок растягивался на два экрана. Лентой они читаются подряд и занимают
+   один экран. Прокрутка нативная (overflow-x), кнопки только доводят её —
+   на телефоне свайп работает и без скрипта. */
+.reviews__carousel { position: relative; margin-top: 32px; }
+.reviews__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 300px;
+  gap: 18px;
+  align-items: start;
+  overflow-x: auto;
+  padding: 4px 4px 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.reviews__track::-webkit-scrollbar { display: none; }
+.reviews__track:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.reviews__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: background .2s, opacity .2s;
+}
+.reviews__nav--prev { left: -18px; }
+.reviews__nav--next { right: -18px; }
+@media (hover: hover) { .reviews__nav:hover { background: var(--color-accent-dark); } }
+/* Доехали до края — кнопка гаснет, но остаётся в потоке: если убирать
+   совсем, лента дёргается по ширине. */
+.reviews__nav[disabled] { opacity: .3; cursor: default; }
+@media (max-width: 1240px) {
+  .reviews__nav--prev { left: -6px; }
+  .reviews__nav--next { right: -6px; }
+}
+@media (max-width: 700px) {
+  .reviews__track { grid-auto-columns: 250px; gap: 14px; }
+  .reviews__nav { display: none; }   /* на телефоне свайп удобнее кнопок */
 }
