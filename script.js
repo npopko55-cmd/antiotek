@@ -249,7 +249,7 @@
 
 /* ---------- Стройные и здоровые ноги: обратный отсчёт до старта (27 июля) ---------- */
 (function () {
-  var target = new Date('2026-08-17T00:00:00+03:00').getTime();
+  var target = new Date('2026-08-24T00:00:00+03:00').getTime();
   var elD = document.getElementById('tbD');
   var elH = document.getElementById('tbH');
   var elM = document.getElementById('tbM');
