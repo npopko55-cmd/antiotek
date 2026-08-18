@@ -1,0 +1,25 @@
+<style>
+@media (hover:hover){.hero__cta:hover{background:#f0aa00;border-color:#f0aa00;transform:translateY(-3px);box-shadow:0 12px 26px rgba(255,182,0,.42)}.hero__cta:active{transform:translateY(-1px);box-shadow:0 6px 14px rgba(255,182,0,.34)}}
+.inside__grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.inside__grid>.inside-card{grid-column:span 2}
+.inside__grid>.inside-card:nth-child(4),.inside__grid>.inside-card:nth-child(5){grid-column:span 3}
+@media (max-width:900px){.inside__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.inside__grid>.inside-card,.inside__grid>.inside-card:nth-child(4),.inside__grid>.inside-card:nth-child(5){grid-column:auto}.inside__grid>.inside-card:nth-child(5){grid-column:1 / -1}}
+@media (max-width:560px){.inside__grid{grid-template-columns:minmax(0,1fr)}.inside__grid>.inside-card:nth-child(5){grid-column:auto}}
+.reviews__carousel{position:relative;margin-top:32px}
+.reviews__track{display:grid;grid-auto-flow:column;grid-auto-columns:300px;gap:18px;align-items:start;overflow-x:auto;padding:4px 4px 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.reviews__track::-webkit-scrollbar{display:none}
+.reviews__track:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px}
+.reviews__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--color-primary);color:#fff;border:none;border-radius:var(--radius-pill);box-shadow:var(--shadow-md);cursor:pointer;transition:background .2s,opacity .2s}
+.reviews__nav--prev{left:-18px}
+.reviews__nav--next{right:-18px}
+@media (hover:hover){.reviews__nav:hover{background:var(--color-accent-dark)}}
+.reviews__nav[disabled]{opacity:.3;cursor:default}
+@media (max-width:1240px){.reviews__nav--prev{left:-6px}.reviews__nav--next{right:-6px}}
+@media (max-width:700px){.reviews__track{grid-auto-columns:250px;gap:14px}.reviews__nav{display:none}}
+.fork__cta{align-self:flex-start}
+@media (max-width:560px){.fork__cta{align-self:stretch}}
+.hero__media{position:relative;display:block;min-width:0}
+.hero__photo{display:block;width:100%;height:auto;aspect-ratio:820 / 993;max-height:560px;object-fit:cover;object-position:center top;border-radius:var(--radius-lg);box-shadow:var(--shadow-md)}
+@media (max-width:900px){.hero__photo{aspect-ratio:4 / 3;max-height:380px}}
+
+</style>

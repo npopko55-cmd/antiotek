@@ -1,0 +1,362 @@
+<script>
+/* =============================================================
+   Шагательная Табата 2.0 — клиентский JS
+   Без зависимостей. Запускается на DOMContentLoaded.
+   ============================================================= */
+
+(() => {
+  'use strict';
+
+  /* ---------- 0. Конфиг (правится для каждого запуска) ---------- */
+  const CONFIG = {
+    // Дата окончания таймера на центральном тарифе (UTC)
+    countdownDeadline: '2026-06-30T23:59:59+03:00'
+  };
+
+  /* ---------- 1. Год в футере ---------- */
+  const year = document.getElementById('footerYear');
+  if (year) year.textContent = new Date().getFullYear();
+
+  /* ---------- 2. Sticky header (тень при скролле) ---------- */
+  const header = document.getElementById('header');
+  const onScrollHeader = () => {
+    if (!header) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+  window.addEventListener('scroll', onScrollHeader, { passive: true });
+  onScrollHeader();
+
+  /* ---------- 3. Burger / overlay-nav ---------- */
+  const burger = document.getElementById('burgerBtn');
+  const overlayNav = document.getElementById('overlayNav');
+  const overlayBackdrop = document.getElementById('overlayBackdrop');
+  const closeNavBtn = document.getElementById('closeNavBtn');
+
+  const setNavState = (open) => {
+    if (!overlayNav) return;
+    overlayNav.classList.toggle('is-open', open);
+    overlayNav.setAttribute('aria-hidden', String(!open));
+    overlayBackdrop?.classList.toggle('is-open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  burger?.addEventListener('click', () => setNavState(true));
+  closeNavBtn?.addEventListener('click', () => setNavState(false));
+  overlayBackdrop?.addEventListener('click', () => setNavState(false));
+
+  // Закрывать при клике по ссылке внутри
+  overlayNav?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setNavState(false));
+  });
+
+  /* ---------- 4. Универсальные попапы (по ID) с focus-trap ---------- */
+  let lastFocusedBeforePopup = null;
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  const trapFocus = (popup, e) => {
+    const focusables = popup.querySelectorAll(FOCUSABLE);
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  };
+
+  const openPopupById = (id) => {
+    const popup = document.getElementById(id);
+    if (!popup) return;
+    lastFocusedBeforePopup = document.activeElement;
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // фокус на крестик закрытия
+    const closeBtn = popup.querySelector('.popup__close');
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
+  };
+  const closeAllPopups = () => {
+    const wasOpen = document.querySelectorAll('.popup.is-open').length > 0;
+    document.querySelectorAll('.popup.is-open').forEach((p) => {
+      p.classList.remove('is-open');
+      p.setAttribute('aria-hidden', 'true');
+    });
+    document.body.style.overflow = '';
+    // вернуть фокус на то что было до открытия
+    if (wasOpen && lastFocusedBeforePopup) {
+      lastFocusedBeforePopup.focus();
+      lastFocusedBeforePopup = null;
+    }
+  };
+
+  // Любой элемент с data-popup="popup-id" открывает соответствующий попап.
+  document.querySelectorAll('[data-popup]').forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = trigger.getAttribute('data-popup') || 'popup-installment';
+      openPopupById(id);
+    });
+  });
+  document.querySelectorAll('.popup [data-close]').forEach((el) => {
+    el.addEventListener('click', closeAllPopups);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+      setNavState(false);
+      return;
+    }
+    if (e.key === 'Tab') {
+      const openPopup = document.querySelector('.popup.is-open .popup__box');
+      if (openPopup) trapFocus(openPopup, e);
+    }
+  });
+
+  /* ---------- 5. Reviews slider (стрелки) ---------- */
+  const track = document.getElementById('reviewsTrack');
+  const prevBtn = document.getElementById('reviewsPrev');
+  const nextBtn = document.getElementById('reviewsNext');
+  const scrollByCard = (dir) => {
+    if (!track) return;
+    const card = track.querySelector('.review-card');
+    const step = (card?.offsetWidth || 300) + 16;
+    track.scrollBy({ left: step * dir, behavior: 'smooth' });
+  };
+  prevBtn?.addEventListener('click', () => scrollByCard(-1));
+  nextBtn?.addEventListener('click', () => scrollByCard(1));
+
+  /* Countdown удалён по запросу — таймер на тарифе больше не используется. */
+
+  /* ---------- 7. Back to top ---------- */
+  const btt = document.getElementById('backToTop');
+  const onScrollBTT = () => {
+    btt?.classList.toggle('is-visible', window.scrollY > 600);
+  };
+  window.addEventListener('scroll', onScrollBTT, { passive: true });
+  btt?.addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  );
+
+  /* ---------- 7b. Sticky mobile CTA ---------- */
+  const stickyCTA = document.getElementById('stickyCTA');
+  const ratesSection = document.getElementById('rates');
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+  const onScrollSticky = () => {
+    if (!stickyCTA) return;
+    if (!isMobile()) {
+      stickyCTA.classList.remove('is-visible');
+      return;
+    }
+    // Показываем после прокрутки за первый экран
+    const showAfter = window.innerHeight * 0.6;
+    // Скрываем, когда юзер находится прямо на блоке прайса
+    let nearRates = false;
+    if (ratesSection) {
+      const r = ratesSection.getBoundingClientRect();
+      nearRates = r.top < window.innerHeight * 0.6 && r.bottom > 0;
+    }
+    stickyCTA.classList.toggle('is-visible', window.scrollY > showAfter && !nearRates);
+  };
+  window.addEventListener('scroll', onScrollSticky, { passive: true });
+  window.addEventListener('resize', onScrollSticky);
+  onScrollSticky();
+
+  /* ---------- 8. Smooth anchor scroll (с учётом sticky header) ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#' || href.startsWith('#popup')) return;
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const offset = (header?.offsetHeight || 0) + 8;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  /* ---------- 9. UTM-проброс на все ссылки walk-walk.ru ---------- */
+  /* GetCourse-виджет вкорячивает свою кнопку с захардкоженной ссылкой
+     (walk-walk.ru/thinbelly/6-months и т.п.) уже ПОСЛЕ того как Tilda
+     прокинула UTM по странице. Мы должны:
+     1) При загрузке — обновить все существующие ссылки
+     2) Через MutationObserver — обновлять любые НОВЫЕ ссылки (от виджета)
+     3) При клике (capture-фаза) — финальная страховка перед навигацией */
+  (function () {
+    var p = new URLSearchParams(window.location.search);
+    var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_referrer','gclid','yclid','fbclid','erid','from'];
+    var pairs = keys
+      .map(function (k) { return p.has(k) ? k + '=' + encodeURIComponent(p.get(k)) : null; })
+      .filter(Boolean);
+    if (!pairs.length) return;
+    var qs = pairs.join('&');
+    try { sessionStorage.setItem('walkwalk_utm', qs); } catch (e) {}
+
+    function applyUtm(a) {
+      if (!a || a.tagName !== 'A') return;
+      var href = a.getAttribute('href');
+      if (!href) return;
+      // только walk-walk.ru (любой поддомен)
+      if (!/walk-walk\.ru/i.test(href)) return;
+      // уже есть UTM — не трогаем
+      if (/[?&]utm_/.test(href)) return;
+      var sep = href.indexOf('?') === -1 ? '?' : '&';
+      a.setAttribute('href', href + sep + qs);
+    }
+
+    // 1. Все ссылки на момент загрузки
+    document.querySelectorAll('a[href]').forEach(applyUtm);
+
+    // 2. MutationObserver — догоняем ссылки от GetCourse-виджета
+    if (window.MutationObserver) {
+      var mo = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          m.addedNodes && m.addedNodes.forEach(function (node) {
+            if (node.nodeType !== 1) return;
+            if (node.tagName === 'A') applyUtm(node);
+            if (node.querySelectorAll) node.querySelectorAll('a[href]').forEach(applyUtm);
+          });
+        });
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // 3. Capture-фаза клика — финальная страховка (если виджет меняет href в последний момент)
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a[href]');
+      if (a) applyUtm(a);
+    }, true);
+  })();
+
+  /* ---------- 10. Яндекс.Метрика — JS-цели через data-metrika-goal ---------- */
+  /* Счётчик walk-walk.ru (захардкожен) */
+  var METRIKA_ID = 94057307;
+  function reachMetrikaGoal(goal) {
+    if (!goal) return;
+    try {
+      if (typeof window.ym === 'function') {
+        window.ym(METRIKA_ID, 'reachGoal', goal);
+      }
+    } catch (e) { /* silent */ }
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest && e.target.closest('[data-metrika-goal]');
+    if (!t) return;
+    reachMetrikaGoal(t.dataset.metrikaGoal);
+  });
+})();
+
+/* ---------- Стройные и здоровые ноги: обратный отсчёт до старта (27 июля) ---------- */
+(function () {
+  var target = new Date('2026-08-24T00:00:00+03:00').getTime();
+  var elD = document.getElementById('tbD');
+  var elH = document.getElementById('tbH');
+  var elM = document.getElementById('tbM');
+  var elS = document.getElementById('tbS');
+  var timerWrap = document.getElementById('topTimer');
+  if (!elD || !elH || !elM || !elS) return;
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  var iv;
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      elD.textContent = '00'; elH.textContent = '00'; elM.textContent = '00'; elS.textContent = '00';
+      var txt = document.querySelector('.topbar__text');
+      if (txt) txt.innerHTML = 'Интенсив уже стартовал — <strong>присоединяйся</strong>';
+      if (timerWrap) timerWrap.style.display = 'none';
+      clearInterval(iv);
+      return;
+    }
+    elD.textContent = pad(Math.floor(diff / 86400000));
+    elH.textContent = pad(Math.floor(diff % 86400000 / 3600000));
+    elM.textContent = pad(Math.floor(diff % 3600000 / 60000));
+    elS.textContent = pad(Math.floor(diff % 60000 / 1000));
+  }
+  tick();
+  iv = setInterval(tick, 1000);
+})();
+
+/* ---------- Отзывы: стрелки горизонтальной ленты ----------
+   Прокрутка нативная (overflow-x), поэтому свайп и колесо работают даже
+   если этот код не выполнился. Кнопки доводят ленту на «экран» карточек.
+
+   Плавность анимируем сами, а не через scrollTo({behavior:'smooth'}):
+   в части движков и при включённом «уменьшить движение» smooth молча
+   игнорируется — прокрутка не происходит вовсе, и кнопки выглядят
+   сломанными. Позицию считаем абсолютную: при scrollBy шаги накапливают
+   ошибку, если предыдущая анимация ещё идёт. */
+(function () {
+  var track = document.getElementById('reviewsTrack');
+  if (!track) return;
+  var prev = document.querySelector('.reviews__nav--prev');
+  var next = document.querySelector('.reviews__nav--next');
+  if (!prev || !next) return;
+
+  var anim = null;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function unit() {
+    var card = track.querySelector('.review');
+    if (!card) return 0;
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 18;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function maxScroll() {
+    return Math.max(0, track.scrollWidth - track.clientWidth);
+  }
+
+  function animateTo(target) {
+    if (anim) cancelAnimationFrame(anim);
+    // document.hidden — вкладка в фоне, кадры не идут: ставим сразу
+    if (reduced || !window.requestAnimationFrame || document.hidden) {
+      track.scrollLeft = target;
+      sync();
+      return;
+    }
+    var from = track.scrollLeft;
+    var delta = target - from;
+    if (!delta) return;
+    var dur = 320, t0 = null;
+    var guard = setTimeout(function () {
+      if (anim) { cancelAnimationFrame(anim); anim = null; track.scrollLeft = target; sync(); }
+    }, dur + 260);
+    function frame(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      track.scrollLeft = from + delta * (1 - Math.pow(1 - p, 3));
+      if (p < 1) {
+        anim = requestAnimationFrame(frame);
+      } else {
+        anim = null;
+        clearTimeout(guard);
+        sync();
+      }
+    }
+    anim = requestAnimationFrame(frame);
+  }
+
+  function go(dir) {
+    var one = unit();
+    if (!one) return;
+    var perScreen = Math.max(1, Math.floor(track.clientWidth / one));
+    var current = Math.round(track.scrollLeft / one);
+    animateTo(Math.min(maxScroll(), Math.max(0, (current + dir * perScreen) * one)));
+  }
+
+  function sync() {
+    // 2px допуска: на ретине scrollLeft дробный, точного равенства не бывает
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= maxScroll() - 2;
+  }
+
+  prev.addEventListener('click', function () { go(-1); });
+  next.addEventListener('click', function () { go(1); });
+  track.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('resize', sync);
+  sync();
+})();
+
+</script>
