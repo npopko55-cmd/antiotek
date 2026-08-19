@@ -361,13 +361,18 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 500; margin: 0; line-heigh
 }
 
 /* CTA со стрелкой в кружке — жёлтый акцент на красном фоне */
+/* Кнопка первого экрана. display:flex делал её блочной, а внутри flex-колонки
+   карточки stretch растягивал на всю ширину — получалась полоса 600px.
+   inline-flex + align-self фиксируют размер по содержимому. */
 .hero__cta {
-  display: flex !important;
+  display: inline-flex !important;
+  align-self: flex-start;
+  width: auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
   margin-top: 8px;
-  padding: 14px 18px !important;
+  padding: 18px 34px !important;
   background: #FFB600 !important;
   color: #1f1300 !important;
   border-color: #FFB600 !important;
@@ -774,7 +779,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 500; margin: 0; line-heigh
 }
 
 /* ======================== БЛОК «ЧТО ИЗМЕНИТСЯ» (результат) ===== */
-.result { padding: 100px 0; }
+.result { padding: 72px 0; }
 .result__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1585,7 +1590,9 @@ section[id],
   align-items: center;
 }
 .hero__badge {
-  display: inline-block;
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
   background: rgba(255, 255, 255, .18);
   color: #fff;
   font-size: 13px;
@@ -1821,7 +1828,7 @@ section[id],
 @media (max-width: 860px) { .fork__grid { grid-template-columns: minmax(0, 1fr); gap: 14px; } .fork__col { padding: 24px 20px; } }
 
 /* ---------- ФИНАЛЬНЫЙ МИНИ-БЛОК ---------- */
-.result__inner { text-align: center; padding: 56px 0; }
+.result__inner { text-align: center; padding: 0; }
 .result__title { font-family: var(--font-h); font-size: clamp(26px, 4vw, 44px); margin: 0; line-height: 1.15; }
 .result__text { margin: 14px 0 28px; font-size: 18px; color: var(--color-muted); }
 
@@ -1930,13 +1937,13 @@ section[id],
   box-shadow: var(--shadow-md);
 }
 .hero__sticker--top {
-  top: 22px; left: -16px;
+  top: 22px; right: 22px;
   background: #fff;
   color: var(--color-text);
   font-weight: 600;
 }
 .hero__sticker--bottom {
-  bottom: 22px; right: -14px;
+  bottom: 22px; left: 22px;
   background: var(--color-primary-hover);
   color: #1f1300;
   font-weight: 600;
@@ -1963,8 +1970,8 @@ section[id],
   .hero__facts { gap: 18px; }
   .hero__facts b { font-size: 28px; }
   /* На узком стикеры уезжали за край экрана — прижимаем внутрь кадра */
-  .hero__sticker--top { left: 10px; top: 12px; }
-  .hero__sticker--bottom { right: 10px; bottom: 12px; }
+  .hero__sticker--top { right: 12px; top: 12px; }
+  .hero__sticker--bottom { left: 12px; bottom: 12px; }
 }
 @media (max-width: 560px) {
   .hero__facts { gap: 14px; }
@@ -2124,21 +2131,34 @@ section[id],
 
    Теперь высоту задаёт пропорция самого кадра: фото видно всегда, от
    растяжения родителя не зависит. */
-.hero__media { position: relative; display: block; min-width: 0; }
+.hero__media { position: relative; display: block; min-width: 0; min-height: 460px; }
+/* На десктопе кадр заполняет высоту строки грида — ровно столько же, сколько
+   красная карточка рядом. Иначе фото кончалось выше и справа зависал провал,
+   а стикер «2100+» висел в пустоте под кадром. */
 .hero__photo {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 820 / 993;
-  max-height: 560px;
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 12%;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
 }
 @media (max-width: 900px) {
-  /* на узком экране кадр ниже — иначе он занимает весь первый экран */
-  .hero__photo { aspect-ratio: 4 / 3; max-height: 380px; }
+  /* Одна колонка: у media нет соседа, который задавал бы высоту, поэтому
+     кадр снова держит себя сам пропорцией.
+     max-height при широкой колонке превращал портрет в панораму — оставалась
+     поднятая рука и пустая стена, а лицо срезало. Поэтому ограничиваем не
+     высоту, а ширину, и держим вертикальную пропорцию. */
+  .hero__media { min-height: 0; max-width: 430px; margin: 0 auto; }
+  .hero__photo {
+    position: static;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: none;
+    object-position: center 15%;
+  }
 }
 
 /* ============================================================
@@ -2162,7 +2182,9 @@ section[id],
 .track:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
 /* Ширина карточки у каждой ленты своя: скриншоты отзывов узкие, кадры
    «до/после» квадратные, портреты специалистов вытянутые. */
-.track--reviews { grid-auto-columns: 300px; align-items: start; }
+.track--reviews { grid-auto-columns: 300px; align-items: stretch; }
+.track--reviews .review { height: 100%; display: flex; flex-direction: column; }
+.track--reviews .review img { flex: none; }
 .track--cases   { grid-auto-columns: 320px; align-items: start; }
 .track--experts { grid-auto-columns: 300px; align-items: stretch; }
 .track--experts .expert { height: 100%; }
@@ -2182,15 +2204,15 @@ section[id],
   cursor: pointer;
   transition: background .2s, opacity .2s;
 }
-.track-nav--prev { left: -18px; }
-.track-nav--next { right: -18px; }
+.track-nav--prev { left: -52px; }
+.track-nav--next { right: -52px; }
 @media (hover: hover) { .track-nav:hover { background: var(--color-accent-dark); } }
 /* Доехали до края — кнопка гаснет, но остаётся в потоке: если убирать
    совсем, лента дёргается по ширине. */
 .track-nav[disabled] { opacity: .3; cursor: default; }
 @media (max-width: 1240px) {
-  .track-nav--prev { left: -6px; }
-  .track-nav--next { right: -6px; }
+  .track-nav--prev { left: -22px; }
+  .track-nav--next { right: -22px; }
 }
 @media (max-width: 700px) {
   .track { gap: 14px; }
@@ -2198,4 +2220,12 @@ section[id],
   .track--cases   { grid-auto-columns: 260px; }
   .track--experts { grid-auto-columns: 250px; }
   .track-nav { display: none; }   /* на телефоне свайп удобнее кнопок */
+}
+
+
+/* ------------------------------------------------------------------
+   Топбар на телефоне: оффер повторяет заголовок первого экрана и в трёх
+   строках распирал панель. Оставляем дату старта, таймер и кнопку. */
+@media (max-width: 560px) {
+  .topbar__offer { display: none; }
 }

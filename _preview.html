@@ -1,0 +1,1222 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Превью блоков</title><link rel="preconnect" href="https://fonts.googleapis.com" /></head><body><link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
+<style>
+:root{--color-bg:#ffffff;--color-text:#1f1300;--color-muted:#6b6b6b;--color-line:#e5e5e5;--color-primary:#ce2c01;--color-primary-hover:#ffb600;--color-accent-dark:#ca4f00;--color-soft:#f5f5f5;--color-dark:#1f1300;--color-discount:#cf2c02;--radius-sm:10px;--radius-md:16px;--radius-lg:24px;--radius-pill:999px;--shadow-sm:0 2px 8px rgba(31,19,0,0.06);--shadow-md:0 10px 30px rgba(31,19,0,0.10);--font-h:'Unbounded',Arial,sans-serif;--font-b:'Inter',Arial,sans-serif;--container:1200px;--gutter:24px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-b);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;word-wrap:break-word;overflow-wrap:break-word}
+h1,h2,h3{overflow-wrap:break-word;word-break:keep-all;hyphens:manual;text-wrap:balance}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+ul{list-style:none;padding:0;margin:0}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
+h1,h2,h3{font-family:var(--font-h);font-weight:500;margin:0;line-height:1.15}
+.section{padding:80px 0}
+.section__title{font-size:45px;font-weight:500;text-align:center;margin-bottom:32px}
+@media (max-width:768px){.section__title{font-size:30px}}
+.section__lead{text-align:center;font-size:18px;color:var(--color-muted);max-width:760px;margin:-12px auto 40px;line-height:1.55}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:var(--radius-pill);font-weight:500;font-size:16px;border:2px solid transparent;transition:background .2s,color .2s,border-color .2s,transform .15s;white-space:nowrap;min-height:44px}
+.btn:active{transform:translateY(1px)}
+.btn--sm{padding:10px 18px;font-size:14px;min-height:40px}
+.btn--lg{font-size:16px;padding:18px 36px}
+.btn--block{width:100%}
+.btn--primary{background:var(--color-primary);color:#fff}
+.btn--white{background:#fff;color:var(--color-text);border-color:#fff;font-family:var(--font-b);font-weight:400}
+@media (hover:hover){.btn--primary:hover,.btn--white:hover{background:var(--color-primary-hover);color:#1f1300;border-color:var(--color-primary-hover)}}
+.btn--primary:active,.btn--primary:focus,.btn--white:active,.btn--white:focus{background:var(--color-primary-hover);color:#1f1300;border-color:var(--color-primary-hover)}
+.topbar{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,#ce2c01,#ca4f00);color:#fff}
+.topbar__inner{display:flex;align-items:center;justify-content:center;gap:16px;min-height:46px;padding:7px 20px;flex-wrap:wrap}
+.topbar__text{font-size:14px;font-weight:500}
+.topbar__text strong{font-weight:700}
+.topbar__timer{display:flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
+.topbar__unit{display:inline-flex;flex-direction:column;align-items:center;line-height:1;background:rgba(255,255,255,.16);border-radius:6px;padding:4px 6px;min-width:30px}
+.topbar__unit b{font-family:var(--font-h);font-weight:600;font-size:15px}
+.topbar__unit i{font-style:normal;font-size:9px;opacity:.85;margin-top:2px}
+.topbar__sep{opacity:.5;font-weight:700}
+@media (max-width:640px){.topbar__inner{gap:10px}.topbar__unit i{display:none}.topbar__unit{min-width:24px;padding:3px 5px}.topbar__text{font-size:13px}}
+.header{position:static;z-index:50;background:var(--color-soft);border-bottom:1px solid transparent;transition:box-shadow .2s,background .2s}
+.header.is-scrolled{box-shadow:var(--shadow-sm);background:rgba(245,245,245,.95);backdrop-filter:blur(6px)}
+.header__inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--gutter)}
+.header__actions{flex-shrink:0;display:flex;gap:12px;align-items:center}
+.header__burger{width:40px;height:40px;display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;border:0;background:transparent;padding:0}
+@media (max-width:959px){.header__burger{display:flex}}
+.header__burger span{width:22px;height:2px;background:var(--color-text);border-radius:2px;display:block}
+.header__logo{display:inline-flex !important;align-items:center;flex-shrink:0;visibility:visible;opacity:1}
+.header__logo svg,.header__logo img{height:36px;width:auto;display:block;flex-shrink:0}
+@media (max-width:768px){.header__logo svg,.header__logo img{height:28px}.header__inner{gap:8px}}
+@media (max-width:420px){.header__actions .btn--sm{padding:8px 14px;font-size:13px}}
+.overlay-nav__backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:opacity .25s;z-index:99}
+.overlay-nav__backdrop.is-open{opacity:1;visibility:visible}
+.overlay-nav{position:fixed;top:0;left:0;bottom:0;width:min(360px,90vw);background:var(--color-primary);color:#fff;padding:28px 28px 24px;transform:translateX(-100%);transition:transform .3s ease;z-index:100;display:flex;flex-direction:column;gap:24px;overflow-y:auto}
+.overlay-nav.is-open{transform:translateX(0)}
+.overlay-nav__close{align-self:flex-end;background:transparent;color:#fff;border:0;font-size:32px;line-height:1;padding:0;margin-bottom:-10px;width:44px;height:44px}
+.overlay-nav__list{display:flex;flex-direction:column;gap:14px;font-size:16px}
+.overlay-nav__list a:hover{color:var(--color-primary-hover)}
+.overlay-nav__socials{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.overlay-nav__socials a{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.16);color:#fff;transition:background .2s}
+.overlay-nav__socials a:hover{background:#fff;color:var(--color-primary)}
+.overlay-nav__socials svg{width:18px;height:18px}
+.overlay-nav__cta{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.hero{padding:32px 0 64px}
+.hero__card{position:relative;overflow:hidden;background:var(--color-primary);color:#fff;border-radius:var(--radius-sm);padding:40px;display:flex;flex-direction:column;gap:18px}
+.hero__card::after{content:"";position:absolute;inset:0;background:url('https://static.tildacdn.com/tild3562-3535-4166-b634-663130393766/SVG.png') no-repeat center center / cover;opacity:0.18;pointer-events:none}
+.hero__card>*{position:relative;z-index:1}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 4px rgba(255,182,0,0.25)}50%{box-shadow:0 0 0 8px rgba(255,182,0,0.10)}}
+.hero__title{color:#fff;font-family:var(--font-h);font-weight:600;font-size:clamp(30px,4.4vw,52px);line-height:1.08;letter-spacing:-0.03em;text-wrap:balance;word-break:normal;overflow-wrap:break-word;hyphens:none;margin:0}
+.hero__lead{font-size:18px;font-weight:500;line-height:1.45;margin:0;color:#fff;opacity:.96}
+.hero__cta{display:inline-flex !important;align-self:flex-start;width:auto;align-items:center;justify-content:center;gap:10px;margin-top:8px;padding:18px 34px !important;background:#FFB600 !important;color:#1f1300 !important;border-color:#FFB600 !important;font-weight:500}
+@media (hover:hover){.hero__cta:hover .hero__cta-arrow{transform:translateX(4px);background:#FFB600;color:#1f1300}}
+.hero__cta:active .hero__cta-arrow,.hero__cta:focus .hero__cta-arrow{background:#FFB600 !important;color:#1f1300 !important}
+@media (max-width:900px){.hero__card{padding:28px}}
+@media (max-width:768px){.hero__lead{font-size:16px}}
+.pains-block .section__title{margin-bottom:12px}
+.inside{padding:100px 0}
+.inside__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.inside-card{position:relative;background:var(--color-soft);border-radius:var(--radius-lg);padding:30px 26px 26px;transition:transform .2s,box-shadow .2s}
+.inside-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.inside-card__num{font-family:var(--font-h);font-weight:600;font-size:30px;color:var(--color-primary);opacity:0.45;line-height:1;display:block;margin-bottom:12px}
+.inside-card h3{font-family:var(--font-h);font-weight:600;font-size:19px;margin:0 0 8px;letter-spacing:-0.01em}
+.inside-card p{margin:0;font-size:15px;line-height:1.5;color:var(--color-muted)}
+@media (max-width:900px){.inside__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.inside__grid{grid-template-columns:1fr}.inside{padding:56px 0}}
+.result{padding:72px 0}
+@media (max-width:560px){.result{padding:56px 0}}
+.rates-banner{padding:56px 0 32px;text-align:center}
+.rates-banner h2{font-size:clamp(24px,3.4vw,42px);font-family:var(--font-h);font-weight:600;max-width:900px;margin:0 auto}
+.rates-banner .accent{color:var(--color-discount)}
+.rates{padding-top:16px;padding-bottom:80px}
+.rates__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.rate-card{position:relative;background:var(--color-soft);border-radius:15px;padding:32px 22px 28px;display:flex;flex-direction:column;gap:16px}
+.rate-card .btn--block{margin-top:auto}
+.rate-card--featured{background:var(--color-primary);color:#fff}
+.rate-card__discount{align-self:flex-start;background:var(--color-primary);color:#fff;font-weight:400;font-size:12px;padding:7px 16px;border-radius:var(--radius-pill);line-height:16px}
+.rate-card--featured .rate-card__discount{background:#fff;color:var(--color-primary)}
+.rate-card__badge-top{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--color-primary-hover);color:#1f1300;font-family:var(--font-b);font-weight:600;font-size:12px;letter-spacing:0.4px;text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-pill);box-shadow:0 6px 16px rgba(0,0,0,.15);white-space:nowrap}
+.rate-card__title{font-size:22px;font-family:var(--font-h);font-weight:500;min-height:64px;display:flex;align-items:flex-start}
+@media (max-width:540px){.rate-card__title{min-height:0}}
+.rate-card__price{display:flex;flex-direction:column;gap:4px}
+.rate-card__new{font-family:var(--font-h);font-size:32px;font-weight:500;line-height:1.1}
+.rate-card__monthly{font-size:13px;opacity:0.7}
+.rate-card__features{display:flex;flex-direction:column;gap:10px;font-size:14px;margin:8px 0;flex:1}
+.rate-card__features li{position:relative;padding-left:30px}
+.rate-card__features li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;background:var(--color-primary) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>') center/10px no-repeat;border-radius:50%}
+.rate-card--featured .rate-card__features li::before{background-color:#fff;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="%23ce2c01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>')}
+.rate-card__features-hero{font-size:16px;margin-bottom:2px;padding-left:30px;position:relative}
+.rate-card__features-hero + .rate-card__features-hero{margin-top:6px}
+.rate-card__features-hero::before{content:"⚡" !important;background:transparent !important;border-radius:0 !important;width:auto !important;height:auto !important;font-size:18px;line-height:1;top:0 !important;left:2px !important}
+.rate-card__features-hero strong{color:var(--color-primary);font-weight:600}
+.rate-card--featured .rate-card__features-hero strong{color:var(--color-primary-hover)}
+.rate-card__alt-link{display:block;margin:10px auto 0;padding:12px 18px;text-align:center;font-size:14px;font-weight:600;color:var(--color-primary);background:transparent;border:1.5px solid var(--color-primary);border-radius:999px;text-decoration:none;transition:background .15s,color .15s}
+@media (hover:hover){.rate-card__alt-link:hover{background:var(--color-primary-hover);color:#1f1300;border-color:var(--color-primary-hover)}}
+.rate-card__alt-link:active,.rate-card__alt-link:focus{background:var(--color-primary-hover);color:#1f1300;border-color:var(--color-primary-hover)}
+.rate-card__alt-link--on-red{color:#fff;border-color:rgba(255,255,255,0.9)}
+@media (hover:hover){.rate-card__alt-link--on-red:hover{background:var(--color-primary-hover);color:#1f1300;border-color:var(--color-primary-hover)}}
+.rate-card__alt-link--on-red:active,.rate-card__alt-link--on-red:focus{background:var(--color-primary-hover);color:#1f1300;border-color:var(--color-primary-hover)}
+.rates__note{text-align:center;color:var(--color-muted);font-size:14px;margin:24px auto 0;max-width:640px;line-height:1.5}
+@media (max-width:900px){.rates__grid{grid-template-columns:minmax(0,1fr);max-width:460px;margin:0 auto}.rate-card--featured{transform:none}}
+.cases .section__title-sub{display:block;font-size:0.55em;color:var(--color-muted);font-weight:400;margin-top:6px}
+@keyframes marquee-scroll{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(calc(-50% - 6px),0,0)}}
+@media (max-width:768px){@keyframes marquee-scroll-mobile{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(calc(-50% - 5px),0,0)}}}
+.help{background:var(--color-soft)}
+.help__inner{text-align:center;max-width:720px;margin:0 auto}
+.help__sub{color:var(--color-muted);margin:0 0 32px;font-size:16px}
+.help__buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+@media (max-width:480px){.help__buttons{flex-direction:column}.help__buttons .btn{width:100%}}
+.footer{background:#fff;color:#fff;padding:40px 0 24px}
+.footer__grid{display:grid;grid-template-columns:1.5fr 1fr;gap:60px;background:var(--color-primary);border-radius:15px;padding:60px 60px 40px;margin:0 20px;max-width:calc(100% - 40px)}
+.footer__brand{font-size:45px;font-weight:500;margin-bottom:28px}
+@media (max-width:768px){.footer__brand{font-size:30px}.footer__grid{padding:36px 28px 28px;margin:0 12px}}
+.footer__phones{margin-bottom:28px;font-size:15px}
+.footer__phones a{color:#fff}
+.footer__phones-title{font-weight:600;margin-bottom:8px}
+.footer__phones p{margin:4px 0;opacity:.85}
+.footer__links{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.footer__links a{opacity:.85}
+.footer__links a:hover{opacity:1;color:var(--color-primary-hover)}
+.footer__col--legal p{margin:6px 0;font-size:14px;opacity:.85}
+.footer__socials{display:flex;gap:10px;margin:24px 0;flex-wrap:wrap}
+.footer__socials a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;color:#fff;transition:background .2s,color .2s,transform .15s}
+.footer__socials a:hover{background:#fff;color:var(--color-primary);transform:translateY(-2px)}
+.footer__socials svg{width:22px;height:22px;display:block}
+.footer__bottom{margin-top:24px;padding:12px 0 0}
+.footer__bottom-inner{font-size:13px;color:var(--color-text);opacity:.7;text-align:center}
+@media (max-width:900px){.footer__grid{grid-template-columns:1fr;gap:40px}}
+.back-to-top{position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:var(--color-primary);color:#fff;border:0;font-size:20px;box-shadow:var(--shadow-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .25s,transform .25s,background .2s;z-index:60}
+.back-to-top.is-visible{opacity:1;visibility:visible;transform:none}
+.back-to-top:hover{background:var(--color-primary-hover);color:#1f1300}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.92) 30%);display:none;justify-content:flex-end;pointer-events:none}
+.sticky-cta.is-visible{display:flex}
+.sticky-cta__btn{pointer-events:auto;display:inline-flex;align-items:center;gap:10px;background:var(--color-primary);color:#fff;padding:14px 20px;border-radius:999px;font-family:var(--font-b);font-weight:500;font-size:15px;white-space:nowrap;box-shadow:0 10px 26px rgba(206,44,1,.35);text-decoration:none;transition:background .2s,transform .15s}
+.sticky-cta__btn:active{transform:scale(.98)}
+.sticky-cta__btn:hover{background:#b32500}
+.sticky-cta__icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(255,255,255,.18);border-radius:50%;font-size:18px;flex-shrink:0}
+@media (max-width:768px){.back-to-top{bottom:88px}body{padding-bottom:72px}}
+a:focus-visible,button:focus-visible,[role="button"]:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid #FFB600;outline-offset:3px;border-radius:4px}
+.btn:focus-visible,.rate-card__alt-link:focus-visible,.sticky-cta__btn:focus-visible,.hero__cta:focus-visible{outline-offset:4px}
+section[id],.rates-banner{scroll-margin-top:80px}
+.btn.btn--primary{background:var(--color-primary) !important;color:#fff !important;border-color:var(--color-primary) !important}
+.btn.btn--white{background:#fff !important;color:var(--color-text) !important}
+@media (hover:hover){.btn.btn--primary:hover,.btn.btn--white:hover{background:var(--color-primary-hover) !important;color:#1f1300 !important;border-color:var(--color-primary-hover) !important}}
+.btn.hero__cta{background:#FFB600 !important;color:#1f1300 !important;border-color:#FFB600 !important}
+.footer .footer__socials a{background:rgba(255,255,255,.18) !important;color:#fff !important}
+.footer .footer__socials a svg{fill:currentColor !important}
+@media (hover:hover){.footer .footer__socials a:hover{background:#fff !important;color:var(--color-primary) !important}}
+.footer .footer__socials a:active,.footer .footer__socials a:focus{background:#fff !important;color:var(--color-primary) !important}
+.experts-people{background:#fff5ef}
+.experts-people .section__title{margin-bottom:40px}
+.cases{background:var(--color-soft)}
+.result{background:#fff5ef}
+.hero__grid{display:grid;grid-template-columns:1.05fr minmax(0,1fr);gap:28px;align-items:center}
+.hero__badge{display:inline-flex;align-self:flex-start;width:fit-content;background:rgba(255,255,255,.18);color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-radius:var(--radius-pill);padding:7px 16px;margin-bottom:18px}
+
+</style>
+<style>
+.hero__accent{color:var(--color-primary-hover)}
+.hero__cta{margin-top:26px}
+.hero__promises{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.hero__promise{display:flex;align-items:flex-start;gap:12px;background:var(--color-soft);border-radius:var(--radius-lg);padding:18px 20px;font-size:15px;line-height:1.45}
+.hero__promise-icon{flex:none;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--color-primary);color:#fff}
+@media (max-width:900px){.hero__grid{grid-template-columns:minmax(0,1fr)}.hero__promises{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:24px}}
+.seven__quote{margin-top:30px;padding:26px 30px;background:var(--color-primary);color:#fff;border-radius:var(--radius-lg)}
+.seven__quote p{margin:0 0 8px;font-size:18px;line-height:1.4}
+.seven__quote strong{font-family:var(--font-h);font-size:20px}
+@media (max-width:700px){.seven__item{font-size:16px;padding:14px 16px 14px 50px}.seven__quote{padding:20px 18px}.seven__quote p{font-size:16px}.seven__quote strong{font-size:18px}}
+.reviews{background:var(--color-soft)}
+.review{break-inside:avoid;margin:0 0 18px;background:#fff;border:1px solid var(--color-line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+.review img{width:100%;height:auto;display:block}
+.expert{background:#fff;border:1px solid var(--color-line);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column}
+.expert__photo{aspect-ratio:3 / 4;background:var(--color-soft)}
+.expert__photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.expert__name{font-family:var(--font-h);font-size:17px;margin:16px 16px 0;line-height:1.2}
+.expert__name span{display:block;font-family:var(--font-b);font-size:14px;font-weight:500;color:var(--color-primary);margin-top:5px}
+.expert__text{margin:10px 16px 20px;font-size:14px;line-height:1.5;color:var(--color-muted)}
+.proof{margin-top:34px;display:flex;align-items:center;gap:22px;background:var(--color-primary);color:#fff;border-radius:var(--radius-lg);padding:26px 32px}
+.proof__num{font-family:var(--font-h);font-size:clamp(34px,5vw,54px);line-height:1}
+.proof__text{font-size:17px;line-height:1.4}
+@media (max-width:640px){.proof{flex-direction:column;align-items:flex-start;gap:10px;padding:22px 20px}}
+.extras{background:var(--color-soft)}
+.extras__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.extra{background:#fff;border:1px solid var(--color-line);border-radius:var(--radius-lg);padding:32px}
+.extra--accent{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
+.extra__tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--color-primary);background:var(--color-soft);border-radius:var(--radius-pill);padding:6px 14px}
+.extra__tag--new{background:var(--color-primary-hover);color:#1f1300}
+.extra__title{font-family:var(--font-h);font-size:clamp(21px,2.2vw,27px);margin:16px 0 0;line-height:1.2}
+.extra__text{margin:12px 0 0;font-size:16px;line-height:1.5}
+.extra:not(.extra--accent) .extra__text{color:var(--color-muted)}
+.extra__list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.extra__list li{position:relative;padding-left:26px;font-size:16px;line-height:1.45}
+.extra__list li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--color-primary-hover)}
+@media (max-width:860px){.extras__grid{grid-template-columns:minmax(0,1fr);gap:16px}.extra{padding:24px 20px}}
+.rate-card__price-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rate-card__old{color:var(--color-muted);font-size:17px}
+.rate-card--featured .rate-card__old{color:rgba(255,255,255,.72)}
+.rate-card__instalment{display:block;margin-top:6px;font-size:14px;color:var(--color-muted)}
+.rate-card--featured .rate-card__instalment{color:rgba(255,255,255,.82)}
+.rates-banner__sub{margin:12px 0 0;font-size:17px}
+.case{margin:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-line);background:var(--color-soft)}
+.case img{width:100%;height:auto;display:block}
+.fork__grid{margin-top:34px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}
+.fork__col{border-radius:var(--radius-lg);padding:32px;display:flex;flex-direction:column}
+.fork__col--now{background:var(--color-soft);border:1px solid var(--color-line)}
+.fork__col--after{background:var(--color-primary);color:#fff}
+.fork__title{font-family:var(--font-h);font-size:clamp(19px,2vw,24px);margin:0 0 18px;line-height:1.2}
+.fork__col--now .fork__title{color:var(--color-muted)}
+.fork__list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.fork__list li{position:relative;padding-left:30px;font-size:16px;line-height:1.45}
+.fork__col--now .fork__list li{color:var(--color-muted)}
+.fork__col--now .fork__list li::before{content:"";position:absolute;left:4px;top:9px;width:12px;height:2px;background:var(--color-muted)}
+.fork__col--after .fork__list li::before{content:"";position:absolute;left:2px;top:4px;width:16px;height:8px;border-left:2.5px solid var(--color-primary-hover);border-bottom:2.5px solid var(--color-primary-hover);transform:rotate(-45deg)}
+.fork__cta{margin-top:auto;padding-top:0}
+.fork__col--after .fork__list{margin-bottom:26px}
+@media (max-width:860px){.fork__grid{grid-template-columns:minmax(0,1fr);gap:14px}.fork__col{padding:24px 20px}}
+.result__inner{text-align:center;padding:0}
+.result__title{font-family:var(--font-h);font-size:clamp(26px,4vw,44px);margin:0;line-height:1.15}
+.result__text{margin:14px 0 28px;font-size:18px;color:var(--color-muted)}
+.btn--yellow{background:var(--color-primary-hover);color:#1f1300;border-color:var(--color-primary-hover)}
+@media (hover:hover){.btn--yellow:hover{background:#f0aa00;border-color:#f0aa00}}
+.topbar__offer{font-family:var(--font-h);font-weight:600;font-size:15px;letter-spacing:.01em;white-space:nowrap}
+.topbar__offer b{color:var(--color-primary-hover);font-weight:600}
+@media (max-width:960px){.topbar__offer{font-size:14px}.topbar__text{font-size:13px}}
+@media (max-width:640px){.topbar__inner{gap:8px;padding:6px 12px;min-height:44px;flex-wrap:nowrap}.topbar__text{display:none}.topbar__offer{font-size:12.5px;white-space:normal;line-height:1.15}.topbar__cta{display:inline-flex;padding:7px 12px;font-size:12px;white-space:nowrap}}
+@media (max-width:400px){.topbar__offer{font-size:11.5px}.topbar__cta{padding:6px 10px;font-size:11.5px}}
+.expert__photo{aspect-ratio:auto;height:320px}
+@media (max-width:900px){.expert__photo{height:300px}}
+@media (max-width:560px){.expert__photo{height:340px}}
+.extra:not(.extra--accent) .extra__list li::before{background:var(--color-primary)}
+.hero__grid{grid-template-columns:1.02fr minmax(0,.98fr);gap:32px;align-items:stretch}
+.hero__card{display:flex;flex-direction:column;justify-content:center}
+.hero__title{font-size:clamp(30px,4.1vw,54px);line-height:1.08}
+.hero__accent{color:var(--color-primary-hover);white-space:nowrap}
+.hero__lead{max-width:46ch}
+.hero__facts{list-style:none;display:flex;gap:26px;margin:26px 0 0;padding:0}
+.hero__facts li{display:flex;flex-direction:column}
+.hero__facts b{font-family:var(--font-h);font-size:34px;line-height:1;color:var(--color-primary-hover)}
+.hero__facts span{font-size:13px;line-height:1.25;margin-top:6px;opacity:.92}
+.hero__under{margin:14px 0 0;font-size:14px;opacity:.88}
+.hero__sticker{position:absolute;z-index:2;border-radius:var(--radius-md);padding:12px 16px;font-size:13px;line-height:1.25;box-shadow:var(--shadow-md)}
+.hero__sticker--top{top:22px;right:22px;background:#fff;color:var(--color-text);font-weight:600}
+.hero__sticker--bottom{bottom:22px;left:22px;background:var(--color-primary-hover);color:#1f1300;font-weight:600}
+.hero__sticker--bottom b{font-family:var(--font-h);font-size:19px;display:block}
+.hero__promises{margin-top:34px;gap:18px}
+.hero__promise{background:#fff;border:1px solid var(--color-line);box-shadow:var(--shadow-sm);padding:20px 22px;font-size:15.5px;align-items:center;transition:transform .2s,box-shadow .2s}
+@media (hover:hover){.hero__promise:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}}
+@media (max-width:900px){.hero__grid{gap:22px}.hero__facts{gap:18px}.hero__facts b{font-size:28px}.hero__sticker--top{right:12px;top:12px}.hero__sticker--bottom{left:12px;bottom:12px}}
+@media (max-width:560px){.hero__facts{gap:14px}.hero__facts b{font-size:24px}.hero__facts span{font-size:12px}.hero__sticker{font-size:12px;padding:9px 12px}}
+.seven__list{list-style:none;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.seven__item:first-child{grid-column:1 / -1}
+.seven__item{display:flex;align-items:center;gap:20px;background:#fff;border:1px solid var(--color-line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:22px 26px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.seven__num{flex:none;min-width:92px;font-family:var(--font-h);font-size:clamp(30px,3.4vw,44px);line-height:1;color:var(--color-primary);letter-spacing:-.02em}
+.seven__item:first-child .seven__num{color:var(--color-primary);font-size:clamp(38px,4.6vw,60px)}
+.seven__txt{font-size:17px;line-height:1.4}
+@media (hover:hover){.seven__item:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--color-primary)}}
+@media (max-width:820px){.seven__list{grid-template-columns:minmax(0,1fr);gap:12px}.seven__item{padding:18px 20px;gap:16px}.seven__num{min-width:68px}.seven__txt{font-size:16px}}
+.hero__facts{flex-wrap:wrap}
+.hero__facts li{min-width:0}
+@media (max-width:380px){.hero__facts{gap:12px 16px}.hero__facts b{font-size:22px}}
+@media (max-width:900px){.hero__grid{grid-template-columns:minmax(0,1fr);gap:22px}.hero__promises{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:24px}.hero__title{font-size:clamp(27px,7vw,40px)}}
+@media (max-width:820px){.seven__list{grid-template-columns:minmax(0,1fr);gap:12px}.seven__item{padding:18px 20px;gap:16px}.seven__num{min-width:68px}}
+@media (max-width:560px){.hero__facts{gap:14px;flex-wrap:wrap}.hero__facts b{font-size:24px}.hero__sticker{font-size:12px;padding:9px 12px}}
+.hero__cta{transition:background .2s,border-color .2s,transform .18s,box-shadow .18s}
+@media (hover:hover){.hero__cta:hover{background:#f0aa00;border-color:#f0aa00;transform:translateY(-3px);box-shadow:0 12px 26px rgba(255,182,0,.42)}.hero__cta:active{transform:translateY(-1px);box-shadow:0 6px 14px rgba(255,182,0,.34)}}
+.inside__grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.inside__grid>.inside-card{grid-column:span 2}
+.inside__grid>.inside-card:nth-child(4),.inside__grid>.inside-card:nth-child(5){grid-column:span 3}
+@media (max-width:900px){.inside__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.inside__grid>.inside-card,.inside__grid>.inside-card:nth-child(4),.inside__grid>.inside-card:nth-child(5){grid-column:auto}.inside__grid>.inside-card:nth-child(5){grid-column:1 / -1}}
+@media (max-width:560px){.inside__grid{grid-template-columns:minmax(0,1fr)}.inside__grid>.inside-card:nth-child(5){grid-column:auto}}
+.fork__cta{align-self:flex-start}
+@media (max-width:560px){.fork__cta{align-self:stretch}}
+.hero__media{position:relative;display:block;min-width:0;min-height:460px}
+.hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 12%;border-radius:var(--radius-lg);box-shadow:var(--shadow-md)}
+@media (max-width:900px){.hero__media{min-height:0;max-width:430px;margin:0 auto}.hero__photo{position:static;height:auto;aspect-ratio:4 / 5;max-height:none;object-position:center 15%}}
+.track-wrap{position:relative;margin-top:32px}
+.track{display:grid;grid-auto-flow:column;gap:18px;overflow-x:auto;padding:4px 4px 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.track:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px}
+.track--reviews{grid-auto-columns:300px;align-items:stretch}
+.track--reviews .review{height:100%;display:flex;flex-direction:column}
+.track--reviews .review img{flex:none}
+.track--cases{grid-auto-columns:320px;align-items:start}
+.track--experts{grid-auto-columns:300px;align-items:stretch}
+.track--experts .expert{height:100%}
+.track-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--color-primary);color:#fff;border:none;border-radius:var(--radius-pill);box-shadow:var(--shadow-md);cursor:pointer;transition:background .2s,opacity .2s}
+.track-nav--prev{left:-52px}
+.track-nav--next{right:-52px}
+@media (hover:hover){.track-nav:hover{background:var(--color-accent-dark)}}
+.track-nav[disabled]{opacity:.3;cursor:default}
+@media (max-width:1240px){.track-nav--prev{left:-22px}.track-nav--next{right:-22px}}
+@media (max-width:700px){.track{gap:14px}.track--reviews{grid-auto-columns:250px}.track--cases{grid-auto-columns:260px}.track--experts{grid-auto-columns:250px}.track-nav{display:none}}
+@media (max-width:560px){.topbar__offer{display:none}}
+
+</style>
+
+
+<div class="topbar" id="topbar">
+  <div class="container topbar__inner">
+    <span class="topbar__offer">&#1052;&#1080;&#1085;&#1091;&#1089; <b>2&#8211;4&nbsp;&#1082;&#1075; &#1074;&#1086;&#1076;&#1099;</b> &#1079;&#1072;&nbsp;7&nbsp;&#1076;&#1085;&#1077;&#1081;</span>
+    <span class="topbar__text">&#1057;&#1090;&#1072;&#1088;&#1090; <strong>24&nbsp;&#1072;&#1074;&#1075;&#1091;&#1089;&#1090;&#1072;</strong></span>
+    <div class="topbar__timer" id="topTimer" aria-label="&#1044;&#1086; &#1089;&#1090;&#1072;&#1088;&#1090;&#1072; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;">
+      <span class="topbar__unit"><b id="tbD">00</b><i>&#1076;&#1085;</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbH">00</b><i>&#1095;</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbM">00</b><i>&#1084;</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbS">00</b><i>&#1089;</i></span>
+    </div>
+    <a href="#rates" class="topbar__cta" data-metrika-goal="anti-topbar-cta">&#1055;&#1088;&#1080;&#1089;&#1086;&#1077;&#1076;&#1080;&#1085;&#1080;&#1090;&#1100;&#1089;&#1103;</a>
+  </div>
+</div>
+
+
+
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="&#1064;&#1072;&#1075;&#1072;&#1081; &#1044;&#1086;&#1084;&#1072;">
+      <svg viewBox="0 0 106.01 49.13" fill="none" aria-hidden="true">
+        <path d="M27.36 36.85L22.19 37.4V20.22L14.26 20.6V38.26L8.68 38.86V20.87L0 21.28V45.81L34.6 41.41V19.62L27.36 19.97V36.85Z" fill="#CF2C02"/>
+        <path d="M45.94 19.08L37.8 41.01L44.66 40.14L45.69 36.55L52.88 35.73L53.87 38.97L60.11 38.17L52.84 18.75L45.94 19.08ZM47.1 31.89L49.36 24.26L51.6 31.46L47.1 31.89Z" fill="#CF2C02"/>
+        <path d="M76.12 17.63L62.29 18.29V37.9L67.87 37.19V22.73L76.12 22.18V17.63Z" fill="#CF2C02"/>
+        <path d="M87 34.76L91.75 34.15L86.22 17.15L81.01 17.4L74.91 36.29L80.05 35.64L80.83 32.55L86.25 31.93L87 34.76ZM81.88 28.52L83.58 21.92L85.28 28.19L81.88 28.52Z" fill="#CF2C02"/>
+        <path d="M102.2 23.79V32.82L105.92 32.35V16.2L102.22 16.38L97.21 25.93V16.62L93.16 16.81V33.97L97.21 33.46L102.2 23.79Z" fill="#CF2C02"/>
+        <path d="M99.07 18.22L103.82 6.75L100.67 6.76L101.32 0L96.48 11.33L99.58 11.26L99.07 18.22Z" fill="#CF2C02"/>
+      </svg>
+    </a>
+
+    <div class="header__actions">
+      <a href="#rates" class="btn btn--primary btn--sm" data-metrika-goal="anti-header-cta">&#1055;&#1088;&#1080;&#1089;&#1086;&#1077;&#1076;&#1080;&#1085;&#1080;&#1090;&#1100;&#1089;&#1103;</a>
+      <button class="header__burger" id="burgerBtn" type="button" aria-label="&#1054;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100; &#1084;&#1077;&#1085;&#1102;" aria-controls="overlayNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<div class="overlay-nav" id="overlayNav" aria-hidden="true">
+  <button class="overlay-nav__close" id="closeNavBtn" aria-label="&#1047;&#1072;&#1082;&#1088;&#1099;&#1090;&#1100; &#1084;&#1077;&#1085;&#1102;">&#215;</button>
+  <nav class="overlay-nav__list" aria-label="&#1052;&#1077;&#1085;&#1102;">
+    <a href="#seven">&#1063;&#1077;&#1088;&#1077;&#1079; 7 &#1076;&#1085;&#1077;&#1081;</a>
+    <a href="#specialists">&#1057;&#1087;&#1077;&#1094;&#1080;&#1072;&#1083;&#1080;&#1089;&#1090;&#1099;</a>
+    <a href="#inside">&#1063;&#1090;&#1086; &#1074;&#1085;&#1091;&#1090;&#1088;&#1080;</a>
+    <a href="#cases">&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;</a>
+    <a href="#rates">&#1058;&#1072;&#1088;&#1080;&#1092;&#1099;</a>
+    <a href="#contacts">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1099;</a>
+  </nav>
+  <div class="overlay-nav__socials">
+    <a href="https://vk.com/walk_is_love" target="_blank" rel="noopener" aria-label="&#1042;&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1077;">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.785 16.241s.288-.032.435-.193c.135-.148.13-.426.13-.426s-.018-1.298.582-1.49c.591-.188 1.35 1.254 2.155 1.808.609.42 1.072.328 1.072.328l2.155-.031s1.127-.07.593-.96c-.044-.073-.311-.659-1.604-1.864-1.354-1.262-1.172-1.058.458-3.249.993-1.334 1.39-2.149 1.266-2.498-.118-.332-.853-.244-.853-.244l-2.446.015s-.181-.025-.315.056c-.131.08-.215.265-.215.265s-.385.99-.9 1.831c-1.083 1.775-1.516 1.869-1.693 1.755-.412-.266-.31-1.075-.31-1.65 0-1.795.272-2.543-.531-2.738-.266-.064-.462-.107-1.143-.114-.874-.009-1.613.003-2.032.208-.279.136-.494.439-.363.456.162.022.529.099.724.365.252.342.243 1.113.243 1.113s.144 2.116-.337 2.378c-.331.18-.785-.187-1.751-1.852-.495-.852-.869-1.794-.869-1.794s-.072-.176-.201-.27c-.156-.114-.374-.15-.374-.15l-2.325.015s-.349.01-.477.161c-.114.135-.009.413-.009.413s1.821 4.259 3.884 6.406c1.892 1.967 4.04 1.838 4.04 1.838h.973z"/></svg>
+    </a>
+    <a href="https://dzen.ru/walkislove" target="_blank" rel="noopener" aria-label="&#1044;&#1079;&#1077;&#1085;">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c1.244 5.376 2.124 6.256 7.5 7.5-5.376 1.244-6.256 2.124-7.5 7.5-1.244-5.376-2.124-6.256-7.5-7.5 5.376-1.244 6.256-2.124 7.5-7.5z"/></svg>
+    </a>
+    <a href="https://ok.ru/group/70000006886921" target="_blank" rel="noopener" aria-label="&#1054;&#1076;&#1085;&#1086;&#1082;&#1083;&#1072;&#1089;&#1089;&#1085;&#1080;&#1082;&#1080;">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 3.6c-2.04 0-3.696 1.66-3.696 3.7 0 2.04 1.656 3.696 3.696 3.696S15.696 9.34 15.696 7.3C15.696 5.26 14.04 3.6 12 3.6zm0 5.16c-.804 0-1.464-.66-1.464-1.46 0-.804.66-1.464 1.464-1.464.804 0 1.464.66 1.464 1.464 0 .8-.66 1.46-1.464 1.46zm5.236 5.04c-.276-.564-.984-1.036-2.072-.16-1.476 1.176-3.852 1.176-3.852 1.176s-2.376 0-3.852-1.176c-1.088-.876-1.796-.404-2.072.16-.48.984.09 1.452.708 1.984.528.456 2.508 1.224 4.36 1.392l-1.548 1.548c-.612.612-.224 1.572.604 1.572.512 0 1.024-.512 1.024-.512l1.776-1.776 1.776 1.776s.512.512 1.024.512c.828 0 1.216-.96.604-1.572l-1.548-1.548c1.852-.168 3.832-.936 4.36-1.392.618-.532 1.188-1 .708-1.984z"/></svg>
+    </a>
+    <a href="https://wa.me/905510983369" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+  </div>
+  <div class="overlay-nav__cta">
+    <a href="#rates" class="btn btn--white btn--block" data-metrika-goal="anti-menu-cta">&#1055;&#1088;&#1080;&#1089;&#1086;&#1077;&#1076;&#1080;&#1085;&#1080;&#1090;&#1100;&#1089;&#1103;</a>
+  </div>
+</div>
+<div class="overlay-nav__backdrop" id="overlayBackdrop"></div>
+
+
+
+
+
+
+
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__card">
+        <span class="hero__badge">&#1048;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074; &#171;&#1040;&#1085;&#1090;&#1080;&#1086;&#1090;&#1105;&#1095;&#1085;&#1086;&#1089;&#1090;&#1100;&#187;</span>
+        
+        <h1 class="hero__title">&#1052;&#1080;&#1085;&#1091;&#1089; <span class="hero__accent">2&#8211;4&nbsp;&#1082;&#1075; &#1074;&#1086;&#1076;&#1099;</span><br />&#1080;&nbsp;&#1086;&#1073;&#1098;&#1105;&#1084;&#1086;&#1074; &#1079;&#1072;&nbsp;7&nbsp;&#1076;&#1085;&#1077;&#1081;</h1>
+        <p class="hero__lead">&#1057;&#1080;&#1089;&#1090;&#1077;&#1084;&#1072;, &#1082;&#1086;&#1090;&#1086;&#1088;&#1072;&#1103; &#1080;&#1079;&#1073;&#1072;&#1074;&#1083;&#1103;&#1077;&#1090; &#1086;&#1090;&nbsp;&#1086;&#1090;&#1105;&#1082;&#1086;&#1074; &#1080;&nbsp;&#1091;&#1084;&#1077;&#1085;&#1100;&#1096;&#1072;&#1077;&#1090; &#1086;&#1073;&#1098;&#1105;&#1084;&#1099; &#1074;&#1089;&#1077;&#1075;&#1086; &#1079;&#1072;&nbsp;&#1085;&#1077;&#1076;&#1077;&#1083;&#1102;&nbsp;&#8212; &#1073;&#1077;&#1079; &#1089;&#1083;&#1086;&#1078;&#1085;&#1099;&#1093; &#1076;&#1080;&#1077;&#1090; &#1080;&nbsp;&#1091;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1081;, &#1087;&#1086;&#1089;&#1083;&#1077; &#1082;&#1086;&#1090;&#1086;&#1088;&#1099;&#1093; &#1073;&#1086;&#1083;&#1080;&#1090; &#1074;&#1089;&#1105; &#1090;&#1077;&#1083;&#1086;.</p>
+
+        <ul class="hero__facts">
+          <li><b>15</b><span>&#1084;&#1080;&#1085;&#1091;&#1090; &#1074;&nbsp;&#1076;&#1077;&#1085;&#1100;</span></li>
+          <li><b>14</b><span>&#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082;</span></li>
+          <li><b>5</b><span>&#1089;&#1087;&#1077;&#1094;&#1080;&#1072;&#1083;&#1080;&#1089;&#1090;&#1086;&#1074;</span></li>
+        </ul>
+
+        <a href="#rates" class="btn btn--yellow btn--lg hero__cta" data-metrika-goal="anti-hero-cta">&#1055;&#1088;&#1080;&#1089;&#1086;&#1077;&#1076;&#1080;&#1085;&#1080;&#1090;&#1100;&#1089;&#1103; &#1082;&nbsp;&#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1091;</a>
+        <p class="hero__under">&#1057;&#1090;&#1072;&#1088;&#1090; 24&nbsp;&#1072;&#1074;&#1075;&#1091;&#1089;&#1090;&#1072; &#183; &#1086;&#1089;&#1090;&#1072;&#1083;&#1086;&#1089;&#1100; &#1084;&#1072;&#1083;&#1086; &#1084;&#1077;&#1089;&#1090;</p>
+      </div>
+
+      <div class="hero__media">
+        <img class="hero__photo"
+             src="https://npopko55-cmd.github.io/antiotek/assets/hero/hero-antiotek.webp"
+             srcset="https://npopko55-cmd.github.io/antiotek/assets/hero/hero-antiotek-760.webp 560w, https://npopko55-cmd.github.io/antiotek/assets/hero/hero-antiotek.webp 820w"
+             sizes="(max-width: 900px) 92vw, 42vw"
+             alt="&#1058;&#1088;&#1077;&#1085;&#1077;&#1088; &#1082;&#1083;&#1091;&#1073;&#1072; &#171;&#1064;&#1072;&#1075;&#1072;&#1081; &#1044;&#1086;&#1084;&#1072;&#187;"
+             width="820" height="993" fetchpriority="high" />
+        <span class="hero__sticker hero__sticker--top">&#1057;&#1072;&#1084;&#1086;&#1084;&#1072;&#1089;&#1089;&#1072;&#1078;<br /><b>5 &#1084;&#1080;&#1085;&#1091;&#1090;</b><br />&#1074; &#1076;&#1077;&#1085;&#1100;</span>
+        <span class="hero__sticker hero__sticker--bottom"><b>2100+</b> &#1091;&#1078;&#1077; &#1087;&#1088;&#1086;&#1096;&#1083;&#1080;</span>
+      </div>
+    </div>
+
+    <ul class="hero__promises">
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>
+        </span>
+        <span>&#1069;&#1085;&#1077;&#1088;&#1075;&#1080;&#1103; &#1080;&nbsp;&#1073;&#1086;&#1076;&#1088;&#1086;&#1089;&#1090;&#1100;, &#1073;&#1091;&#1076;&#1090;&#1086; &#1089;&#1073;&#1088;&#1086;&#1089;&#1080;&#1083;&#1080; &#1090;&#1103;&#1078;&#1105;&#1083;&#1099;&#1081; &#1088;&#1102;&#1082;&#1079;&#1072;&#1082;</span>
+      </li>
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.2 2.1 1.8 3.5 1.8s2.5-.6 3.5-1.8M9 9.5h.01M15 9.5h.01"/></svg>
+        </span>
+        <span>&#1051;&#1080;&#1094;&#1086; &#1095;&#1105;&#1090;&#1095;&#1077;, &#1087;&#1086;&#1076;&#1090;&#1103;&#1085;&#1091;&#1083;&#1089;&#1103; &#1086;&#1074;&#1072;&#1083;, &#1084;&#1077;&#1085;&#1100;&#1096;&#1077; &#1074;&#1090;&#1086;&#1088;&#1086;&#1081; &#1087;&#1086;&#1076;&#1073;&#1086;&#1088;&#1086;&#1076;&#1086;&#1082;</span>
+      </li>
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5c0 5.1-7 9.5-7 9.5Z"/></svg>
+        </span>
+        <span>&#1050;&#1086;&#1083;&#1100;&#1094;&#1072; &#1085;&#1072;&#1083;&#1077;&#1079;&#1072;&#1102;&#1090;, &#1086;&#1073;&#1091;&#1074;&#1100; &#1085;&#1077;&nbsp;&#1078;&#1084;&#1105;&#1090;, &#1073;&#1088;&#1102;&#1082;&#1080; &#1079;&#1072;&#1089;&#1090;&#1105;&#1075;&#1080;&#1074;&#1072;&#1102;&#1090;&#1089;&#1103;</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+
+
+<section class="section seven" id="seven">
+  <div class="container">
+    <h2 class="section__title">&#1059;&#1078;&#1077; &#1095;&#1077;&#1088;&#1077;&#1079; 7&nbsp;&#1076;&#1085;&#1077;&#1081; &#1074;&#1099; &#1079;&#1072;&#1084;&#1077;&#1090;&#1080;&#1090;&#1077;, &#1095;&#1090;&#1086;:</h2>
+
+    <ul class="seven__list">
+      <li class="seven__item"><span class="seven__num">&#8722;4</span><span class="seven__txt"><b>&#1082;&#1075; &#1074;&#1086;&#1076;&#1099;</b> &#1091;&#1081;&#1076;&#1091;&#1090; &#1080;&#1079;&nbsp;&#1074;&#1072;&#1096;&#1077;&#1075;&#1086; &#1090;&#1077;&#1083;&#1072;</span></li>
+      <li class="seven__item"><span class="seven__num">&#8722;2</span><span class="seven__txt"><b>&#1088;&#1072;&#1079;&#1084;&#1077;&#1088;&#1072;</b> &#1074;&nbsp;&#1086;&#1073;&#1098;&#1105;&#1084;&#1072;&#1093; &#1078;&#1080;&#1074;&#1086;&#1090;&#1072;, &#1085;&#1086;&#1075; &#1080;&nbsp;&#1083;&#1080;&#1094;&#1072;</span></li>
+      <li class="seven__item"><span class="seven__num">24/7</span><span class="seven__txt">&#1054;&#1090;&#1088;&#1072;&#1078;&#1077;&#1085;&#1080;&#1077; &#1074;&nbsp;&#1079;&#1077;&#1088;&#1082;&#1072;&#1083;&#1077; &#1088;&#1072;&#1076;&#1091;&#1077;&#1090; <b>&#1074;&nbsp;&#1083;&#1102;&#1073;&#1086;&#1077; &#1074;&#1088;&#1077;&#1084;&#1103; &#1089;&#1091;&#1090;&#1086;&#1082;</b></span></li>
+      <li class="seven__item"><span class="seven__num">0</span><span class="seven__txt">&#1057;&#1083;&#1077;&#1076;&#1086;&#1074; &#1086;&#1090;&nbsp;&#1088;&#1077;&#1079;&#1080;&#1085;&#1086;&#1082;&nbsp;&#8212; &#1086;&#1076;&#1077;&#1078;&#1076;&#1072; <b>&#1087;&#1077;&#1088;&#1077;&#1089;&#1090;&#1072;&#1085;&#1077;&#1090; &#1074;&#1088;&#1077;&#1079;&#1072;&#1090;&#1100;&#1089;&#1103;</b></span></li>
+      <li class="seven__item"><span class="seven__num">+1</span><span class="seven__txt">&#1057;&#1074;&#1086;&#1073;&#1086;&#1076;&#1085;&#1099;&#1081; &#1074;&#1077;&#1095;&#1077;&#1088;: <b>&#1089;&#1080;&#1083;&#1099; &#1080;&nbsp;&#1101;&#1085;&#1077;&#1088;&#1075;&#1080;&#1103;</b> &#1074;&#1084;&#1077;&#1089;&#1090;&#1086; &#1076;&#1080;&#1074;&#1072;&#1085;&#1072;</span></li>
+    </ul>
+
+    <div class="seven__quote">
+      <p>&#1040;&nbsp;&#1074;&#1099;&nbsp;&#1087;&#1086;&#1084;&#1085;&#1080;&#1090;&#1077;, &#1082;&#1072;&#1082;&#1091;&#1102; &#1083;&#1105;&#1075;&#1082;&#1086;&#1089;&#1090;&#1100; &#1074;&nbsp;&#1090;&#1077;&#1083;&#1077; &#1095;&#1091;&#1074;&#1089;&#1090;&#1074;&#1086;&#1074;&#1072;&#1083;&#1080; 15&#8211;20&nbsp;&#1083;&#1077;&#1090; &#1085;&#1072;&#1079;&#1072;&#1076;?</p>
+      <strong>&#1044;&#1072;&#1074;&#1072;&#1081;&#1090;&#1077; &#1074;&#1077;&#1088;&#1085;&#1105;&#1084; &#1101;&#1090;&#1086; &#1086;&#1097;&#1091;&#1097;&#1077;&#1085;&#1080;&#1077; &#1074;&#1084;&#1077;&#1089;&#1090;&#1077;!</strong>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="section reviews" id="reviews">
+  <div class="container">
+    <h2 class="section__title">&#1054;&#1090;&#1079;&#1099;&#1074;&#1099; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;</h2>
+    <p class="section__lead">&#1050;&#1072;&#1082; &#1077;&#1089;&#1090;&#1100;, &#1080;&#1079;&nbsp;&#1095;&#1072;&#1090;&#1072; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;.</p>
+
+    <div class="track-wrap">
+      <button class="track-nav track-nav--prev" type="button" aria-label="&#1055;&#1088;&#1077;&#1076;&#1099;&#1076;&#1091;&#1097;&#1080;&#1077; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099;" aria-controls="reviewsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      </button>
+      <div class="track track--reviews" id="reviewsTrack" tabindex="0" role="group" aria-label="&#1054;&#1090;&#1079;&#1099;&#1074;&#1099; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;, &#1087;&#1088;&#1086;&#1082;&#1088;&#1091;&#1095;&#1080;&#1074;&#1072;&#1077;&#1090;&#1089;&#1103; &#1074;&#1073;&#1086;&#1082;">
+        <figure class="review"><img src="https://npopko55-cmd.github.io/antiotek/assets/reviews/review-1.webp" alt="&#1054;&#1090;&#1079;&#1099;&#1074; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;" width="560" height="840" loading="lazy" /></figure>
+        <figure class="review"><img src="https://npopko55-cmd.github.io/antiotek/assets/reviews/review-2.webp" alt="&#1054;&#1090;&#1079;&#1099;&#1074; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;" width="520" height="412" loading="lazy" /></figure>
+        <figure class="review"><img src="https://npopko55-cmd.github.io/antiotek/assets/reviews/review-3.webp" alt="&#1054;&#1090;&#1079;&#1099;&#1074; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;" width="560" height="706" loading="lazy" /></figure>
+        <figure class="review"><img src="https://npopko55-cmd.github.io/antiotek/assets/reviews/review-4.webp" alt="&#1054;&#1090;&#1079;&#1099;&#1074; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;" width="560" height="1117" loading="lazy" /></figure>
+        <figure class="review"><img src="https://npopko55-cmd.github.io/antiotek/assets/reviews/review-5.webp" alt="&#1054;&#1090;&#1079;&#1099;&#1074; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;" width="560" height="560" loading="lazy" /></figure>
+      </div>
+      <button class="track-nav track-nav--next" type="button" aria-label="&#1057;&#1083;&#1077;&#1076;&#1091;&#1102;&#1097;&#1080;&#1077; &#1086;&#1090;&#1079;&#1099;&#1074;&#1099;" aria-controls="reviewsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="section inside" id="inside">
+  <div class="container">
+    <h2 class="section__title">&#1050;&#1072;&#1082; &#1087;&#1086;&#1093;&#1091;&#1076;&#1077;&#1090;&#1100; &#1085;&#1072;&nbsp;&#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1077;?</h2>
+    <p class="section__lead">&#1055;&#1103;&#1090;&#1100; &#1087;&#1088;&#1086;&#1089;&#1090;&#1099;&#1093; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1081; &#1082;&#1072;&#1078;&#1076;&#1099;&#1081; &#1076;&#1077;&#1085;&#1100;&nbsp;&#8212; &#1074;&#1089;&#1105;, &#1095;&#1090;&#1086; &#1085;&#1091;&#1078;&#1085;&#1086; &#1076;&#1077;&#1083;&#1072;&#1090;&#1100;.</p>
+
+    <div class="inside__grid">
+      <article class="inside-card">
+        <span class="inside-card__num">1</span>
+        <h3>&#1044;&#1077;&#1083;&#1072;&#1090;&#1100; &#1096;&#1072;&#1075;&#1086;&#1074;&#1091;&#1102; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1082;&#1091; &#1076;&#1086;&#1084;&#1072;</h3>
+        <p>&#1053;&#1072;&nbsp;~2500&nbsp;&#1096;&#1072;&#1075;&#1086;&#1074;&nbsp;&#8212; &#1101;&#1090;&#1086; 20&nbsp;&#1084;&#1080;&#1085;&#1091;&#1090; &#1074;&nbsp;&#1076;&#1077;&#1085;&#1100;.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">2</span>
+        <h3>&#1055;&#1086;&#1089;&#1083;&#1091;&#1096;&#1072;&#1090;&#1100; &#1074;&#1077;&#1073;&#1080;&#1085;&#1072;&#1088; &#1086;&#1090;&nbsp;&#1076;&#1080;&#1077;&#1090;&#1086;&#1083;&#1086;&#1075;&#1072;</h3>
+        <p>&#1050;&#1072;&#1082; &#1089;&nbsp;&#1087;&#1086;&#1084;&#1086;&#1097;&#1100;&#1102; &#1087;&#1080;&#1090;&#1072;&#1085;&#1080;&#1103; &#1080;&#1079;&#1073;&#1072;&#1074;&#1080;&#1090;&#1100;&#1089;&#1103; &#1086;&#1090;&nbsp;&#1086;&#1090;&#1105;&#1082;&#1086;&#1074; &#1085;&#1072;&#1074;&#1089;&#1077;&#1075;&#1076;&#1072;.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">3</span>
+        <h3>&#1044;&#1077;&#1083;&#1072;&#1090;&#1100; &#1089;&#1072;&#1084;&#1086;&#1084;&#1072;&#1089;&#1089;&#1072;&#1078;</h3>
+        <p>5&nbsp;&#1084;&#1080;&#1085;&#1091;&#1090; &#1074;&nbsp;&#1076;&#1077;&#1085;&#1100;&nbsp;&#8212; &#1095;&#1090;&#1086;&#1073;&#1099; &#1086;&#1090;&#1105;&#1082;&#1080; &#1091;&#1093;&#1086;&#1076;&#1080;&#1083;&#1080; &#1073;&#1099;&#1089;&#1090;&#1088;&#1077;&#1077;.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">4</span>
+        <h3>&#1055;&#1080;&#1090;&#1072;&#1090;&#1100;&#1089;&#1103; &#1087;&#1086;&nbsp;&#1087;&#1088;&#1086;&#1089;&#1090;&#1086;&#1084;&#1091; &#1087;&#1083;&#1072;&#1085;&#1091; &#1087;&#1080;&#1090;&#1072;&#1085;&#1080;&#1103;</h3>
+        <p>&#1052;&#1077;&#1085;&#1102; &#171;&#1040;&#1085;&#1090;&#1080;&#1086;&#1090;&#1105;&#1082;&#187; &#1080;&nbsp;&#1084;&#1080;&#1085;&#1080;-&#1087;&#1086;&#1076;&#1082;&#1072;&#1089;&#1090;&#1099; &#1086;&#1090;&nbsp;&#1076;&#1080;&#1077;&#1090;&#1086;&#1083;&#1086;&#1075;&#1072;.</p>
+      </article>
+      <article class="inside-card">
+        <span class="inside-card__num">5</span>
+        <h3>&#1054;&#1073;&#1097;&#1072;&#1090;&#1100;&#1089;&#1103; &#1074;&nbsp;&#1095;&#1072;&#1090;&#1077;</h3>
+        <p>&#1047;&#1072;&#1082;&#1088;&#1099;&#1090;&#1099;&#1077; &#1095;&#1072;&#1090;&#1099; &#1074;&nbsp;Telegram &#1080;&nbsp;MAX: &#1087;&#1086;&#1076;&#1076;&#1077;&#1088;&#1078;&#1082;&#1072; &#1080;&nbsp;&#1086;&#1090;&#1074;&#1077;&#1090;&#1099; &#1085;&#1072;&nbsp;&#1074;&#1086;&#1087;&#1088;&#1086;&#1089;&#1099;.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section extras" id="extras">
+  <div class="container">
+    <div class="extras__grid">
+      <article class="extra">
+        <span class="extra__tag">&#1051;&#1080;&#1094;&#1086;, &#1096;&#1077;&#1103;, &#1079;&#1086;&#1085;&#1072; &#1076;&#1077;&#1082;&#1086;&#1083;&#1100;&#1090;&#1077;</span>
+        <h3 class="extra__title">&#1060;&#1077;&#1081;&#1089;-&#1081;&#1086;&#1075;&#1072; + &#1083;&#1080;&#1084;&#1092;&#1086;&#1076;&#1088;&#1077;&#1085;&#1072;&#1078;</h3>
+        <p class="extra__text">&#1059;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1103; &#1076;&#1083;&#1103; &#1089;&#1085;&#1103;&#1090;&#1080;&#1103; &#1086;&#1090;&#1105;&#1095;&#1085;&#1086;&#1089;&#1090;&#1080; &#1080;&nbsp;&#1072;&#1089;&#1080;&#1084;&#1084;&#1077;&#1090;&#1088;&#1080;&#1080; &#1085;&#1072;&#1087;&#1088;&#1103;&#1078;&#1077;&#1085;&#1080;&#1103;. &#1069;&#1090;&#1086; &#1084;&#1103;&#1075;&#1082;&#1072;&#1103; &#1087;&#1086;&#1076;&#1090;&#1103;&#1078;&#1082;&#1072; &#1073;&#1077;&#1079; &#1080;&#1085;&#1098;&#1077;&#1082;&#1094;&#1080;&#1081;.</p>
+        <ul class="extra__list">
+          <li>&#1088;&#1072;&#1073;&#1086;&#1090;&#1072;&#1077;&#1084; &#1089;&nbsp;&#1083;&#1080;&#1094;&#1086;&#1084;, &#1096;&#1077;&#1077;&#1081; &#1080;&nbsp;&#1079;&#1086;&#1085;&#1086;&#1081; &#1076;&#1077;&#1082;&#1086;&#1083;&#1100;&#1090;&#1077;</li>
+          <li>&#1085;&#1072;&#1083;&#1072;&#1078;&#1080;&#1074;&#1072;&#1077;&#1084; &#1083;&#1080;&#1084;&#1092;&#1086;&#1090;&#1086;&#1082;&nbsp;&#8212; &#1086;&#1090;&#1105;&#1082; &#1091;&#1093;&#1086;&#1076;&#1080;&#1090;, &#1086;&#1074;&#1072;&#1083; &#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1080;&#1090;&#1089;&#1103; &#1095;&#1105;&#1090;&#1095;&#1077;</li>
+          <li>&#1077;&#1089;&#1090;&#1077;&#1089;&#1090;&#1074;&#1077;&#1085;&#1085;&#1086;&#1077; &#1086;&#1084;&#1086;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; &#1073;&#1077;&#1079; &#171;&#1091;&#1082;&#1086;&#1083;&#1086;&#1074; &#1082;&#1088;&#1072;&#1089;&#1086;&#1090;&#1099;&#187;</li>
+        </ul>
+      </article>
+
+      <article class="extra extra--accent">
+        <span class="extra__tag extra__tag--new">&#1042;&#1087;&#1077;&#1088;&#1074;&#1099;&#1077;&nbsp;&#8212; &#1086;&#1090;&nbsp;&#1042;&#1072;&#1083;&#1077;&#1088;&#1080;&#1080;</span>
+        <h3 class="extra__title">&#1058;&#1077;&#1081;&#1087;-&#1090;&#1077;&#1088;&#1072;&#1087;&#1080;&#1103;</h3>
+        <p class="extra__text">&#1042;&#1099;&nbsp;&#1086;&#1090;&#1076;&#1099;&#1093;&#1072;&#1077;&#1090;&#1077;&nbsp;&#8212; &#1090;&#1077;&#1081;&#1087;&#1099; &#1088;&#1072;&#1073;&#1086;&#1090;&#1072;&#1102;&#1090;. &#1063;&#1090;&#1086; &#1086;&#1085;&#1080; &#1076;&#1072;&#1102;&#1090;:</p>
+        <ul class="extra__list">
+          <li>&#1087;&#1086;&#1084;&#1086;&#1075;&#1072;&#1102;&#1090; &#1085;&#1072;&#1091;&#1095;&#1080;&#1090;&#1100;&#1089;&#1103; &#1082;&#1086;&#1085;&#1090;&#1088;&#1086;&#1083;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1084;&#1080;&#1084;&#1080;&#1082;&#1091;</li>
+          <li>&#1089;&#1087;&#1086;&#1089;&#1086;&#1073;&#1089;&#1090;&#1074;&#1091;&#1102;&#1090; &#1088;&#1072;&#1079;&#1075;&#1083;&#1072;&#1078;&#1080;&#1074;&#1072;&#1085;&#1080;&#1102; &#1084;&#1086;&#1088;&#1097;&#1080;&#1085;</li>
+          <li>&#1087;&#1086;&#1076;&#1090;&#1103;&#1075;&#1080;&#1074;&#1072;&#1102;&#1090; &#1083;&#1080;&#1094;&#1086;, &#1087;&#1086;&#1082;&#1072; &#1074;&#1099;&nbsp;&#1089;&#1087;&#1080;&#1090;&#1077;</li>
+          <li>&#1076;&#1072;&#1102;&#1090; &#1101;&#1092;&#1092;&#1077;&#1082;&#1090; &#171;&#1086;&#1090;&#1076;&#1086;&#1093;&#1085;&#1091;&#1074;&#1096;&#1077;&#1075;&#1086; &#1083;&#1080;&#1094;&#1072;&#187; &#1085;&#1072;&nbsp;&#1091;&#1090;&#1088;&#1086;</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="rates-banner">
+  <div class="container">
+    <h2>&#1047;&#1072;&#1087;&#1080;&#1096;&#1080;&#1090;&#1077;&#1089;&#1100; &#1085;&#1072;&nbsp;&#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074; &#1080;&nbsp;&#1087;&#1086;&#1083;&#1091;&#1095;&#1080;&#1090;&#1077; <span class="accent">&#1076;&#1086;&#1089;&#1090;&#1091;&#1087; &#1082;&#1086;&nbsp;&#1074;&#1089;&#1077;&#1084; &#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;&#1072;&#1084; &#1064;&#1072;&#1075;&#1072;&#1081;&nbsp;&#1044;&#1086;&#1084;&#1072;!</span></h2>
+    <p class="rates-banner__sub">&#1042;&#1099;&#1073;&#1080;&#1088;&#1072;&#1081;&#1090;&#1077; &#1087;&#1086;&#1076;&#1093;&#1086;&#1076;&#1103;&#1097;&#1080;&#1081; &#1089;&#1088;&#1086;&#1082; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1072; &#1082;&nbsp;&#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1082;&#1072;&#1084;</p>
+  </div>
+</section>
+
+
+
+
+
+<section class="section rates" id="rates">
+  <div class="container">
+    <div class="rates__grid">
+
+      <article class="rate-card">
+        <span class="rate-card__badge-top">&#1057;&#1090;&#1072;&#1088;&#1090;</span>
+        <h3 class="rate-card__title">&#1048;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074; + &#1082;&#1083;&#1091;&#1073; &#1085;&#1072;&nbsp;2&nbsp;&#1084;&#1077;&#1089;&#1103;&#1094;&#1072;</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">9&nbsp;590&nbsp;&#8381;</s>
+            <span class="rate-card__discount">&#1057;&#1082;&#1080;&#1076;&#1082;&#1072; 61%</span>
+          </span>
+          <span class="rate-card__new">3&nbsp;690&nbsp;&#8381;</span>
+          <span class="rate-card__monthly">1&nbsp;845&nbsp;&#8381; &#1074;&nbsp;&#1084;&#1077;&#1089;&#1103;&#1094;</span>
+          <span class="rate-card__instalment">&#1056;&#1072;&#1089;&#1089;&#1088;&#1086;&#1095;&#1082;&#1072;: 6&nbsp;&#1087;&#1083;&#1072;&#1090;&#1077;&#1078;&#1077;&#1081; &#1087;&#1086;&nbsp;615&nbsp;&#8381;</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>&#1059;&#1095;&#1072;&#1089;&#1090;&#1080;&#1077; &#1074;&nbsp;&#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1077; &#171;&#1040;&#1085;&#1090;&#1080;&#1086;&#1090;&#1105;&#1095;&#1085;&#1086;&#1089;&#1090;&#1100;&#187;</strong></li>
+          <li>25&nbsp;&#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;, 320+ &#1096;&#1072;&#1075;&#1072;&#1090;&#1077;&#1083;&#1100;&#1085;&#1099;&#1093; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082;</li>
+          <li>60&nbsp;&#1088;&#1077;&#1094;&#1077;&#1087;&#1090;&#1086;&#1074; &#1087;&#1086;&#1083;&#1077;&#1079;&#1085;&#1086;&#1081; &#1077;&#1076;&#1099;, &#1074;&#1077;&#1073;&#1080;&#1085;&#1072;&#1088;&#1099; &#1087;&#1088;&#1086; &#1079;&#1076;&#1086;&#1088;&#1086;&#1074;&#1100;&#1077;</li>
+          <li>30&nbsp;&#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082; &#1076;&#1083;&#1103; &#1079;&#1076;&#1086;&#1088;&#1086;&#1074;&#1100;&#1103; &#1089;&#1087;&#1080;&#1085;&#1099; &#1080;&nbsp;&#1088;&#1072;&#1089;&#1090;&#1103;&#1078;&#1077;&#1082;</li>
+          <li>&#1055;&#1086;&#1076;&#1076;&#1077;&#1088;&#1078;&#1082;&#1072; &#1095;&#1072;&#1090;&#1072; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1082;&#1086;&#1074; &#1080;&nbsp;&#1082;&#1091;&#1088;&#1072;&#1090;&#1086;&#1088;&#1072;</li>
+          <li>&#1041;&#1077;&#1089;&#1087;&#1083;&#1072;&#1090;&#1085;&#1086;&#1077; &#1087;&#1086;&#1087;&#1086;&#1083;&#1085;&#1077;&#1085;&#1080;&#1077; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082; &#1080;&nbsp;&#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;</li>
+        </ul>
+        <a href="https://walk-walk.ru/antiotek/tarif_1" class="btn btn--primary btn--block" data-metrika-goal="anti-rate-2m-click">&#1054;&#1092;&#1086;&#1088;&#1084;&#1080;&#1090;&#1100; &#1072;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090;</a>
+        <a href="https://my.walk-walk.ru/antiotek" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="anti-have-subscription-2m">&#1059; &#1084;&#1077;&#1085;&#1103; &#1091;&#1078;&#1077; &#1077;&#1089;&#1090;&#1100; &#1072;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090;</a>
+      </article>
+
+      <article class="rate-card rate-card--featured">
+        <span class="rate-card__badge-top">&#1061;&#1080;&#1090; &#1087;&#1088;&#1086;&#1076;&#1072;&#1078;</span>
+        <h3 class="rate-card__title">&#1048;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074; + &#1082;&#1083;&#1091;&#1073; &#1085;&#1072;&nbsp;6&nbsp;&#1084;&#1077;&#1089;&#1103;&#1094;&#1077;&#1074;</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">13&nbsp;190&nbsp;&#8381;</s>
+            <span class="rate-card__discount">&#1057;&#1082;&#1080;&#1076;&#1082;&#1072; 63%</span>
+          </span>
+          <span class="rate-card__new">4&nbsp;890&nbsp;&#8381;</span>
+          <span class="rate-card__monthly">815&nbsp;&#8381; &#1074;&nbsp;&#1084;&#1077;&#1089;&#1103;&#1094;</span>
+          <span class="rate-card__instalment">&#1056;&#1072;&#1089;&#1089;&#1088;&#1086;&#1095;&#1082;&#1072;: 6&nbsp;&#1087;&#1083;&#1072;&#1090;&#1077;&#1078;&#1077;&#1081; &#1087;&#1086;&nbsp;815&nbsp;&#8381;</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>&#1059;&#1095;&#1072;&#1089;&#1090;&#1080;&#1077; &#1074;&nbsp;&#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1077; &#171;&#1040;&#1085;&#1090;&#1080;&#1086;&#1090;&#1105;&#1095;&#1085;&#1086;&#1089;&#1090;&#1100;&#187;</strong></li>
+          <li>25&nbsp;&#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;, 320+ &#1096;&#1072;&#1075;&#1072;&#1090;&#1077;&#1083;&#1100;&#1085;&#1099;&#1093; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082;</li>
+          <li>60&nbsp;&#1088;&#1077;&#1094;&#1077;&#1087;&#1090;&#1086;&#1074; &#1087;&#1086;&#1083;&#1077;&#1079;&#1085;&#1086;&#1081; &#1077;&#1076;&#1099;, &#1074;&#1077;&#1073;&#1080;&#1085;&#1072;&#1088;&#1099; &#1087;&#1088;&#1086; &#1079;&#1076;&#1086;&#1088;&#1086;&#1074;&#1100;&#1077;</li>
+          <li>30&nbsp;&#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082; &#1076;&#1083;&#1103; &#1079;&#1076;&#1086;&#1088;&#1086;&#1074;&#1100;&#1103; &#1089;&#1087;&#1080;&#1085;&#1099; &#1080;&nbsp;&#1088;&#1072;&#1089;&#1090;&#1103;&#1078;&#1077;&#1082;</li>
+          <li>&#1055;&#1086;&#1076;&#1076;&#1077;&#1088;&#1078;&#1082;&#1072; &#1095;&#1072;&#1090;&#1072; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1082;&#1086;&#1074; &#1080;&nbsp;&#1082;&#1091;&#1088;&#1072;&#1090;&#1086;&#1088;&#1072;</li>
+          <li>&#1041;&#1077;&#1089;&#1087;&#1083;&#1072;&#1090;&#1085;&#1086;&#1077; &#1087;&#1086;&#1087;&#1086;&#1083;&#1085;&#1077;&#1085;&#1080;&#1077; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082; &#1080;&nbsp;&#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;</li>
+        </ul>
+        <a href="https://walk-walk.ru/antiotek/tarif_2" class="btn btn--white btn--block" data-metrika-goal="anti-rate-6m-click">&#1054;&#1092;&#1086;&#1088;&#1084;&#1080;&#1090;&#1100; &#1072;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090;</a>
+        <a href="https://my.walk-walk.ru/antiotek" class="rate-card__alt-link rate-card__alt-link--on-red" target="_blank" rel="noopener" data-metrika-goal="anti-have-subscription-6m">&#1059; &#1084;&#1077;&#1085;&#1103; &#1091;&#1078;&#1077; &#1077;&#1089;&#1090;&#1100; &#1072;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090;</a>
+      </article>
+
+      <article class="rate-card">
+        <span class="rate-card__badge-top">&#1055;&#1086; &#1084;&#1072;&#1082;&#1089;&#1080;&#1084;&#1091;&#1084;&#1091;</span>
+        <h3 class="rate-card__title">&#1048;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074; + &#1082;&#1083;&#1091;&#1073; &#1085;&#1072;&nbsp;1&nbsp;&#1075;&#1086;&#1076;</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">16&nbsp;990&nbsp;&#8381;</s>
+            <span class="rate-card__discount">&#1057;&#1082;&#1080;&#1076;&#1082;&#1072; 65%</span>
+          </span>
+          <span class="rate-card__new">5&nbsp;990&nbsp;&#8381;</span>
+          <span class="rate-card__monthly">499&nbsp;&#8381; &#1074;&nbsp;&#1084;&#1077;&#1089;&#1103;&#1094;</span>
+          <span class="rate-card__instalment">&#1056;&#1072;&#1089;&#1089;&#1088;&#1086;&#1095;&#1082;&#1072;: 6&nbsp;&#1087;&#1083;&#1072;&#1090;&#1077;&#1078;&#1077;&#1081; &#1087;&#1086;&nbsp;998&nbsp;&#8381;</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>&#1059;&#1095;&#1072;&#1089;&#1090;&#1080;&#1077; &#1074;&nbsp;&#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1077; &#171;&#1040;&#1085;&#1090;&#1080;&#1086;&#1090;&#1105;&#1095;&#1085;&#1086;&#1089;&#1090;&#1100;&#187;</strong></li>
+          <li>25&nbsp;&#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;, 320+ &#1096;&#1072;&#1075;&#1072;&#1090;&#1077;&#1083;&#1100;&#1085;&#1099;&#1093; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082;</li>
+          <li>60&nbsp;&#1088;&#1077;&#1094;&#1077;&#1087;&#1090;&#1086;&#1074; &#1087;&#1086;&#1083;&#1077;&#1079;&#1085;&#1086;&#1081; &#1077;&#1076;&#1099;, &#1074;&#1077;&#1073;&#1080;&#1085;&#1072;&#1088;&#1099; &#1087;&#1088;&#1086; &#1079;&#1076;&#1086;&#1088;&#1086;&#1074;&#1100;&#1077;</li>
+          <li>30&nbsp;&#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082; &#1076;&#1083;&#1103; &#1079;&#1076;&#1086;&#1088;&#1086;&#1074;&#1100;&#1103; &#1089;&#1087;&#1080;&#1085;&#1099; &#1080;&nbsp;&#1088;&#1072;&#1089;&#1090;&#1103;&#1078;&#1077;&#1082;</li>
+          <li>&#1055;&#1086;&#1076;&#1076;&#1077;&#1088;&#1078;&#1082;&#1072; &#1095;&#1072;&#1090;&#1072; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1082;&#1086;&#1074; &#1080;&nbsp;&#1082;&#1091;&#1088;&#1072;&#1090;&#1086;&#1088;&#1072;</li>
+          <li>&#1041;&#1077;&#1089;&#1087;&#1083;&#1072;&#1090;&#1085;&#1086;&#1077; &#1087;&#1086;&#1087;&#1086;&#1083;&#1085;&#1077;&#1085;&#1080;&#1077; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082; &#1080;&nbsp;&#1087;&#1088;&#1086;&#1075;&#1088;&#1072;&#1084;&#1084;</li>
+        </ul>
+        <a href="https://walk-walk.ru/antiotek/tarif_3" class="btn btn--primary btn--block" data-metrika-goal="anti-rate-1y-click">&#1054;&#1092;&#1086;&#1088;&#1084;&#1080;&#1090;&#1100; &#1072;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090;</a>
+        <a href="https://my.walk-walk.ru/antiotek" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="anti-have-subscription-1y">&#1059; &#1084;&#1077;&#1085;&#1103; &#1091;&#1078;&#1077; &#1077;&#1089;&#1090;&#1100; &#1072;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090;</a>
+      </article>
+
+    </div>
+    <p class="rates__note">&#1040;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090; &#1084;&#1086;&#1078;&#1085;&#1086; &#1086;&#1092;&#1086;&#1088;&#1084;&#1080;&#1090;&#1100; &#1074;&nbsp;&#1088;&#1072;&#1089;&#1089;&#1088;&#1086;&#1095;&#1082;&#1091;: &#1085;&#1072;&#1078;&#1084;&#1080;&#1090;&#1077; &#171;&#1054;&#1092;&#1086;&#1088;&#1084;&#1080;&#1090;&#1100; &#1072;&#1073;&#1086;&#1085;&#1077;&#1084;&#1077;&#1085;&#1090;&#187;, &#1074;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1087;&#1086;&#1095;&#1090;&#1091; &#1080;&nbsp;&#1085;&#1072;&nbsp;&#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1077; &#1086;&#1087;&#1083;&#1072;&#1090;&#1099; &#1074;&#1099;&#1073;&#1077;&#1088;&#1080;&#1090;&#1077; &#1074;&#1072;&#1088;&#1080;&#1072;&#1085;&#1090; &#171;&#1056;&#1072;&#1089;&#1089;&#1088;&#1086;&#1095;&#1082;&#1072;&#187;.</p>
+  </div>
+</section>
+
+
+
+
+<section class="section cases" id="cases">
+  <div class="container">
+    <h2 class="section__title">&#1055;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088;&#1080;&#1090;&#1077;, &#1082;&#1072;&#1082; &#1087;&#1088;&#1077;&#1086;&#1073;&#1088;&#1072;&#1078;&#1072;&#1102;&#1090;&#1089;&#1103; &#1085;&#1072;&#1096;&#1080; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;</h2>
+
+    <div class="track-wrap">
+      <button class="track-nav track-nav--prev" type="button" aria-label="&#1055;&#1088;&#1077;&#1076;&#1099;&#1076;&#1091;&#1097;&#1080;&#1077; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;" aria-controls="casesTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      </button>
+      <div class="track track--cases" id="casesTrack" tabindex="0" role="group" aria-label="&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;, &#1087;&#1088;&#1086;&#1082;&#1088;&#1091;&#1095;&#1080;&#1074;&#1072;&#1077;&#1090;&#1089;&#1103; &#1074;&#1073;&#1086;&#1082;">
+        <figure class="case"><img src="https://npopko55-cmd.github.io/antiotek/assets/cases/case-1.webp" alt="&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;: &#1076;&#1086; &#1080; &#1087;&#1086;&#1089;&#1083;&#1077;" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="https://npopko55-cmd.github.io/antiotek/assets/cases/case-2.webp" alt="&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;: &#1076;&#1086; &#1080; &#1087;&#1086;&#1089;&#1083;&#1077;" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="https://npopko55-cmd.github.io/antiotek/assets/cases/case-3.webp" alt="&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;: &#1076;&#1086; &#1080; &#1087;&#1086;&#1089;&#1083;&#1077;" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="https://npopko55-cmd.github.io/antiotek/assets/cases/case-4.webp" alt="&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;: &#1076;&#1086; &#1080; &#1087;&#1086;&#1089;&#1083;&#1077;" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="https://npopko55-cmd.github.io/antiotek/assets/cases/case-5.webp" alt="&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;: &#1076;&#1086; &#1080; &#1087;&#1086;&#1089;&#1083;&#1077;" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="https://npopko55-cmd.github.io/antiotek/assets/cases/case-6.webp" alt="&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;: &#1076;&#1086; &#1080; &#1087;&#1086;&#1089;&#1083;&#1077;" width="700" height="700" loading="lazy" /></figure>
+      </div>
+      <button class="track-nav track-nav--next" type="button" aria-label="&#1057;&#1083;&#1077;&#1076;&#1091;&#1102;&#1097;&#1080;&#1077; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;" aria-controls="casesTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section experts-people" id="specialists">
+  <div class="container">
+    <h2 class="section__title">&#1050;&#1090;&#1086; &#1087;&#1088;&#1080;&#1074;&#1077;&#1076;&#1105;&#1090; &#1074;&#1072;&#1089; &#1082;&nbsp;&#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1091;</h2>
+
+    <div class="track-wrap">
+      <button class="track-nav track-nav--prev" type="button" aria-label="&#1055;&#1088;&#1077;&#1076;&#1099;&#1076;&#1091;&#1097;&#1080;&#1077; &#1089;&#1087;&#1077;&#1094;&#1080;&#1072;&#1083;&#1080;&#1089;&#1090;&#1099;" aria-controls="expertsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      </button>
+      <div class="track track--experts" id="expertsTrack" tabindex="0" role="group" aria-label="&#1057;&#1087;&#1077;&#1094;&#1080;&#1072;&#1083;&#1080;&#1089;&#1090;&#1099; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;, &#1087;&#1088;&#1086;&#1082;&#1088;&#1091;&#1095;&#1080;&#1074;&#1072;&#1077;&#1090;&#1089;&#1103; &#1074;&#1073;&#1086;&#1082;">
+        <article class="expert">
+        <div class="expert__photo"><img src="https://npopko55-cmd.github.io/antiotek/assets/specialists/anastasia.webp" alt="&#1040;&#1085;&#1072;&#1089;&#1090;&#1072;&#1089;&#1080;&#1103;, &#1090;&#1088;&#1077;&#1085;&#1077;&#1088;" width="600" height="698" loading="lazy" /></div>
+        <h3 class="expert__name">&#1040;&#1085;&#1072;&#1089;&#1090;&#1072;&#1089;&#1080;&#1103; <span>&#1090;&#1088;&#1077;&#1085;&#1077;&#1088;</span></h3>
+        <p class="expert__text">&#1050;&#1052;&#1057; &#1087;&#1086;&nbsp;&#1093;&#1091;&#1076;&#1086;&#1078;&#1077;&#1089;&#1090;&#1074;&#1077;&#1085;&#1085;&#1086;&#1081; &#1075;&#1080;&#1084;&#1085;&#1072;&#1089;&#1090;&#1080;&#1082;&#1077;. &#1058;&#1088;&#1077;&#1085;&#1077;&#1088; &#1089;&nbsp;&#1086;&#1087;&#1099;&#1090;&#1086;&#1084; 12&nbsp;&#1083;&#1077;&#1090;, &#1080;&#1085;&#1089;&#1090;&#1088;&#1091;&#1082;&#1090;&#1086;&#1088; &#1087;&#1086;&nbsp;&#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1086;&#1085;&#1072;&#1083;&#1100;&#1085;&#1086;&#1084;&#1091; &#1090;&#1088;&#1077;&#1085;&#1080;&#1085;&#1075;&#1091;. &#1055;&#1086;&#1082;&#1072;&#1078;&#1077;&#1090;, &#1082;&#1072;&#1082; &#1079;&#1072;&#1085;&#1080;&#1084;&#1072;&#1090;&#1100;&#1089;&#1103; &#1087;&#1088;&#1072;&#1074;&#1080;&#1083;&#1100;&#1085;&#1086; &#1080;&nbsp;&#1074;&#1077;&#1089;&#1077;&#1083;&#1086;.</p>
+      </article>
+        <article class="expert">
+        <div class="expert__photo"><img src="https://npopko55-cmd.github.io/antiotek/assets/specialists/masha.webp" alt="&#1052;&#1072;&#1096;&#1072;, &#1090;&#1088;&#1077;&#1085;&#1077;&#1088;" width="600" height="800" loading="lazy" /></div>
+        <h3 class="expert__name">&#1052;&#1072;&#1096;&#1072; <span>&#1090;&#1088;&#1077;&#1085;&#1077;&#1088;</span></h3>
+        <p class="expert__text">&#1048;&#1085;&#1089;&#1090;&#1088;&#1091;&#1082;&#1090;&#1086;&#1088; &#1090;&#1072;&#1085;&#1094;&#1077;&#1074;&#1072;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1080;&nbsp;&#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1086;&#1085;&#1072;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1092;&#1080;&#1090;&#1085;&#1077;&#1089;&#1072;, &#1086;&#1087;&#1099;&#1090; &#1073;&#1086;&#1083;&#1077;&#1077; 10&nbsp;&#1083;&#1077;&#1090;. &#1055;&#1086;&#1076;&#1075;&#1086;&#1090;&#1086;&#1074;&#1080;&#1083;&#1072; &#1090;&#1072;&#1085;&#1094;&#1077;&#1074;&#1072;&#1083;&#1100;&#1085;&#1099;&#1077; &#1090;&#1088;&#1077;&#1085;&#1080;&#1088;&#1086;&#1074;&#1082;&#1080; &#1089;&#1087;&#1077;&#1094;&#1080;&#1072;&#1083;&#1100;&#1085;&#1086; &#1076;&#1083;&#1103; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1072;&nbsp;&#8212; &#1083;&#1105;&#1075;&#1082;&#1080;&#1077; &#1080;&nbsp;&#1079;&#1072;&#1088;&#1103;&#1078;&#1072;&#1102;&#1097;&#1080;&#1077;.</p>
+      </article>
+        <article class="expert">
+        <div class="expert__photo"><img src="https://npopko55-cmd.github.io/antiotek/assets/specialists/valeria.webp" alt="&#1042;&#1072;&#1083;&#1077;&#1088;&#1080;&#1103; &#1052;&#1072;&#1102;&#1096;&#1080;&#1085;&#1072;, &#1090;&#1088;&#1077;&#1085;&#1077;&#1088; &#1087;&#1086; &#1092;&#1077;&#1081;&#1089;-&#1081;&#1086;&#1075;&#1077;" width="600" height="449" loading="lazy" /></div>
+        <h3 class="expert__name">&#1042;&#1072;&#1083;&#1077;&#1088;&#1080;&#1103; &#1052;&#1072;&#1102;&#1096;&#1080;&#1085;&#1072; <span>&#1090;&#1088;&#1077;&#1085;&#1077;&#1088; &#1087;&#1086; &#1092;&#1077;&#1081;&#1089;-&#1081;&#1086;&#1075;&#1077; &#1080; &#1084;&#1072;&#1089;&#1089;&#1072;&#1078;&#1091; &#1083;&#1080;&#1094;&#1072;</span></h3>
+        <p class="expert__text">&#1055;&#1088;&#1086;&#1092;&#1077;&#1089;&#1089;&#1080;&#1086;&#1085;&#1072;&#1083;&#1100;&#1085;&#1099;&#1081; &#1090;&#1088;&#1077;&#1085;&#1077;&#1088; &#1087;&#1086;&nbsp;&#1081;&#1086;&#1075;&#1077; &#1076;&#1083;&#1103; &#1083;&#1080;&#1094;&#1072; (&#1092;&#1077;&#1081;&#1089;-&#1081;&#1086;&#1075;&#1077;) &#1080;&nbsp;&#1090;&#1077;&#1083;&#1072;: &#1093;&#1072;&#1090;&#1093;&#1072;-&#1081;&#1086;&#1075;&#1072;, &#1081;&#1086;&#1075;&#1072; &#1076;&#1083;&#1103; &#1073;&#1077;&#1088;&#1077;&#1084;&#1077;&#1085;&#1085;&#1099;&#1093;, &#1081;&#1086;&#1075;&#1072;&#1090;&#1077;&#1088;&#1072;&#1087;&#1080;&#1103;. &#1057;&#1087;&#1077;&#1094;&#1080;&#1072;&#1083;&#1080;&#1089;&#1090; &#1087;&#1086;&nbsp;&#1084;&#1072;&#1089;&#1089;&#1072;&#1078;&#1091; &#1083;&#1080;&#1094;&#1072;.</p>
+      </article>
+        <article class="expert">
+        <div class="expert__photo"><img src="https://npopko55-cmd.github.io/antiotek/assets/specialists/galina.webp" alt="&#1043;&#1072;&#1083;&#1080;&#1085;&#1072;, &#1076;&#1080;&#1077;&#1090;&#1086;&#1083;&#1086;&#1075;" width="600" height="800" loading="lazy" /></div>
+        <h3 class="expert__name">&#1043;&#1072;&#1083;&#1080;&#1085;&#1072; <span>&#1076;&#1080;&#1077;&#1090;&#1086;&#1083;&#1086;&#1075;</span></h3>
+        <p class="expert__text">&#1044;&#1080;&#1087;&#1083;&#1086;&#1084;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1085;&#1099;&#1081; &#1074;&#1088;&#1072;&#1095;-&#1076;&#1080;&#1077;&#1090;&#1086;&#1083;&#1086;&#1075;. &#1054;&#1090;&#1082;&#1088;&#1086;&#1077;&#1090; &#1089;&#1077;&#1082;&#1088;&#1077;&#1090;&#1099; &#1083;&#1080;&#1084;&#1092;&#1086;&#1076;&#1088;&#1077;&#1085;&#1072;&#1078;&#1085;&#1086;&#1075;&#1086; &#1087;&#1080;&#1090;&#1072;&#1085;&#1080;&#1103; &#1080;&nbsp;&#1088;&#1072;&#1079;&#1074;&#1077;&#1085;&#1095;&#1072;&#1077;&#1090; &#1091;&#1089;&#1090;&#1086;&#1103;&#1074;&#1096;&#1080;&#1077;&#1089;&#1103; &#1084;&#1080;&#1092;&#1099;.</p>
+      </article>
+      </div>
+      <button class="track-nav track-nav--next" type="button" aria-label="&#1057;&#1083;&#1077;&#1076;&#1091;&#1102;&#1097;&#1080;&#1077; &#1089;&#1087;&#1077;&#1094;&#1080;&#1072;&#1083;&#1080;&#1089;&#1090;&#1099;" aria-controls="expertsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    
+    <div class="proof">
+      <b class="proof__num">2100+</b>
+      <span class="proof__text">&#1095;&#1077;&#1083;&#1086;&#1074;&#1077;&#1082; &#1091;&#1078;&#1077; &#1087;&#1088;&#1086;&#1096;&#1083;&#1080; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074; &#171;&#1040;&#1085;&#1090;&#1080;&#1086;&#1090;&#1105;&#1095;&#1085;&#1086;&#1089;&#1090;&#1100;&#187; &#1080;&nbsp;&#1086;&#1089;&#1090;&#1072;&#1083;&#1080;&#1089;&#1100; &#1076;&#1086;&#1074;&#1086;&#1083;&#1100;&#1085;&#1099; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1086;&#1084;</span>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<section class="section fork" id="fork">
+  <div class="container">
+    <h2 class="section__title">&#1063;&#1077;&#1088;&#1077;&#1079; &#1085;&#1077;&#1076;&#1077;&#1083;&#1102; &#1074;&#1099;&nbsp;&#1073;&#1091;&#1076;&#1077;&#1090;&#1077; &#1074;&nbsp;&#1086;&#1076;&#1085;&#1086;&#1084; &#1080;&#1079;&nbsp;&#1076;&#1074;&#1091;&#1093; &#1089;&#1086;&#1089;&#1090;&#1086;&#1103;&#1085;&#1080;&#1081;</h2>
+    <p class="section__lead">&#1056;&#1072;&#1079;&#1085;&#1080;&#1094;&#1072;&nbsp;&#8212; &#1074;&#1089;&#1077;&#1075;&#1086; 15&nbsp;&#1084;&#1080;&#1085;&#1091;&#1090; &#1074;&nbsp;&#1076;&#1077;&#1085;&#1100;.</p>
+
+    <div class="fork__grid">
+      <article class="fork__col fork__col--now">
+        <h3 class="fork__title">&#1045;&#1089;&#1083;&#1080; &#1086;&#1089;&#1090;&#1072;&#1074;&#1080;&#1090;&#1100; &#1082;&#1072;&#1082; &#1077;&#1089;&#1090;&#1100;</h3>
+        <ul class="fork__list">
+          <li>&#1059;&#1090;&#1088;&#1086;&#1084; &#1083;&#1080;&#1094;&#1086; &#1087;&#1088;&#1080;&#1087;&#1091;&#1093;&#1096;&#1077;&#1077;, &#1086;&#1074;&#1072;&#1083; &#171;&#1087;&#1083;&#1099;&#1074;&#1105;&#1090;&#187;</li>
+          <li>&#1050;&#1086;&#1083;&#1100;&#1094;&#1086; &#1089;&#1085;&#1080;&#1084;&#1072;&#1077;&#1090;&#1089;&#1103; &#1089;&nbsp;&#1090;&#1088;&#1091;&#1076;&#1086;&#1084;, &#1086;&#1073;&#1091;&#1074;&#1100; &#1078;&#1084;&#1105;&#1090; &#1091;&#1078;&#1077; &#1082;&nbsp;&#1086;&#1073;&#1077;&#1076;&#1091;</li>
+          <li>&#1051;&#1102;&#1073;&#1080;&#1084;&#1099;&#1077; &#1073;&#1088;&#1102;&#1082;&#1080; &#1079;&#1072;&#1089;&#1090;&#1105;&#1075;&#1080;&#1074;&#1072;&#1102;&#1090;&#1089;&#1103; &#1095;&#1077;&#1088;&#1077;&#1079; &#1088;&#1072;&#1079;</li>
+          <li>&#1050;&nbsp;&#1074;&#1077;&#1095;&#1077;&#1088;&#1091; &#1085;&#1086;&#1075;&#1080; &#1075;&#1091;&#1076;&#1103;&#1090;, &#1089;&#1080;&#1083; &#1093;&#1074;&#1072;&#1090;&#1072;&#1077;&#1090; &#1090;&#1086;&#1083;&#1100;&#1082;&#1086; &#1085;&#1072;&nbsp;&#1076;&#1080;&#1074;&#1072;&#1085;</li>
+          <li>&#1042;&#1077;&#1089;&#1099; &#1089;&#1090;&#1086;&#1103;&#1090;, &#1093;&#1086;&#1090;&#1103; &#1074;&#1099;&nbsp;&#1074;&#1088;&#1086;&#1076;&#1077; &#171;&#1085;&#1080;&#1095;&#1077;&#1075;&#1086; &#1090;&#1072;&#1082;&#1086;&#1075;&#1086; &#1085;&#1077;&nbsp;&#1077;&#1083;&#1080;&#187;</li>
+        </ul>
+      </article>
+
+      <article class="fork__col fork__col--after">
+        <h3 class="fork__title">&#1045;&#1089;&#1083;&#1080; &#1087;&#1088;&#1086;&#1081;&#1090;&#1080; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;</h3>
+        <ul class="fork__list">
+          <li>&#1052;&#1080;&#1085;&#1091;&#1089; <b>2&#8211;4&nbsp;&#1082;&#1075; &#1074;&#1086;&#1076;&#1099;</b> &#1080;&nbsp;&#1095;&#1105;&#1090;&#1082;&#1080;&#1081; &#1086;&#1074;&#1072;&#1083; &#1083;&#1080;&#1094;&#1072;</li>
+          <li>&#1050;&#1086;&#1083;&#1100;&#1094;&#1072; &#1080;&nbsp;&#1086;&#1073;&#1091;&#1074;&#1100; &#1089;&#1085;&#1086;&#1074;&#1072; &#1074;&#1087;&#1086;&#1088;&#1091;&nbsp;&#8212; &#1080;&nbsp;&#1091;&#1090;&#1088;&#1086;&#1084;, &#1080;&nbsp;&#1074;&#1077;&#1095;&#1077;&#1088;&#1086;&#1084;</li>
+          <li>&#1054;&#1073;&#1098;&#1105;&#1084;&#1099; &#1078;&#1080;&#1074;&#1086;&#1090;&#1072; &#1080;&nbsp;&#1085;&#1086;&#1075; &#1079;&#1072;&#1084;&#1077;&#1090;&#1085;&#1086; &#1084;&#1077;&#1085;&#1100;&#1096;&#1077;</li>
+          <li>&#1042;&#1077;&#1095;&#1077;&#1088;&#1086;&#1084; &#1077;&#1089;&#1090;&#1100; &#1089;&#1080;&#1083;&#1099; &#1085;&#1072;&nbsp;&#1089;&#1077;&#1073;&#1103;, &#1072;&nbsp;&#1085;&#1077;&nbsp;&#1090;&#1086;&#1083;&#1100;&#1082;&#1086; &#1085;&#1072;&nbsp;&#1076;&#1080;&#1074;&#1072;&#1085;</li>
+          <li>&#1055;&#1086;&#1085;&#1103;&#1090;&#1085;&#1086;, <b>&#1095;&#1090;&#1086; &#1080;&#1084;&#1077;&#1085;&#1085;&#1086;</b> &#1076;&#1077;&#1088;&#1078;&#1072;&#1083;&#1086; &#1074;&#1086;&#1076;&#1091;&nbsp;&#8212; &#1080;&nbsp;&#1082;&#1072;&#1082; &#1085;&#1077;&nbsp;&#1074;&#1077;&#1088;&#1085;&#1091;&#1090;&#1100; &#1101;&#1090;&#1086; &#1089;&#1085;&#1086;&#1074;&#1072;</li>
+        </ul>
+        <a href="#rates" class="btn btn--yellow btn--lg fork__cta" data-metrika-goal="anti-fork-cta">&#1042;&#1099;&#1073;&#1088;&#1072;&#1090;&#1100; &#1090;&#1072;&#1088;&#1080;&#1092;</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="result">
+  <div class="container result__inner">
+    <h2 class="result__title">&#1047;&#1072;&#1073;&#1091;&#1076;&#1100;&#1090;&#1077; &#1087;&#1088;&#1086; &#1086;&#1090;&#1105;&#1082;&#1080;!</h2>
+    <p class="result__text">&#1054;&#1090;&#1088;&#1072;&#1078;&#1077;&#1085;&#1080;&#1077; &#1074;&nbsp;&#1079;&#1077;&#1088;&#1082;&#1072;&#1083;&#1077; &#1073;&#1091;&#1076;&#1077;&#1090; &#1074;&#1072;&#1089; &#1088;&#1072;&#1076;&#1086;&#1074;&#1072;&#1090;&#1100;.</p>
+    <a href="#rates" class="btn btn--yellow btn--lg" data-metrika-goal="anti-result-cta">&#1055;&#1088;&#1080;&#1089;&#1086;&#1077;&#1076;&#1080;&#1085;&#1080;&#1090;&#1100;&#1089;&#1103; &#1082;&nbsp;&#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;&#1091;</a>
+  </div>
+</section>
+
+<section class="section help" id="contacts">
+  <div class="container help__inner">
+    <h2 class="section__title">&#1053;&#1091;&#1078;&#1085;&#1072; &#1087;&#1086;&#1084;&#1086;&#1097;&#1100;?</h2>
+    <p class="help__sub">&#1053;&#1072;&#1087;&#1080;&#1096;&#1080;&#1090;&#1077; &#1085;&#1072;&#1084;&nbsp;&#8212; &#1087;&#1086;&#1084;&#1086;&#1078;&#1077;&#1084; &#1074;&#1099;&#1073;&#1088;&#1072;&#1090;&#1100; &#1090;&#1072;&#1088;&#1080;&#1092; &#1080;&nbsp;&#1086;&#1090;&#1074;&#1077;&#1090;&#1080;&#1084; &#1085;&#1072;&nbsp;&#1074;&#1086;&#1087;&#1088;&#1086;&#1089;&#1099; &#1087;&#1088;&#1086; &#1080;&#1085;&#1090;&#1077;&#1085;&#1089;&#1080;&#1074;.</p>
+    <div class="help__buttons">
+      <a class="btn btn--primary btn--lg" target="_blank" rel="noopener" href="https://vk.com/walk_is_love">&#1053;&#1072;&#1087;&#1080;&#1089;&#1072;&#1090;&#1100; &#1074;&nbsp;&#1042;&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1077;</a>
+      <a class="btn btn--primary btn--lg" target="_blank" rel="noopener" href="https://max.ru/u/f9LHodD0cOLsgLHI5aFkynmQFtVDv8Yk8kyyWLTi-7oDXXItbJp_HIFZlRE">&#1053;&#1072;&#1087;&#1080;&#1089;&#1072;&#1090;&#1100; &#1074;&nbsp;MAX</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__col footer__col--main">
+      <h2 class="footer__brand">&#1064;&#1072;&#1075;&#1072;&#1081; &#1044;&#1086;&#1084;&#1072;</h2>
+      <div class="footer__phones">
+        <p class="footer__phones-title">&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;&#1099; &#1085;&#1072;&#1096;&#1080;&#1093; &#1084;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1086;&#1074;:</p>
+        <p><a href="tel:+79990668100">+7&nbsp;(999)&nbsp;066-81-00</a> &#8212; &#1054;&#1090;&#1076;&#1077;&#1083; &#1079;&#1072;&#1073;&#1086;&#1090;&#1099; &#1086;&nbsp;&#1082;&#1083;&#1080;&#1077;&#1085;&#1090;&#1072;&#1093; (&#1040;&#1085;&#1085;&#1072; &#1080;&nbsp;&#1050;&#1072;&#1090;&#1103;)</p>
+        <p><a href="tel:+905510983369">+90&nbsp;(551)&nbsp;098-33-69</a> &#8212; &#1054;&#1090;&#1076;&#1077;&#1083; &#1079;&#1072;&#1073;&#1086;&#1090;&#1099; &#1086;&nbsp;&#1082;&#1083;&#1080;&#1077;&#1085;&#1090;&#1072;&#1093; (&#1040;&#1083;&#1077;&#1082;&#1089;&#1072;&#1085;&#1076;&#1088;&#1072;)</p>
+      </div>
+      <ul class="footer__links">
+        <li><a href="https://walk-walk.ru/privacy" target="_blank" rel="noopener">&#1055;&#1086;&#1083;&#1080;&#1090;&#1080;&#1082;&#1072; &#1082;&#1086;&#1085;&#1092;&#1080;&#1076;&#1077;&#1085;&#1094;&#1080;&#1072;&#1083;&#1100;&#1085;&#1086;&#1089;&#1090;&#1080;</a></li>
+        <li><a href="https://walk-walk.ru/offer" target="_blank" rel="noopener">&#1055;&#1091;&#1073;&#1083;&#1080;&#1095;&#1085;&#1072;&#1103; &#1086;&#1092;&#1077;&#1088;&#1090;&#1072;</a></li>
+        <li><a href="https://walk-walk.ru/ad" target="_blank" rel="noopener">&#1057;&#1086;&#1075;&#1083;&#1072;&#1089;&#1080;&#1077; &#1085;&#1072;&nbsp;&#1088;&#1077;&#1082;&#1083;&#1072;&#1084;&#1085;&#1091;&#1102; &#1088;&#1072;&#1089;&#1089;&#1099;&#1083;&#1082;&#1091;</a></li>
+        <li><a href="https://walk-walk.ru/approval" target="_blank" rel="noopener">&#1057;&#1086;&#1075;&#1083;&#1072;&#1089;&#1080;&#1077; &#1085;&#1072;&nbsp;&#1086;&#1073;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1091; &#1087;&#1077;&#1088;&#1089;&#1086;&#1085;&#1072;&#1083;&#1100;&#1085;&#1099;&#1093; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;</a></li>
+        <li><a href="https://walk-walk.ru/safe" target="_blank" rel="noopener">&#1057;&#1087;&#1080;&#1089;&#1086;&#1082; &#1087;&#1088;&#1086;&#1090;&#1080;&#1074;&#1086;&#1087;&#1086;&#1082;&#1072;&#1079;&#1072;&#1085;&#1080;&#1081;</a></li>
+        <li><a href="https://walk-walk.ru/education" target="_blank" rel="noopener">&#1057;&#1074;&#1077;&#1076;&#1077;&#1085;&#1080;&#1103; &#1086;&#1073;&nbsp;&#1086;&#1073;&#1088;&#1072;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1081; &#1086;&#1088;&#1075;&#1072;&#1085;&#1080;&#1079;&#1072;&#1094;&#1080;&#1080;</a></li>
+        <li><a href="https://edu.gov.ru/" target="_blank" rel="noopener">&#1052;&#1080;&#1085;&#1080;&#1089;&#1090;&#1077;&#1088;&#1089;&#1090;&#1074;&#1086; &#1087;&#1088;&#1086;&#1089;&#1074;&#1077;&#1097;&#1077;&#1085;&#1080;&#1103; &#1056;&#1060;</a></li>
+      </ul>
+    </div>
+    <div class="footer__col footer__col--legal">
+      <p>&#1048;&#1055; &#1050;&#1080;&#1088;&#1080;&#1095;&#1077;&#1085;&#1082;&#1086; &#1044;&#1084;&#1080;&#1090;&#1088;&#1080;&#1081; &#1055;&#1072;&#1074;&#1083;&#1086;&#1074;&#1080;&#1095;</p>
+      <p>&#1054;&#1043;&#1056;&#1053;&#1048;&#1055;: 316222500086383</p>
+      <p>&#1048;&#1053;&#1053;: 222391942312</p>
+      <div class="footer__socials">
+        <a href="https://vk.com/walk_is_love" target="_blank" rel="noopener" aria-label="&#1042;&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1077;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12.785 16.241s.288-.032.435-.193c.135-.148.13-.426.13-.426s-.018-1.298.582-1.49c.591-.188 1.35 1.254 2.155 1.808.609.42 1.072.328 1.072.328l2.155-.031s1.127-.07.593-.96c-.044-.073-.311-.659-1.604-1.864-1.354-1.262-1.172-1.058.458-3.249.993-1.334 1.39-2.149 1.266-2.498-.118-.332-.853-.244-.853-.244l-2.446.015s-.181-.025-.315.056c-.131.08-.215.265-.215.265s-.385.99-.9 1.831c-1.083 1.775-1.516 1.869-1.693 1.755-.412-.266-.31-1.075-.31-1.65 0-1.795.272-2.543-.531-2.738-.266-.064-.462-.107-1.143-.114-.874-.009-1.613.003-2.032.208-.279.136-.494.439-.363.456.162.022.529.099.724.365.252.342.243 1.113.243 1.113s.144 2.116-.337 2.378c-.331.18-.785-.187-1.751-1.852-.495-.852-.869-1.794-.869-1.794s-.072-.176-.201-.27c-.156-.114-.374-.15-.374-.15l-2.325.015s-.349.01-.477.161c-.114.135-.009.413-.009.413s1.821 4.259 3.884 6.406c1.892 1.967 4.04 1.838 4.04 1.838h.973z"/></svg>
+        </a>
+        <a href="https://dzen.ru/walkislove" target="_blank" rel="noopener" aria-label="&#1044;&#1079;&#1077;&#1085;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c1.244 5.376 2.124 6.256 7.5 7.5-5.376 1.244-6.256 2.124-7.5 7.5-1.244-5.376-2.124-6.256-7.5-7.5 5.376-1.244 6.256-2.124 7.5-7.5z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@walk_is_love" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"/></svg>
+        </a>
+        <a href="https://ok.ru/group/70000006886921" target="_blank" rel="noopener" aria-label="&#1054;&#1076;&#1085;&#1086;&#1082;&#1083;&#1072;&#1089;&#1089;&#1085;&#1080;&#1082;&#1080;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 1.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3.66 6.6a8.32 8.32 0 0 1-2.18.93l1.99 2a1.65 1.65 0 1 1-2.34 2.34L12 17.34l-2.12 2.13a1.65 1.65 0 0 1-2.34-2.34l1.99-2a8.32 8.32 0 0 1-2.19-.93 1.65 1.65 0 0 1 1.73-2.8c1.83 1.13 4.05 1.13 5.87 0a1.65 1.65 0 0 1 1.73 2.8z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>&#169; &#1048;&#1055; &#1050;&#1080;&#1088;&#1080;&#1095;&#1077;&#1085;&#1082;&#1086; &#1044;.&#1055;., <span id="footerYear">2026</span>&nbsp;&#183; &#1064;&#1072;&#1075;&#1072;&#1081; &#1044;&#1086;&#1084;&#1072;</span>
+    </div>
+  </div>
+</footer>
+
+
+<div class="sticky-cta" id="stickyCTA">
+  <a href="#rates" class="sticky-cta__btn" data-metrika-goal="anti-sticky-cta">
+    <span class="sticky-cta__label">&#1055;&#1088;&#1080;&#1089;&#1086;&#1077;&#1076;&#1080;&#1085;&#1080;&#1090;&#1100;&#1089;&#1103;</span>
+    <span class="sticky-cta__icon" aria-hidden="true">&#8594;</span>
+  </a>
+</div>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="&#1053;&#1072;&#1074;&#1077;&#1088;&#1093;">&#8593;</button>
+
+<script>
+/* =============================================================
+   Шагательная Табата 2.0 — клиентский JS
+   Без зависимостей. Запускается на DOMContentLoaded.
+   ============================================================= */
+
+(() => {
+  'use strict';
+
+  /* ---------- 0. Конфиг (правится для каждого запуска) ---------- */
+  const CONFIG = {
+    // Дата окончания таймера на центральном тарифе (UTC)
+    countdownDeadline: '2026-06-30T23:59:59+03:00'
+  };
+
+  /* ---------- 1. Год в футере ---------- */
+  const year = document.getElementById('footerYear');
+  if (year) year.textContent = new Date().getFullYear();
+
+  /* ---------- 2. Sticky header (тень при скролле) ---------- */
+  const header = document.getElementById('header');
+  const onScrollHeader = () => {
+    if (!header) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+  window.addEventListener('scroll', onScrollHeader, { passive: true });
+  onScrollHeader();
+
+  /* ---------- 3. Burger / overlay-nav ---------- */
+  const burger = document.getElementById('burgerBtn');
+  const overlayNav = document.getElementById('overlayNav');
+  const overlayBackdrop = document.getElementById('overlayBackdrop');
+  const closeNavBtn = document.getElementById('closeNavBtn');
+
+  const setNavState = (open) => {
+    if (!overlayNav) return;
+    overlayNav.classList.toggle('is-open', open);
+    overlayNav.setAttribute('aria-hidden', String(!open));
+    overlayBackdrop?.classList.toggle('is-open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  burger?.addEventListener('click', () => setNavState(true));
+  closeNavBtn?.addEventListener('click', () => setNavState(false));
+  overlayBackdrop?.addEventListener('click', () => setNavState(false));
+
+  // Закрывать при клике по ссылке внутри
+  overlayNav?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setNavState(false));
+  });
+
+  /* ---------- 4. Универсальные попапы (по ID) с focus-trap ---------- */
+  let lastFocusedBeforePopup = null;
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  const trapFocus = (popup, e) => {
+    const focusables = popup.querySelectorAll(FOCUSABLE);
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  };
+
+  const openPopupById = (id) => {
+    const popup = document.getElementById(id);
+    if (!popup) return;
+    lastFocusedBeforePopup = document.activeElement;
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // фокус на крестик закрытия
+    const closeBtn = popup.querySelector('.popup__close');
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
+  };
+  const closeAllPopups = () => {
+    const wasOpen = document.querySelectorAll('.popup.is-open').length > 0;
+    document.querySelectorAll('.popup.is-open').forEach((p) => {
+      p.classList.remove('is-open');
+      p.setAttribute('aria-hidden', 'true');
+    });
+    document.body.style.overflow = '';
+    // вернуть фокус на то что было до открытия
+    if (wasOpen && lastFocusedBeforePopup) {
+      lastFocusedBeforePopup.focus();
+      lastFocusedBeforePopup = null;
+    }
+  };
+
+  // Любой элемент с data-popup="popup-id" открывает соответствующий попап.
+  document.querySelectorAll('[data-popup]').forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = trigger.getAttribute('data-popup') || 'popup-installment';
+      openPopupById(id);
+    });
+  });
+  document.querySelectorAll('.popup [data-close]').forEach((el) => {
+    el.addEventListener('click', closeAllPopups);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+      setNavState(false);
+      return;
+    }
+    if (e.key === 'Tab') {
+      const openPopup = document.querySelector('.popup.is-open .popup__box');
+      if (openPopup) trapFocus(openPopup, e);
+    }
+  });
+
+  /* ---------- 5. Reviews slider (стрелки) ---------- */
+  const track = document.getElementById('reviewsTrack');
+  const prevBtn = document.getElementById('reviewsPrev');
+  const nextBtn = document.getElementById('reviewsNext');
+  const scrollByCard = (dir) => {
+    if (!track) return;
+    const card = track.querySelector('.review-card');
+    const step = (card?.offsetWidth || 300) + 16;
+    track.scrollBy({ left: step * dir, behavior: 'smooth' });
+  };
+  prevBtn?.addEventListener('click', () => scrollByCard(-1));
+  nextBtn?.addEventListener('click', () => scrollByCard(1));
+
+  /* Countdown удалён по запросу — таймер на тарифе больше не используется. */
+
+  /* ---------- 7. Back to top ---------- */
+  const btt = document.getElementById('backToTop');
+  const onScrollBTT = () => {
+    btt?.classList.toggle('is-visible', window.scrollY > 600);
+  };
+  window.addEventListener('scroll', onScrollBTT, { passive: true });
+  btt?.addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  );
+
+  /* ---------- 7b. Sticky mobile CTA ---------- */
+  const stickyCTA = document.getElementById('stickyCTA');
+  const ratesSection = document.getElementById('rates');
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+  const onScrollSticky = () => {
+    if (!stickyCTA) return;
+    if (!isMobile()) {
+      stickyCTA.classList.remove('is-visible');
+      return;
+    }
+    // Показываем после прокрутки за первый экран
+    const showAfter = window.innerHeight * 0.6;
+    // Скрываем, когда юзер находится прямо на блоке прайса
+    let nearRates = false;
+    if (ratesSection) {
+      const r = ratesSection.getBoundingClientRect();
+      nearRates = r.top < window.innerHeight * 0.6 && r.bottom > 0;
+    }
+    stickyCTA.classList.toggle('is-visible', window.scrollY > showAfter && !nearRates);
+  };
+  window.addEventListener('scroll', onScrollSticky, { passive: true });
+  window.addEventListener('resize', onScrollSticky);
+  onScrollSticky();
+
+  /* ---------- 8. Smooth anchor scroll (с учётом sticky header) ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#' || href.startsWith('#popup')) return;
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const offset = (header?.offsetHeight || 0) + 8;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  /* ---------- 9. UTM-проброс на все ссылки walk-walk.ru ---------- */
+  /* GetCourse-виджет вкорячивает свою кнопку с захардкоженной ссылкой
+     (walk-walk.ru/thinbelly/6-months и т.п.) уже ПОСЛЕ того как Tilda
+     прокинула UTM по странице. Мы должны:
+     1) При загрузке — обновить все существующие ссылки
+     2) Через MutationObserver — обновлять любые НОВЫЕ ссылки (от виджета)
+     3) При клике (capture-фаза) — финальная страховка перед навигацией */
+  (function () {
+    var p = new URLSearchParams(window.location.search);
+    var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_referrer','gclid','yclid','fbclid','erid','from'];
+    var pairs = keys
+      .map(function (k) { return p.has(k) ? k + '=' + encodeURIComponent(p.get(k)) : null; })
+      .filter(Boolean);
+    if (!pairs.length) return;
+    var qs = pairs.join('&');
+    try { sessionStorage.setItem('walkwalk_utm', qs); } catch (e) {}
+
+    function applyUtm(a) {
+      if (!a || a.tagName !== 'A') return;
+      var href = a.getAttribute('href');
+      if (!href) return;
+      // только walk-walk.ru (любой поддомен)
+      if (!/walk-walk\.ru/i.test(href)) return;
+      // уже есть UTM — не трогаем
+      if (/[?&]utm_/.test(href)) return;
+      var sep = href.indexOf('?') === -1 ? '?' : '&';
+      a.setAttribute('href', href + sep + qs);
+    }
+
+    // 1. Все ссылки на момент загрузки
+    document.querySelectorAll('a[href]').forEach(applyUtm);
+
+    // 2. MutationObserver — догоняем ссылки от GetCourse-виджета
+    if (window.MutationObserver) {
+      var mo = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          m.addedNodes && m.addedNodes.forEach(function (node) {
+            if (node.nodeType !== 1) return;
+            if (node.tagName === 'A') applyUtm(node);
+            if (node.querySelectorAll) node.querySelectorAll('a[href]').forEach(applyUtm);
+          });
+        });
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // 3. Capture-фаза клика — финальная страховка (если виджет меняет href в последний момент)
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a[href]');
+      if (a) applyUtm(a);
+    }, true);
+  })();
+
+  /* ---------- 10. Яндекс.Метрика — JS-цели через data-metrika-goal ---------- */
+  /* Счётчик walk-walk.ru (захардкожен) */
+  var METRIKA_ID = 94057307;
+  function reachMetrikaGoal(goal) {
+    if (!goal) return;
+    try {
+      if (typeof window.ym === 'function') {
+        window.ym(METRIKA_ID, 'reachGoal', goal);
+      }
+    } catch (e) { /* silent */ }
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest && e.target.closest('[data-metrika-goal]');
+    if (!t) return;
+    reachMetrikaGoal(t.dataset.metrikaGoal);
+  });
+})();
+
+/* ---------- Стройные и здоровые ноги: обратный отсчёт до старта (27 июля) ---------- */
+(function () {
+  var target = new Date('2026-08-24T00:00:00+03:00').getTime();
+  var elD = document.getElementById('tbD');
+  var elH = document.getElementById('tbH');
+  var elM = document.getElementById('tbM');
+  var elS = document.getElementById('tbS');
+  var timerWrap = document.getElementById('topTimer');
+  if (!elD || !elH || !elM || !elS) return;
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  var iv;
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      elD.textContent = '00'; elH.textContent = '00'; elM.textContent = '00'; elS.textContent = '00';
+      var txt = document.querySelector('.topbar__text');
+      if (txt) txt.innerHTML = 'Интенсив уже стартовал — <strong>присоединяйся</strong>';
+      if (timerWrap) timerWrap.style.display = 'none';
+      clearInterval(iv);
+      return;
+    }
+    elD.textContent = pad(Math.floor(diff / 86400000));
+    elH.textContent = pad(Math.floor(diff % 86400000 / 3600000));
+    elM.textContent = pad(Math.floor(diff % 3600000 / 60000));
+    elS.textContent = pad(Math.floor(diff % 60000 / 1000));
+  }
+  tick();
+  iv = setInterval(tick, 1000);
+})();
+
+/* ---------- Горизонтальные ленты: отзывы, результаты, специалисты ----------
+   Один обработчик на все ленты страницы — ищем каждую .track-wrap и вешаем
+   на её кнопки прокрутку. Раньше код был написан только под отзывы, и для
+   двух новых лент пришлось бы копировать его дважды.
+
+   Сама прокрутка нативная (overflow-x), поэтому свайп и колесо работают даже
+   если этот код не выполнился. Кнопки доводят ленту на «экран» карточек.
+
+   Плавность анимируем сами, а не через scrollTo({behavior:'smooth'}): в части
+   движков и при включённом «уменьшить движение» smooth молча игнорируется —
+   прокрутки не происходит вовсе, и кнопки выглядят сломанными. Позицию
+   считаем абсолютную: при scrollBy шаги накапливают ошибку, если предыдущая
+   анимация ещё идёт. */
+(function () {
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.track-wrap').forEach(function (wrap) {
+    var track = wrap.querySelector('.track');
+    var prev = wrap.querySelector('.track-nav--prev');
+    var next = wrap.querySelector('.track-nav--next');
+    if (!track || !prev || !next) return;
+
+    var anim = null;
+
+    function unit() {
+      var card = track.firstElementChild;
+      if (!card) return 0;
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 18;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function maxScroll() {
+      return Math.max(0, track.scrollWidth - track.clientWidth);
+    }
+
+    function sync() {
+      // 2px допуска: на ретине scrollLeft дробный, точного равенства не бывает
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= maxScroll() - 2;
+    }
+
+    function animateTo(target) {
+      if (anim) cancelAnimationFrame(anim);
+      // document.hidden — вкладка в фоне, кадры не идут: ставим сразу
+      if (reduced || !window.requestAnimationFrame || document.hidden) {
+        track.scrollLeft = target;
+        sync();
+        return;
+      }
+      var from = track.scrollLeft;
+      var delta = target - from;
+      if (!delta) return;
+      var dur = 320, t0 = null;
+      var guard = setTimeout(function () {
+        if (anim) { cancelAnimationFrame(anim); anim = null; track.scrollLeft = target; sync(); }
+      }, dur + 260);
+      function frame(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        track.scrollLeft = from + delta * (1 - Math.pow(1 - p, 3));
+        if (p < 1) {
+          anim = requestAnimationFrame(frame);
+        } else {
+          anim = null;
+          clearTimeout(guard);
+          sync();
+        }
+      }
+      anim = requestAnimationFrame(frame);
+    }
+
+    function go(dir) {
+      var one = unit();
+      if (!one) return;
+      var perScreen = Math.max(1, Math.floor(track.clientWidth / one));
+      var current = Math.round(track.scrollLeft / one);
+      animateTo(Math.min(maxScroll(), Math.max(0, (current + dir * perScreen) * one)));
+    }
+
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  });
+})();
+
+</script>
+</body></html>
