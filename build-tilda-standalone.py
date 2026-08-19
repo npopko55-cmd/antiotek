@@ -355,3 +355,14 @@ preview = ('<!doctype html><html lang="ru"><head><meta charset="utf-8">'
            + "\n".join(c for _n, c in files) + "\n</body></html>")
 (BASE / "_preview.html").write_text(preview, encoding="utf-8")
 print(f"Превью: _preview.html ({len(preview)/1024:.0f} КБ) — открыть в браузере и посмотреть глазами")
+
+# Узкий экран отдельным файлом: окно браузера уже ~500px на macOS не делается, и
+# «мобильную» проверку легко принять за поехавшую вёрстку, хотя это просто обрезка
+# снимка. Внутри iframe медиазапросы считаются от его ширины — 390px честные.
+mobile = ('<!doctype html><html lang="ru"><head><meta charset="utf-8">'
+          '<title>Превью, узкий экран 390px</title><style>'
+          'html,body{margin:0;background:#8a8a8a}'
+          'iframe{width:390px;height:13000px;border:0;display:block;margin:0 auto;background:#fff}'
+          '</style></head><body><iframe src="_preview.html"></iframe></body></html>')
+(BASE / "_preview-mobile.html").write_text(mobile, encoding="utf-8")
+print("Превью узкого экрана: _preview-mobile.html (390px внутри iframe)")
