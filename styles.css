@@ -127,7 +127,10 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 500; margin: 0; line-heigh
 
 /* ======================== TOPBAR (sticky + таймер) ============= */
 .topbar {
-  position: sticky; top: 0; z-index: 100;
+  /* Было sticky. На Тильде каждый блок лежит в своём контейнере, а sticky
+     работает только внутри родителя — баннер откреплялся после первого
+     блока. fixed от родителя не зависит; его высоту компенсирует скрипт. */
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: linear-gradient(90deg, #ce2c01, #ca4f00);
   color: #fff;
 }

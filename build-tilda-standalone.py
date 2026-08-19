@@ -221,6 +221,73 @@ def to_entities(text):
 
 
 # ---------- 3. Нарезка --------------------------------------------------
+# ---------------------------------------------------------------------------
+# ИЗОЛЯЦИЯ ОТ ОСТАЛЬНОЙ СТРАНИЦЫ
+# На Тильде рядом с нашими блоками живут чужие: шапка проекта, футер, формы.
+# Правила вида `a`, `ul`, `img`, `body` цепляли и их — у ссылок пропадало
+# подчёркивание, у списков маркеры, у заголовков отступы. Поэтому разметку
+# оборачиваем в .shd-anti, а все правила на голые теги ограничиваем им же.
+# ---------------------------------------------------------------------------
+SCOPE = ".shd-anti"
+_TAG = re.compile(r"^[a-z]+[0-9]?$")
+
+
+def scope_selector(sel):
+    """Префикс получают ВСЕ правила, а не только те, что на голые теги.
+    Если ограничить только теги, у `.shd-anti h2` станет выше вес, чем у
+    `.section__title`, и тег перебьёт класс — у заголовков пропадали отступы."""
+    out = []
+    for part in sel.split(","):
+        s = part.strip()
+        if not s:
+            continue
+        if s.startswith(":root") or s.startswith("@") or s.startswith(SCOPE):
+            out.append(s)
+            continue
+        head = re.split(r"[\s:\[.#>+~]", s, maxsplit=1)[0]
+        if head in ("html", "body"):
+            rest = s[len(head):].strip()
+            out.append(f"{SCOPE} {rest}".strip() if rest else SCOPE)
+        else:
+            out.append(f"{SCOPE} {s}")
+    return ", ".join(out)
+
+
+def scope_css(text):
+    res, i, n = [], 0, len(text)
+    while i < n:
+        br = text.find("{", i)
+        if br < 0:
+            res.append(text[i:])
+            break
+        sel = text[i:br]
+        stripped = sel.strip()
+        if stripped.startswith("@"):
+            # у @media/@supports внутри лежат обычные правила — заходим внутрь;
+            # у @keyframes внутри проценты, их трогать нельзя
+            depth, j = 1, br + 1
+            while j < n and depth:
+                if text[j] == "{":
+                    depth += 1
+                elif text[j] == "}":
+                    depth -= 1
+                j += 1
+            inner = text[br + 1:j - 1]
+            if stripped.startswith("@keyframes") or "keyframes" in stripped:
+                res.append(sel + "{" + inner + "}")
+            else:
+                res.append(sel + "{" + scope_css(inner) + "}")
+            i = j
+            continue
+        end = text.find("}", br)
+        if end < 0:
+            res.append(text[i:])
+            break
+        res.append(scope_selector(sel) + "{" + text[br + 1:end] + "}")
+        i = end + 1
+    return "".join(res)
+
+
 def split_css(text, limit):
     """Режем по ЦЕЛЫМ верхнеуровневым правилам, полученным разбором со счётом
     скобок. Прежняя версия резала регуляркой и разрывала @media-блоки: в
@@ -248,7 +315,13 @@ def split_css(text, limit):
 files = []
 head = (f'<link rel="preconnect" href="https://fonts.googleapis.com" />\n'
         f'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n{FONT_LINK}\n')
-for i, part in enumerate(split_css(css_min, LIMIT), 1):
+css_scoped = scope_css(css_min)
+# overflow-x на обёртке создал бы новый контекст прокрутки и сломал бы
+# закреплённый баннер, поэтому убираем именно это свойство
+css_scoped = re.sub(r"(\.shd-anti\s*\{[^}]*?)overflow-x:\s*hidden;?", r"\1", css_scoped)
+print(f"Изоляция: правила на голые теги ограничены {SCOPE}")
+
+for i, part in enumerate(split_css(css_scoped, LIMIT), 1):
     files.append((f"style-{i}.html", (head if i == 1 else "") + "<style>\n" + part + "\n</style>\n"))
 
 
@@ -266,7 +339,9 @@ labels = ["топбар+шапка+hero+через 7 дней", "отзывы у
           "как похудеть+фейс-йога и тейпы", "баннер+тарифы",
           "результаты+специалисты", "развилка+финал+помощь+футер"]
 for i in range(6):
-    files.append((f"block-{i+1}.html", to_entities(body[cuts[i]:cuts[i+1]])))
+    chunk = body[cuts[i]:cuts[i+1]]
+    files.append((f"block-{i+1}.html",
+                  '<div class="shd-anti">\n' + to_entities(chunk) + '\n</div>\n'))
 
 files.append(("script.html", "<script>\n" + js_for_tilda(js) + "\n</script>\n"))
 

@@ -362,4 +362,24 @@
     window.addEventListener('resize', sync);
     sync();
   });
+
+  /* ---------- Компенсация закреплённого баннера ----------
+     Баннер вынут из потока (position: fixed), поэтому первый блок должен
+     начинаться ниже на его высоту. Высота разная на телефоне и десктопе,
+     поэтому меряем её и пересчитываем при изменении размера окна. */
+  (function () {
+    var bar = document.getElementById('topbar');
+    if (!bar) return;
+    var host = bar.parentElement;          /* обёртка блока либо body */
+    function sync() {
+      var h = bar.offsetHeight;
+      if (host && host !== document.body) host.style.paddingTop = h + 'px';
+      else document.body.style.paddingTop = h + 'px';
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('load', sync);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+  })();
+
 })();
