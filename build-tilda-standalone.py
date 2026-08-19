@@ -426,7 +426,10 @@ print(f"\nПапка «ДЛЯ ТИЛЬДЫ» обновлена: {len(order)} ф
 # девяти блоков. Здесь тот же результат открывается в браузере одним файлом.
 preview = ('<!doctype html><html lang="ru"><head><meta charset="utf-8">'
            '<meta name="viewport" content="width=device-width, initial-scale=1">'
-           '<title>Превью блоков</title></head><body>\n'
+           '<title>Превью блоков</title>'
+           # Тильда сама обнуляет поля body; без этого превью съезжает на 8px
+           # и сравнение со страницей показывает ложные расхождения
+           '<style>body{margin:0}</style></head><body>\n'
            + "\n".join(c for _n, c in files) + "\n</body></html>")
 (BASE / "_preview.html").write_text(preview, encoding="utf-8")
 print(f"Превью: _preview.html ({len(preview)/1024:.0f} КБ) — открыть в браузере и посмотреть глазами")
