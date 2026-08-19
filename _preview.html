@@ -1,4 +1,5 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Превью блоков</title><link rel="preconnect" href="https://fonts.googleapis.com" /></head><body><link rel="preconnect" href="https://fonts.googleapis.com" />
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Превью блоков</title></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
 <style>
@@ -172,6 +173,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
 .hero__badge{display:inline-flex;align-self:flex-start;width:fit-content;background:rgba(255,255,255,.18);color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-radius:var(--radius-pill);padding:7px 16px;margin-bottom:18px}
 
 </style>
+
 <style>
 .hero__accent{color:var(--color-primary-hover)}
 .hero__cta{margin-top:26px}
@@ -310,6 +312,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
 @media (max-width:560px){.fork__cta{align-self:stretch;width:100%;min-width:0;padding:0 20px}}
 
 </style>
+
 
 
 <div class="topbar" id="topbar">
@@ -471,6 +474,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
 
 
 
+
 <section class="section reviews" id="reviews">
   <div class="container">
     <h2 class="section__title">&#1054;&#1090;&#1079;&#1099;&#1074;&#1099; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;</h2>
@@ -493,6 +497,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
     </div>
   </div>
 </section>
+
 
 
 
@@ -564,6 +569,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
     </div>
   </div>
 </section>
+
 
 
 
@@ -664,6 +670,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
 
 
 
+
 <section class="section cases" id="cases">
   <div class="container">
     <h2 class="section__title">&#1055;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088;&#1080;&#1090;&#1077;, &#1082;&#1072;&#1082; &#1087;&#1088;&#1077;&#1086;&#1073;&#1088;&#1072;&#1078;&#1072;&#1102;&#1090;&#1089;&#1103; &#1085;&#1072;&#1096;&#1080; &#1091;&#1095;&#1072;&#1089;&#1090;&#1085;&#1080;&#1094;&#1099;</h2>
@@ -732,6 +739,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
     </div>
   </div>
 </section>
+
 
 
 
@@ -851,26 +859,21 @@ section[id],.rates-banner{scroll-margin-top:80px}
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="&#1053;&#1072;&#1074;&#1077;&#1088;&#1093;">&#8593;</button>
 
+
 <script>
-/* =============================================================
-   Шагательная Табата 2.0 — клиентский JS
-   Без зависимостей. Запускается на DOMContentLoaded.
-   ============================================================= */
+
 
 (() => {
   'use strict';
 
-  /* ---------- 0. Конфиг (правится для каждого запуска) ---------- */
   const CONFIG = {
-    // Дата окончания таймера на центральном тарифе (UTC)
+
     countdownDeadline: '2026-06-30T23:59:59+03:00'
   };
 
-  /* ---------- 1. Год в футере ---------- */
   const year = document.getElementById('footerYear');
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ---------- 2. Sticky header (тень при скролле) ---------- */
   const header = document.getElementById('header');
   const onScrollHeader = () => {
     if (!header) return;
@@ -879,7 +882,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
   window.addEventListener('scroll', onScrollHeader, { passive: true });
   onScrollHeader();
 
-  /* ---------- 3. Burger / overlay-nav ---------- */
   const burger = document.getElementById('burgerBtn');
   const overlayNav = document.getElementById('overlayNav');
   const overlayBackdrop = document.getElementById('overlayBackdrop');
@@ -898,12 +900,10 @@ section[id],.rates-banner{scroll-margin-top:80px}
   closeNavBtn?.addEventListener('click', () => setNavState(false));
   overlayBackdrop?.addEventListener('click', () => setNavState(false));
 
-  // Закрывать при клике по ссылке внутри
   overlayNav?.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => setNavState(false));
   });
 
-  /* ---------- 4. Универсальные попапы (по ID) с focus-trap ---------- */
   let lastFocusedBeforePopup = null;
   const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -926,7 +926,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
     popup.classList.add('is-open');
     popup.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    // фокус на крестик закрытия
+
     const closeBtn = popup.querySelector('.popup__close');
     if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
   };
@@ -937,14 +937,13 @@ section[id],.rates-banner{scroll-margin-top:80px}
       p.setAttribute('aria-hidden', 'true');
     });
     document.body.style.overflow = '';
-    // вернуть фокус на то что было до открытия
+
     if (wasOpen && lastFocusedBeforePopup) {
       lastFocusedBeforePopup.focus();
       lastFocusedBeforePopup = null;
     }
   };
 
-  // Любой элемент с data-popup="popup-id" открывает соответствующий попап.
   document.querySelectorAll('[data-popup]').forEach((trigger) => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
@@ -967,7 +966,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
     }
   });
 
-  /* ---------- 5. Reviews slider (стрелки) ---------- */
   const track = document.getElementById('reviewsTrack');
   const prevBtn = document.getElementById('reviewsPrev');
   const nextBtn = document.getElementById('reviewsNext');
@@ -980,9 +978,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
   prevBtn?.addEventListener('click', () => scrollByCard(-1));
   nextBtn?.addEventListener('click', () => scrollByCard(1));
 
-  /* Countdown удалён по запросу — таймер на тарифе больше не используется. */
-
-  /* ---------- 7. Back to top ---------- */
   const btt = document.getElementById('backToTop');
   const onScrollBTT = () => {
     btt?.classList.toggle('is-visible', window.scrollY > 600);
@@ -992,7 +987,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
     window.scrollTo({ top: 0, behavior: 'smooth' })
   );
 
-  /* ---------- 7b. Sticky mobile CTA ---------- */
   const stickyCTA = document.getElementById('stickyCTA');
   const ratesSection = document.getElementById('rates');
   const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
@@ -1002,9 +996,9 @@ section[id],.rates-banner{scroll-margin-top:80px}
       stickyCTA.classList.remove('is-visible');
       return;
     }
-    // Показываем после прокрутки за первый экран
+
     const showAfter = window.innerHeight * 0.6;
-    // Скрываем, когда юзер находится прямо на блоке прайса
+
     let nearRates = false;
     if (ratesSection) {
       const r = ratesSection.getBoundingClientRect();
@@ -1016,7 +1010,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
   window.addEventListener('resize', onScrollSticky);
   onScrollSticky();
 
-  /* ---------- 8. Smooth anchor scroll (с учётом sticky header) ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const href = link.getAttribute('href');
     if (!href || href === '#' || href.startsWith('#popup')) return;
@@ -1030,13 +1023,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
     });
   });
 
-  /* ---------- 9. UTM-проброс на все ссылки walk-walk.ru ---------- */
-  /* GetCourse-виджет вкорячивает свою кнопку с захардкоженной ссылкой
-     (walk-walk.ru/thinbelly/6-months и т.п.) уже ПОСЛЕ того как Tilda
-     прокинула UTM по странице. Мы должны:
-     1) При загрузке — обновить все существующие ссылки
-     2) Через MutationObserver — обновлять любые НОВЫЕ ссылки (от виджета)
-     3) При клике (capture-фаза) — финальная страховка перед навигацией */
   (function () {
     var p = new URLSearchParams(window.location.search);
     var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_referrer','gclid','yclid','fbclid','erid','from'];
@@ -1051,18 +1037,16 @@ section[id],.rates-banner{scroll-margin-top:80px}
       if (!a || a.tagName !== 'A') return;
       var href = a.getAttribute('href');
       if (!href) return;
-      // только walk-walk.ru (любой поддомен)
+
       if (!/walk-walk\.ru/i.test(href)) return;
-      // уже есть UTM — не трогаем
+
       if (/[?&]utm_/.test(href)) return;
       var sep = href.indexOf('?') === -1 ? '?' : '&';
       a.setAttribute('href', href + sep + qs);
     }
 
-    // 1. Все ссылки на момент загрузки
     document.querySelectorAll('a[href]').forEach(applyUtm);
 
-    // 2. MutationObserver — догоняем ссылки от GetCourse-виджета
     if (window.MutationObserver) {
       var mo = new MutationObserver(function (mutations) {
         mutations.forEach(function (m) {
@@ -1076,15 +1060,12 @@ section[id],.rates-banner{scroll-margin-top:80px}
       mo.observe(document.body, { childList: true, subtree: true });
     }
 
-    // 3. Capture-фаза клика — финальная страховка (если виджет меняет href в последний момент)
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest && e.target.closest('a[href]');
       if (a) applyUtm(a);
     }, true);
   })();
 
-  /* ---------- 10. Яндекс.Метрика — JS-цели через data-metrika-goal ---------- */
-  /* Счётчик walk-walk.ru (захардкожен) */
   var METRIKA_ID = 94057307;
   function reachMetrikaGoal(goal) {
     if (!goal) return;
@@ -1092,7 +1073,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
       if (typeof window.ym === 'function') {
         window.ym(METRIKA_ID, 'reachGoal', goal);
       }
-    } catch (e) { /* silent */ }
+    } catch (e) {  }
   }
   document.addEventListener('click', function (e) {
     var t = e.target && e.target.closest && e.target.closest('[data-metrika-goal]');
@@ -1101,7 +1082,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
   });
 })();
 
-/* ---------- Стройные и здоровые ноги: обратный отсчёт до старта (27 июля) ---------- */
 (function () {
   var target = new Date('2026-08-24T00:00:00+03:00').getTime();
   var elD = document.getElementById('tbD');
@@ -1117,7 +1097,7 @@ section[id],.rates-banner{scroll-margin-top:80px}
     if (diff <= 0) {
       elD.textContent = '00'; elH.textContent = '00'; elM.textContent = '00'; elS.textContent = '00';
       var txt = document.querySelector('.topbar__text');
-      if (txt) txt.innerHTML = 'Интенсив уже стартовал — <strong>присоединяйся</strong>';
+      if (txt) txt.innerHTML = '\u0418\u043d\u0442\u0435\u043d\u0441\u0438\u0432 \u0443\u0436\u0435 \u0441\u0442\u0430\u0440\u0442\u043e\u0432\u0430\u043b \u2014 <strong>\u043f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u044f\u0439\u0441\u044f</strong>';
       if (timerWrap) timerWrap.style.display = 'none';
       clearInterval(iv);
       return;
@@ -1131,19 +1111,6 @@ section[id],.rates-banner{scroll-margin-top:80px}
   iv = setInterval(tick, 1000);
 })();
 
-/* ---------- Горизонтальные ленты: отзывы, результаты, специалисты ----------
-   Один обработчик на все ленты страницы — ищем каждую .track-wrap и вешаем
-   на её кнопки прокрутку. Раньше код был написан только под отзывы, и для
-   двух новых лент пришлось бы копировать его дважды.
-
-   Сама прокрутка нативная (overflow-x), поэтому свайп и колесо работают даже
-   если этот код не выполнился. Кнопки доводят ленту на «экран» карточек.
-
-   Плавность анимируем сами, а не через scrollTo({behavior:'smooth'}): в части
-   движков и при включённом «уменьшить движение» smooth молча игнорируется —
-   прокрутки не происходит вовсе, и кнопки выглядят сломанными. Позицию
-   считаем абсолютную: при scrollBy шаги накапливают ошибку, если предыдущая
-   анимация ещё идёт. */
 (function () {
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1167,14 +1134,14 @@ section[id],.rates-banner{scroll-margin-top:80px}
     }
 
     function sync() {
-      // 2px допуска: на ретине scrollLeft дробный, точного равенства не бывает
+
       prev.disabled = track.scrollLeft <= 2;
       next.disabled = track.scrollLeft >= maxScroll() - 2;
     }
 
     function animateTo(target) {
       if (anim) cancelAnimationFrame(anim);
-      // document.hidden — вкладка в фоне, кадры не идут: ставим сразу
+
       if (reduced || !window.requestAnimationFrame || document.hidden) {
         track.scrollLeft = target;
         sync();
@@ -1219,4 +1186,5 @@ section[id],.rates-banner{scroll-margin-top:80px}
 })();
 
 </script>
+
 </body></html>

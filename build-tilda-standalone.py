@@ -169,6 +169,53 @@ body = re.sub(r'<link rel="stylesheet"[^>]*styles\.css[^>]*>\s*', "", body)
 body = re.sub(r'<script[^>]*script\.js[^>]*></script>\s*', "", body)
 
 
+def js_for_tilda(text):
+    r"""JS, безопасный для вставки в блок Тильды.
+
+    Тильда пересохраняет содержимое блока и портит не-ASCII: русские комментарии
+    приезжали как «РЁР°РіР°С‚РµР»СЊ», а строка про старт интенсива вышла бы
+    крякозябрами прямо на экране. HTML-сущности тут не годятся: внутри <script>
+    они не декодируются. Поэтому комментарии срезаем, а кириллицу в коде
+    переводим в \uXXXX — это валидный JS-эскейп, и Тильде ломать становится нечего.
+
+    Комментарии режем посимвольно, а не регуляркой: «//» встречается внутри строк
+    с адресами (https://...), и регулярка съела бы половину строки.
+    """
+    out, i, n = [], 0, len(text)
+    quote = None
+    while i < n:
+        c = text[i]
+        if quote:
+            out.append(c)
+            if c == "\\" and i + 1 < n:
+                out.append(text[i + 1])
+                i += 2
+                continue
+            if c == quote:
+                quote = None
+            i += 1
+            continue
+        if c in "'\"`":
+            quote = c
+            out.append(c)
+            i += 1
+            continue
+        if c == "/" and i + 1 < n and text[i + 1] == "/":
+            j = text.find("\n", i)
+            i = n if j == -1 else j
+            continue
+        if c == "/" and i + 1 < n and text[i + 1] == "*":
+            j = text.find("*/", i + 2)
+            i = n if j == -1 else j + 2
+            continue
+        out.append(c)
+        i += 1
+    code = "".join(out)
+    code = re.sub(r"[ \t]+\n", "\n", code)
+    code = re.sub(r"\n{3,}", "\n\n", code)
+    return "".join(ch if ord(ch) < 128 else "\\u%04x" % ord(ch) for ch in code)
+
+
 def to_entities(text):
     return "".join(c if ord(c) < 128 else f"&#{ord(c)};" for c in text)
 
@@ -221,7 +268,7 @@ labels = ["топбар+шапка+hero+через 7 дней", "отзывы у
 for i in range(6):
     files.append((f"block-{i+1}.html", to_entities(body[cuts[i]:cuts[i+1]])))
 
-files.append(("script.html", "<script>\n" + js + "\n</script>\n"))
+files.append(("script.html", "<script>\n" + js_for_tilda(js) + "\n</script>\n"))
 
 for name, content in files:
     (OUT / name).write_text(content, encoding="utf-8")
@@ -237,3 +284,74 @@ for name, content in files:
 print(f"\nВсего блоков: {len(files)}. Порядок: стили -> разметка -> скрипт.")
 missing = [a for a in sorted(set(re.findall(r'assets/[\w./-]+', html))) if a not in asset_map]
 print(f"Картинок пока с внешнего CDN: {len(missing)} (вписать адреса в tilda-assets.json, когда загрузят в Тильду)")
+
+
+# ---------- 4. Папка «ДЛЯ ТИЛЬДЫ» — то, что уходит человеку -------------
+# Раньше её собирали руками, копируя файлы и переименовывая. Один пропущенный
+# файл — и на страницу уезжала половина старой сборки, а искать это потом
+# приходилось по внешнему виду. Теперь папку пишет сам сборщик: имена с
+# номерами задают порядок вставки, инструкция генерируется тут же.
+HUMAN = {
+    "style-1.html": "01 — стили, часть 1",
+    "style-2.html": "02 — стили, часть 2",
+    "block-1.html": "03 — шапка, баннер и первый экран",
+    "block-2.html": "04 — отзывы участниц",
+    "block-3.html": "05 — как похудеть, фейс-йога и тейпы",
+    "block-4.html": "06 — тарифы",
+    "block-5.html": "07 — результаты и специалисты",
+    "block-6.html": "08 — развилка, финал, помощь, футер",
+    "script.html": "09 — скрипт, вставлять последним",
+}
+
+HAND = BASE / "ДЛЯ ТИЛЬДЫ"
+HAND.mkdir(exist_ok=True)
+for old in HAND.glob("*.html"):
+    old.unlink()
+
+order = []
+for name, content in files:
+    human = HUMAN.get(name)
+    if not human:
+        continue
+    (HAND / f"{human}.html").write_text(content, encoding="utf-8")
+    order.append(human)
+
+readme = """АНТИОТЁЧНОСТЬ — блоки для Тильды
+=================================
+
+Вставлять В ЭТОМ ПОРЯДКЕ, каждый файл — в отдельный блок T123 (HTML-код).
+Порядок важен: стили идут первыми, скрипт — последним.
+
+""" + "\n".join(f"  {name}" for name in order) + """
+
+ВАЖНО: то, что стоит на странице от прошлой сборки, нужно удалить полностью —
+блоки не «обновляются», а заменяются. Смешивать старые и новые нельзя.
+
+В этих блоках стили и скрипт лежат внутри — ничего постороннего страница не
+подгружает. Русские буквы в скрипте закодированы: Тильда пересохраняет блок
+и портит кириллицу, из-за этого в прошлой версии в коде была каша, а надпись
+про старт интенсива вышла бы крякозябрами.
+
+Счётчик Метрики не трогаем: он стоит на Тильде. В блоках только отправка целей,
+второй счётчик не появится.
+
+Метки из рекламных ссылок (utm_source, utm_medium, utm_campaign, utm_content,
+erid) сами подставляются во все кнопки оплаты.
+
+Осталось на нашей стороне: {N} картинок пока грузятся с внешнего адреса.
+Загрузите их в Тильду и пришлите ссылки — заменим, и внешних зависимостей
+не останется совсем.
+""".replace("{N}", str(len(missing)))
+(HAND / "ПРОЧТИ ПЕРВЫМ.txt").write_text(readme, encoding="utf-8")
+print(f"\nПапка «ДЛЯ ТИЛЬДЫ» обновлена: {len(order)} файлов + инструкция")
+
+
+# ---------- 5. Локальное превью — блоки, склеенные в том же порядке ------
+# Проверять сборку на живой Тильде дорого: каждый прогон — это ручная вставка
+# девяти блоков. Здесь тот же результат открывается в браузере одним файлом.
+preview = ('<!doctype html><html lang="ru"><head><meta charset="utf-8">'
+           '<meta name="viewport" content="width=device-width, initial-scale=1">'
+           '<title>Превью блоков</title></head><body>\n'
+           + "\n".join(c for _n, c in files) + "\n</body></html>")
+(BASE / "_preview.html").write_text(preview, encoding="utf-8")
+print(f"Превью: _preview.html ({len(preview)/1024:.0f} КБ) — открыть в браузере и посмотреть глазами")
