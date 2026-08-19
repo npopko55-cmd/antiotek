@@ -189,7 +189,7 @@ def split_css(text, limit):
 
     parts, cur = [], ''
     for b in blocks:
-        if len(cur) + len(b) > limit - 900 and cur:
+        if len(cur) + len(b) > limit - 12000 and cur:
             parts.append(cur)
             cur = ''
         cur += b + '\n'
@@ -213,11 +213,12 @@ def pos(patt):
 
 
 cuts = [0, pos(r'<section[^>]*id="reviews"'), pos(r'<section[^>]*id="inside"'),
-        pos(r'<section[^>]*class="rates-banner"'), pos(r'<section[^>]*id="cases"'), len(body)]
-labels = ["топбар+шапка+hero+через 7 дней", "отзывы+специалисты",
+        pos(r'<section[^>]*class="rates-banner"'), pos(r'<section[^>]*id="cases"'),
+        pos(r'<section[^>]*id="fork"'), len(body)]
+labels = ["топбар+шапка+hero+через 7 дней", "отзывы участниц",
           "как похудеть+фейс-йога и тейпы", "баннер+тарифы",
-          "кейсы+развилка+финал+помощь+футер"]
-for i in range(5):
+          "результаты+специалисты", "развилка+финал+помощь+футер"]
+for i in range(6):
     files.append((f"block-{i+1}.html", to_entities(body[cuts[i]:cuts[i+1]])))
 
 files.append(("script.html", "<script>\n" + js + "\n</script>\n"))

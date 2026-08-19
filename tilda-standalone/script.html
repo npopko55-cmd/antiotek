@@ -278,85 +278,91 @@
   iv = setInterval(tick, 1000);
 })();
 
-/* ---------- Отзывы: стрелки горизонтальной ленты ----------
-   Прокрутка нативная (overflow-x), поэтому свайп и колесо работают даже
+/* ---------- Горизонтальные ленты: отзывы, результаты, специалисты ----------
+   Один обработчик на все ленты страницы — ищем каждую .track-wrap и вешаем
+   на её кнопки прокрутку. Раньше код был написан только под отзывы, и для
+   двух новых лент пришлось бы копировать его дважды.
+
+   Сама прокрутка нативная (overflow-x), поэтому свайп и колесо работают даже
    если этот код не выполнился. Кнопки доводят ленту на «экран» карточек.
 
-   Плавность анимируем сами, а не через scrollTo({behavior:'smooth'}):
-   в части движков и при включённом «уменьшить движение» smooth молча
-   игнорируется — прокрутка не происходит вовсе, и кнопки выглядят
-   сломанными. Позицию считаем абсолютную: при scrollBy шаги накапливают
-   ошибку, если предыдущая анимация ещё идёт. */
+   Плавность анимируем сами, а не через scrollTo({behavior:'smooth'}): в части
+   движков и при включённом «уменьшить движение» smooth молча игнорируется —
+   прокрутки не происходит вовсе, и кнопки выглядят сломанными. Позицию
+   считаем абсолютную: при scrollBy шаги накапливают ошибку, если предыдущая
+   анимация ещё идёт. */
 (function () {
-  var track = document.getElementById('reviewsTrack');
-  if (!track) return;
-  var prev = document.querySelector('.reviews__nav--prev');
-  var next = document.querySelector('.reviews__nav--next');
-  if (!prev || !next) return;
-
-  var anim = null;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function unit() {
-    var card = track.querySelector('.review');
-    if (!card) return 0;
-    var gap = parseFloat(getComputedStyle(track).columnGap) || 18;
-    return card.getBoundingClientRect().width + gap;
-  }
+  document.querySelectorAll('.track-wrap').forEach(function (wrap) {
+    var track = wrap.querySelector('.track');
+    var prev = wrap.querySelector('.track-nav--prev');
+    var next = wrap.querySelector('.track-nav--next');
+    if (!track || !prev || !next) return;
 
-  function maxScroll() {
-    return Math.max(0, track.scrollWidth - track.clientWidth);
-  }
+    var anim = null;
 
-  function animateTo(target) {
-    if (anim) cancelAnimationFrame(anim);
-    // document.hidden — вкладка в фоне, кадры не идут: ставим сразу
-    if (reduced || !window.requestAnimationFrame || document.hidden) {
-      track.scrollLeft = target;
-      sync();
-      return;
+    function unit() {
+      var card = track.firstElementChild;
+      if (!card) return 0;
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 18;
+      return card.getBoundingClientRect().width + gap;
     }
-    var from = track.scrollLeft;
-    var delta = target - from;
-    if (!delta) return;
-    var dur = 320, t0 = null;
-    var guard = setTimeout(function () {
-      if (anim) { cancelAnimationFrame(anim); anim = null; track.scrollLeft = target; sync(); }
-    }, dur + 260);
-    function frame(ts) {
-      if (t0 === null) t0 = ts;
-      var p = Math.min(1, (ts - t0) / dur);
-      track.scrollLeft = from + delta * (1 - Math.pow(1 - p, 3));
-      if (p < 1) {
-        anim = requestAnimationFrame(frame);
-      } else {
-        anim = null;
-        clearTimeout(guard);
+
+    function maxScroll() {
+      return Math.max(0, track.scrollWidth - track.clientWidth);
+    }
+
+    function sync() {
+      // 2px допуска: на ретине scrollLeft дробный, точного равенства не бывает
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= maxScroll() - 2;
+    }
+
+    function animateTo(target) {
+      if (anim) cancelAnimationFrame(anim);
+      // document.hidden — вкладка в фоне, кадры не идут: ставим сразу
+      if (reduced || !window.requestAnimationFrame || document.hidden) {
+        track.scrollLeft = target;
         sync();
+        return;
       }
+      var from = track.scrollLeft;
+      var delta = target - from;
+      if (!delta) return;
+      var dur = 320, t0 = null;
+      var guard = setTimeout(function () {
+        if (anim) { cancelAnimationFrame(anim); anim = null; track.scrollLeft = target; sync(); }
+      }, dur + 260);
+      function frame(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        track.scrollLeft = from + delta * (1 - Math.pow(1 - p, 3));
+        if (p < 1) {
+          anim = requestAnimationFrame(frame);
+        } else {
+          anim = null;
+          clearTimeout(guard);
+          sync();
+        }
+      }
+      anim = requestAnimationFrame(frame);
     }
-    anim = requestAnimationFrame(frame);
-  }
 
-  function go(dir) {
-    var one = unit();
-    if (!one) return;
-    var perScreen = Math.max(1, Math.floor(track.clientWidth / one));
-    var current = Math.round(track.scrollLeft / one);
-    animateTo(Math.min(maxScroll(), Math.max(0, (current + dir * perScreen) * one)));
-  }
+    function go(dir) {
+      var one = unit();
+      if (!one) return;
+      var perScreen = Math.max(1, Math.floor(track.clientWidth / one));
+      var current = Math.round(track.scrollLeft / one);
+      animateTo(Math.min(maxScroll(), Math.max(0, (current + dir * perScreen) * one)));
+    }
 
-  function sync() {
-    // 2px допуска: на ретине scrollLeft дробный, точного равенства не бывает
-    prev.disabled = track.scrollLeft <= 2;
-    next.disabled = track.scrollLeft >= maxScroll() - 2;
-  }
-
-  prev.addEventListener('click', function () { go(-1); });
-  next.addEventListener('click', function () { go(1); });
-  track.addEventListener('scroll', sync, { passive: true });
-  window.addEventListener('resize', sync);
-  sync();
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  });
 })();
 
 </script>

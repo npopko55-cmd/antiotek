@@ -1669,12 +1669,6 @@ section[id],
 /* ---------- СПЕЦИАЛИСТЫ ---------- */
 /* Специалистов четверо: в три колонки вторая строка вышла бы с одной
    карточкой и двумя дырками, поэтому ставим ровный ряд из четырёх. */
-.experts__grid {
-  margin-top: 34px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-}
 .expert {
   background: #fff;
   border: 1px solid var(--color-line);
@@ -1768,12 +1762,6 @@ section[id],
 .rates-banner__sub { margin: 12px 0 0; font-size: 17px; }
 
 /* ---------- КЕЙСЫ ---------- */
-.cases__grid {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
 .case {
   margin: 0;
   border-radius: var(--radius-lg);
@@ -2068,7 +2056,6 @@ section[id],
   .hero__facts { gap: 14px; flex-wrap: wrap; }
   .hero__facts b { font-size: 24px; }
   .hero__sticker { font-size: 12px; padding: 9px 12px; }
-  .experts__grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin-left: auto; margin-right: auto; }
 }
 
 /* ---------- Ховер главной кнопки первого экрана ----------
@@ -2112,48 +2099,10 @@ section[id],
    и блок растягивался на два экрана. Лентой они читаются подряд и занимают
    один экран. Прокрутка нативная (overflow-x), кнопки только доводят её —
    на телефоне свайп работает и без скрипта. */
-.reviews__carousel { position: relative; margin-top: 32px; }
-.reviews__track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 300px;
-  gap: 18px;
-  align-items: start;
-  overflow-x: auto;
-  padding: 4px 4px 8px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.reviews__track::-webkit-scrollbar { display: none; }
-.reviews__track:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
-.reviews__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 42px; height: 42px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-md);
-  cursor: pointer;
-  transition: background .2s, opacity .2s;
-}
-.reviews__nav--prev { left: -18px; }
-.reviews__nav--next { right: -18px; }
 @media (hover: hover) { .reviews__nav:hover { background: var(--color-accent-dark); } }
 /* Доехали до края — кнопка гаснет, но остаётся в потоке: если убирать
    совсем, лента дёргается по ширине. */
-.reviews__nav[disabled] { opacity: .3; cursor: default; }
-@media (max-width: 1240px) {
-  .reviews__nav--prev { left: -6px; }
-  .reviews__nav--next { right: -6px; }
-}
-@media (max-width: 700px) {
-  .reviews__track { grid-auto-columns: 250px; gap: 14px; }
-  .reviews__nav { display: none; }   /* на телефоне свайп удобнее кнопок */
+@media (max-width: 700px) {   /* на телефоне свайп удобнее кнопок */
 }
 
 /* Кнопка в завершающем блоке была .btn--block: растягивалась на всю ширину
@@ -2190,4 +2139,63 @@ section[id],
 @media (max-width: 900px) {
   /* на узком экране кадр ниже — иначе он занимает весь первый экран */
   .hero__photo { aspect-ratio: 4 / 3; max-height: 380px; }
+}
+
+/* ============================================================
+   ГОРИЗОНТАЛЬНЫЕ ЛЕНТЫ — отзывы, результаты, специалисты
+   Один механизм на все три блока: раньше у отзывов был свой набор классов,
+   а сетки кейсов и специалистов складывались в несколько строк и растягивали
+   страницу. Прокрутка нативная (overflow-x), кнопки только доводят её —
+   на телефоне свайп работает и без скрипта.
+   ============================================================ */
+.track-wrap { position: relative; margin-top: 32px; }
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 4px 4px 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.track::-webkit-scrollbar { display: none; }
+.track:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+/* Ширина карточки у каждой ленты своя: скриншоты отзывов узкие, кадры
+   «до/после» квадратные, портреты специалистов вытянутые. */
+.track--reviews { grid-auto-columns: 300px; align-items: start; }
+.track--cases   { grid-auto-columns: 320px; align-items: start; }
+.track--experts { grid-auto-columns: 300px; align-items: stretch; }
+.track--experts .expert { height: 100%; }
+
+.track-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: background .2s, opacity .2s;
+}
+.track-nav--prev { left: -18px; }
+.track-nav--next { right: -18px; }
+@media (hover: hover) { .track-nav:hover { background: var(--color-accent-dark); } }
+/* Доехали до края — кнопка гаснет, но остаётся в потоке: если убирать
+   совсем, лента дёргается по ширине. */
+.track-nav[disabled] { opacity: .3; cursor: default; }
+@media (max-width: 1240px) {
+  .track-nav--prev { left: -6px; }
+  .track-nav--next { right: -6px; }
+}
+@media (max-width: 700px) {
+  .track { gap: 14px; }
+  .track--reviews { grid-auto-columns: 250px; }
+  .track--cases   { grid-auto-columns: 260px; }
+  .track--experts { grid-auto-columns: 250px; }
+  .track-nav { display: none; }   /* на телефоне свайп удобнее кнопок */
 }

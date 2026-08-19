@@ -26,7 +26,7 @@
         imagesrcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
         imagesizes="(max-width: 900px) 92vw, 40vw" />
 
-  <link rel="stylesheet" href="styles.css?v=anti-N" />
+  <link rel="stylesheet" href="styles.css?v=anti-O" />
 </head>
 <body>
 
@@ -195,64 +195,24 @@
     <h2 class="section__title">Отзывы участниц</h2>
     <p class="section__lead">Как есть, из&nbsp;чата интенсива.</p>
 
-    <div class="reviews__carousel">
-      <button class="reviews__nav reviews__nav--prev" type="button" aria-label="Предыдущие отзывы" aria-controls="reviewsTrack">
+    <div class="track-wrap">
+      <button class="track-nav track-nav--prev" type="button" aria-label="Предыдущие отзывы" aria-controls="reviewsTrack">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
       </button>
-      <div class="reviews__track" id="reviewsTrack" tabindex="0" role="group" aria-label="Отзывы участниц, прокручивается вбок">
+      <div class="track track--reviews" id="reviewsTrack" tabindex="0" role="group" aria-label="Отзывы участниц, прокручивается вбок">
         <figure class="review"><img src="assets/reviews/review-1.webp" alt="Отзыв участницы интенсива" width="560" height="840" loading="lazy" /></figure>
         <figure class="review"><img src="assets/reviews/review-2.webp" alt="Отзыв участницы интенсива" width="520" height="412" loading="lazy" /></figure>
         <figure class="review"><img src="assets/reviews/review-3.webp" alt="Отзыв участницы интенсива" width="560" height="706" loading="lazy" /></figure>
         <figure class="review"><img src="assets/reviews/review-4.webp" alt="Отзыв участницы интенсива" width="560" height="734" loading="lazy" /></figure>
         <figure class="review"><img src="assets/reviews/review-5.webp" alt="Отзыв участницы интенсива" width="560" height="480" loading="lazy" /></figure>
       </div>
-      <button class="reviews__nav reviews__nav--next" type="button" aria-label="Следующие отзывы" aria-controls="reviewsTrack">
+      <button class="track-nav track-nav--next" type="button" aria-label="Следующие отзывы" aria-controls="reviewsTrack">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
       </button>
     </div>
   </div>
 </section>
 
-<!-- ============================================================ -->
-<!-- 4. СПЕЦИАЛИСТЫ                                               -->
-<!-- ============================================================ -->
-<section class="section experts-people" id="specialists">
-  <div class="container">
-    <h2 class="section__title">Кто приведёт вас к&nbsp;результату</h2>
-
-    <div class="experts__grid">
-      <article class="expert">
-        <div class="expert__photo"><img src="assets/specialists/anastasia.webp" alt="Анастасия, тренер" width="600" height="698" loading="lazy" /></div>
-        <h3 class="expert__name">Анастасия <span>тренер</span></h3>
-        <p class="expert__text">КМС по&nbsp;художественной гимнастике. Тренер с&nbsp;опытом 12&nbsp;лет, инструктор по&nbsp;функциональному тренингу. Покажет, как заниматься правильно и&nbsp;весело.</p>
-      </article>
-
-      <article class="expert">
-        <div class="expert__photo"><img src="assets/specialists/masha.webp" alt="Маша, тренер" width="600" height="672" loading="lazy" /></div>
-        <h3 class="expert__name">Маша <span>тренер</span></h3>
-        <p class="expert__text">Инструктор танцевального и&nbsp;функционального фитнеса, опыт более 10&nbsp;лет. Подготовила танцевальные тренировки специально для интенсива&nbsp;— лёгкие и&nbsp;заряжающие.</p>
-      </article>
-
-      <article class="expert">
-        <div class="expert__photo"><img src="assets/specialists/valeria.webp" alt="Валерия Маюшина, тренер по фейс-йоге" width="600" height="449" loading="lazy" /></div>
-        <h3 class="expert__name">Валерия Маюшина <span>тренер по фейс-йоге и массажу лица</span></h3>
-        <p class="expert__text">Профессиональный тренер по&nbsp;йоге для лица (фейс-йоге) и&nbsp;тела: хатха-йога, йога для беременных, йогатерапия. Специалист по&nbsp;массажу лица.</p>
-      </article>
-
-      <article class="expert">
-        <div class="expert__photo"><img src="assets/specialists/galina.webp" alt="Галина, диетолог" width="600" height="800" loading="lazy" /></div>
-        <h3 class="expert__name">Галина <span>диетолог</span></h3>
-        <p class="expert__text">Дипломированный врач-диетолог. Откроет секреты лимфодренажного питания и&nbsp;развенчает устоявшиеся мифы.</p>
-      </article>
-    </div>
-
-    <!-- Социальное доказательство сразу под специалистами -->
-    <div class="proof">
-      <b class="proof__num">2100+</b>
-      <span class="proof__text">человек уже прошли интенсив «Антиотёчность» и&nbsp;остались довольны результатом</span>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================================ -->
 <!-- 5. ЧТО ВАС ЖДЁТ НА ИНТЕНСИВЕ                                 -->
@@ -427,13 +387,67 @@
   <div class="container">
     <h2 class="section__title">Посмотрите, как преображаются наши участницы</h2>
 
-    <div class="cases__grid">
-      <figure class="case"><img src="assets/cases/case-1.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
-      <figure class="case"><img src="assets/cases/case-2.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
-      <figure class="case"><img src="assets/cases/case-3.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
-      <figure class="case"><img src="assets/cases/case-4.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
-      <figure class="case"><img src="assets/cases/case-5.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
-      <figure class="case"><img src="assets/cases/case-6.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+    <div class="track-wrap">
+      <button class="track-nav track-nav--prev" type="button" aria-label="Предыдущие результаты" aria-controls="casesTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      </button>
+      <div class="track track--cases" id="casesTrack" tabindex="0" role="group" aria-label="Результаты участниц, прокручивается вбок">
+        <figure class="case"><img src="assets/cases/case-1.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="assets/cases/case-2.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="assets/cases/case-3.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="assets/cases/case-4.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="assets/cases/case-5.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+        <figure class="case"><img src="assets/cases/case-6.webp" alt="Результат участницы: до и после" width="700" height="700" loading="lazy" /></figure>
+      </div>
+      <button class="track-nav track-nav--next" type="button" aria-label="Следующие результаты" aria-controls="casesTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. СПЕЦИАЛИСТЫ                                               -->
+<!-- ============================================================ -->
+<section class="section experts-people" id="specialists">
+  <div class="container">
+    <h2 class="section__title">Кто приведёт вас к&nbsp;результату</h2>
+
+    <div class="track-wrap">
+      <button class="track-nav track-nav--prev" type="button" aria-label="Предыдущие специалисты" aria-controls="expertsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      </button>
+      <div class="track track--experts" id="expertsTrack" tabindex="0" role="group" aria-label="Специалисты интенсива, прокручивается вбок">
+        <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/anastasia.webp" alt="Анастасия, тренер" width="600" height="698" loading="lazy" /></div>
+        <h3 class="expert__name">Анастасия <span>тренер</span></h3>
+        <p class="expert__text">КМС по&nbsp;художественной гимнастике. Тренер с&nbsp;опытом 12&nbsp;лет, инструктор по&nbsp;функциональному тренингу. Покажет, как заниматься правильно и&nbsp;весело.</p>
+      </article>
+        <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/masha.webp" alt="Маша, тренер" width="600" height="672" loading="lazy" /></div>
+        <h3 class="expert__name">Маша <span>тренер</span></h3>
+        <p class="expert__text">Инструктор танцевального и&nbsp;функционального фитнеса, опыт более 10&nbsp;лет. Подготовила танцевальные тренировки специально для интенсива&nbsp;— лёгкие и&nbsp;заряжающие.</p>
+      </article>
+        <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/valeria.webp" alt="Валерия Маюшина, тренер по фейс-йоге" width="600" height="449" loading="lazy" /></div>
+        <h3 class="expert__name">Валерия Маюшина <span>тренер по фейс-йоге и массажу лица</span></h3>
+        <p class="expert__text">Профессиональный тренер по&nbsp;йоге для лица (фейс-йоге) и&nbsp;тела: хатха-йога, йога для беременных, йогатерапия. Специалист по&nbsp;массажу лица.</p>
+      </article>
+        <article class="expert">
+        <div class="expert__photo"><img src="assets/specialists/galina.webp" alt="Галина, диетолог" width="600" height="800" loading="lazy" /></div>
+        <h3 class="expert__name">Галина <span>диетолог</span></h3>
+        <p class="expert__text">Дипломированный врач-диетолог. Откроет секреты лимфодренажного питания и&nbsp;развенчает устоявшиеся мифы.</p>
+      </article>
+      </div>
+      <button class="track-nav track-nav--next" type="button" aria-label="Следующие специалисты" aria-controls="expertsTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Социальное доказательство сразу под специалистами -->
+    <div class="proof">
+      <b class="proof__num">2100+</b>
+      <span class="proof__text">человек уже прошли интенсив «Антиотёчность» и&nbsp;остались довольны результатом</span>
     </div>
   </div>
 </section>
@@ -556,6 +570,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=anti-N"></script>
+<script src="script.js?v=anti-O"></script>
 </body>
 </html>
