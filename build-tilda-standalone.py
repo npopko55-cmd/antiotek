@@ -16,6 +16,7 @@
 СКРИПТ — последним.
 """
 import json
+import base64
 import re
 from pathlib import Path
 
@@ -288,6 +289,30 @@ def scope_css(text):
     return "".join(res)
 
 
+def css_capsule(part):
+    """CSS, который Тильда не сможет переписать.
+
+    Тильда переформатирует содержимое блока: она распознала `<svg` внутри
+    url(...) как разметку и расставила переносы прямо посреди адреса картинки —
+    иконки-галочки перестали грузиться, а следом поехали и другие правила.
+    Поэтому отдаём стили не текстом, а строкой base64: там только латиница и
+    цифры, форматировать нечего. Скрипт распаковывает её и кладёт <style> в head.
+    """
+    b64 = base64.b64encode(part.encode("utf-8")).decode("ascii")
+    return (
+        "<script>(function(){"
+        "var d=\"" + b64 + "\";"
+        "var b=atob(d),a=new Uint8Array(b.length),i=0;"
+        "for(;i<b.length;i++){a[i]=b.charCodeAt(i);}"
+        "var t=(typeof TextDecoder!=='undefined')?new TextDecoder('utf-8').decode(a)"
+        ":decodeURIComponent(escape(b));"
+        "var s=document.createElement('style');"
+        "s.appendChild(document.createTextNode(t));"
+        "(document.head||document.documentElement).appendChild(s);"
+        "})();</script>\n"
+    )
+
+
 def split_css(text, limit):
     """Режем по ЦЕЛЫМ верхнеуровневым правилам, полученным разбором со счётом
     скобок. Прежняя версия резала регуляркой и разрывала @media-блоки: в
@@ -303,7 +328,7 @@ def split_css(text, limit):
 
     parts, cur = [], ''
     for b in blocks:
-        if len(cur) + len(b) > limit - 12000 and cur:
+        if len(cur) + len(b) > limit and cur:
             parts.append(cur)
             cur = ''
         cur += b + '\n'
@@ -321,8 +346,10 @@ css_scoped = scope_css(css_min)
 css_scoped = re.sub(r"(\.shd-anti\s*\{[^}]*?)overflow-x:\s*hidden;?", r"\1", css_scoped)
 print(f"Изоляция: правила на голые теги ограничены {SCOPE}")
 
-for i, part in enumerate(split_css(css_scoped, LIMIT), 1):
-    files.append((f"style-{i}.html", (head if i == 1 else "") + "<style>\n" + part + "\n</style>\n"))
+# base64 раздувает кусок ровно на треть, плюс ~400 знаков обвязки скрипта
+CSS_CHUNK = (LIMIT - 3000) * 3 // 4   # с запасом: впритык к лимиту Тильду лучше не подводить
+for i, part in enumerate(split_css(css_scoped, CSS_CHUNK), 1):
+    files.append((f"style-{i}.html", (head if i == 1 else "") + css_capsule(part)))
 
 
 def pos(patt):
@@ -345,6 +372,8 @@ for i in range(6):
 
 files.append(("script.html", "<script>\n" + js_for_tilda(js) + "\n</script>\n"))
 
+for stale in OUT.glob("*.html"):     # от прошлых сборок могли остаться лишние блоки
+    stale.unlink()
 for name, content in files:
     (OUT / name).write_text(content, encoding="utf-8")
 
@@ -403,9 +432,17 @@ readme = """АНТИОТЁЧНОСТЬ — блоки для Тильды
 блоки не «обновляются», а заменяются. Смешивать старые и новые нельзя.
 
 В этих блоках стили и скрипт лежат внутри — ничего постороннего страница не
-подгружает. Русские буквы в скрипте закодированы: Тильда пересохраняет блок
-и портит кириллицу, из-за этого в прошлой версии в коде была каша, а надпись
-про старт интенсива вышла бы крякозябрами.
+подгружает.
+
+Стили передаются закодированной строкой, а не обычным текстом. Причина: Тильда
+переформатирует содержимое блока. В прошлой сборке она приняла картинку-галочку
+внутри стилей за разметку и расставила переносы прямо посреди её адреса —
+галочки в тарифах пропали, сноска под тарифами и подвал остались без оформления.
+В закодированной строке только латиница и цифры, форматировать там нечего,
+поэтому испортить стили Тильда больше не может.
+
+Русские буквы в скрипте тоже закодированы — по той же причине: Тильда портит
+кириллицу внутри кода.
 
 Счётчик Метрики не трогаем: он стоит на Тильде. В блоках только отправка целей,
 второй счётчик не появится.
