@@ -163,7 +163,9 @@ def sub_set(m):
     return f'{attr}="' + ", ".join(out) + '"'
 
 
-body = re.sub(r'(href|src)="(assets/[^"]+)"', sub_single, body)
+# poster у видео — такой же адрес ресурса, как src; без него первый кадр
+# не подхватится, и на месте видео будет пустота, пока оно грузится
+body = re.sub(r'(href|src|poster)="(assets/[^"]+)"', sub_single, body)
 body = re.sub(r'(srcset|imagesrcset)="([^"]+)"', sub_set, body)
 # внешние подключения больше не нужны — всё внутри блоков
 body = re.sub(r'<link rel="stylesheet"[^>]*styles\.css[^>]*>\s*', "", body)

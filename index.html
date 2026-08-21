@@ -10,7 +10,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://walk-walk.ru/antiotek" />
   <meta property="og:title" content="Антиотёчность — интенсив от клуба Шагай Дома" />
-  <meta property="og:description" content="Минус 2–4 кг воды за 7 дней. 15 минут в день онлайн: шагательные тренировки, фейс-фитнес, тейпы и меню «Антиотёк»." />
+  <meta property="og:description" content="Минус 2–4 кг и объёмы за 7 дней. 15 минут в день онлайн: шагательные тренировки, фейс-йога, тейпы и меню «Антиотёк»." />
   <link rel="canonical" href="https://walk-walk.ru/antiotek" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.tildacdn.com/tild3062-6234-4366-b031-623462313965/Frame_76.png" />
@@ -26,13 +26,13 @@
         imagesrcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
         imagesizes="(max-width: 900px) 92vw, 40vw" />
 
-  <link rel="stylesheet" href="styles.css?v=anti-X" />
+  <link rel="stylesheet" href="styles.css?v=anti-Z" />
 </head>
 <body>
 
 <div class="topbar" id="topbar">
   <div class="container topbar__inner">
-    <span class="topbar__offer">Минус <b>2–4&nbsp;кг воды</b> за&nbsp;7&nbsp;дней</span>
+    <span class="topbar__offer">Минус <b>2–4&nbsp;кг</b> и&nbsp;объёмы за&nbsp;7&nbsp;дней</span>
     <span class="topbar__text">Старт <strong>24&nbsp;августа</strong></span>
     <div class="topbar__timer" id="topTimer" aria-label="До старта интенсива">
       <span class="topbar__unit"><b id="tbD">00</b><i>дн</i></span>
@@ -114,9 +114,10 @@
     <div class="hero__grid">
       <div class="hero__card">
         <span class="hero__badge">Интенсив «Антиотёчность»</span>
-        <!-- «2–4 кг воды» держим неразрывно: при переносе число разрывалось
-             на «2–» и «4 кг воды», и заголовок читался как ошибка вёрстки. -->
-        <h1 class="hero__title">Минус <span class="hero__accent">2–4&nbsp;кг воды</span><br />и&nbsp;объёмов за&nbsp;7&nbsp;дней</h1>
+        <!-- «2–4 кг» держим неразрывно: при переносе число разрывалось
+             на «2–» и «4 кг», и заголовок читался как ошибка вёрстки.
+             Про воду не пишем: «уйдёт только вода» обесценивает результат. -->
+        <h1 class="hero__title">Минус <span class="hero__accent">2–4&nbsp;кг</span><br />и&nbsp;объёмы за&nbsp;7&nbsp;дней</h1>
         <p class="hero__lead">Система, которая избавляет от&nbsp;отёков и&nbsp;уменьшает объёмы всего за&nbsp;неделю&nbsp;— без сложных диет и&nbsp;упражнений, после которых болит всё тело.</p>
 
         <ul class="hero__facts">
@@ -130,13 +131,15 @@
       </div>
 
       <div class="hero__media">
-        <img class="hero__photo"
-             src="assets/hero/hero-antiotek.webp"
-             srcset="assets/hero/hero-antiotek-760.webp 560w, assets/hero/hero-antiotek.webp 820w"
-             sizes="(max-width: 900px) 92vw, 42vw"
-             alt="Тренер клуба «Шагай Дома»"
-             width="820" height="993" fetchpriority="high" />
-        <span class="hero__sticker hero__sticker--top">Самомассаж<br /><b>5 минут</b><br />в день</span>
+        <!-- Видео вместо фото: показывает тренировку в движении. Без звука и
+             с playsinline — иначе iOS не запустит автовоспроизведение.
+             poster — первый кадр, чтобы место не пустовало, пока грузится. -->
+        <video class="hero__photo" autoplay muted loop playsinline preload="metadata"
+               poster="assets/video/hero-poster.webp" width="720" height="720"
+               aria-label="Тренировка клуба «Шагай Дома»">
+          <source src="assets/video/hero.webm" type="video/webm" />
+          <source src="assets/video/hero.mp4" type="video/mp4" />
+        </video>
         <span class="hero__sticker hero__sticker--bottom"><b>2100+</b> уже прошли</span>
       </div>
     </div>
@@ -172,16 +175,16 @@
     <h2 class="section__title">Уже через 7&nbsp;дней вы заметите, что:</h2>
 
     <ul class="seven__list">
-      <li class="seven__item"><span class="seven__num">−4</span><span class="seven__txt"><b>кг воды</b> уйдут из&nbsp;вашего тела</span></li>
-      <li class="seven__item"><span class="seven__num">−2</span><span class="seven__txt"><b>размера</b> в&nbsp;объёмах живота, ног и&nbsp;лица</span></li>
+      <li class="seven__item"><span class="seven__num">−2</span><span class="seven__txt"><b>кг</b> уходят за&nbsp;неделю&nbsp;— тело становится легче</span></li>
+      <li class="seven__item"><span class="seven__num">−4</span><span class="seven__txt"><b>см</b> в&nbsp;талии и&nbsp;бёдрах, чётче овал лица</span></li>
       <li class="seven__item"><span class="seven__num">24/7</span><span class="seven__txt">Отражение в&nbsp;зеркале радует <b>в&nbsp;любое время суток</b></span></li>
       <li class="seven__item"><span class="seven__num">0</span><span class="seven__txt">Следов от&nbsp;резинок&nbsp;— одежда <b>перестанет врезаться</b></span></li>
-      <li class="seven__item"><span class="seven__num">+1</span><span class="seven__txt">Свободный вечер: <b>силы и&nbsp;энергия</b> вместо дивана</span></li>
+      <li class="seven__item"><span class="seven__num">+1</span><span class="seven__txt">Час на&nbsp;себя вечером: <b>сил хватает</b> не&nbsp;только на&nbsp;дела по&nbsp;дому</span></li>
     </ul>
 
     <div class="seven__quote">
-      <p>А&nbsp;вы&nbsp;помните, какую лёгкость в&nbsp;теле чувствовали 15–20&nbsp;лет назад?</p>
-      <strong>Давайте вернём это ощущение вместе!</strong>
+      <p>Помните это ощущение, когда тело лёгкое и&nbsp;слушается с&nbsp;первого шага?</p>
+      <strong>Давайте вернём эту лёгкость вместе!</strong>
     </div>
   </div>
 </section>
@@ -219,33 +222,33 @@
 <!-- ============================================================ -->
 <section class="section inside" id="inside">
   <div class="container">
-    <h2 class="section__title">Как похудеть на&nbsp;интенсиве?</h2>
-    <p class="section__lead">Пять простых действий каждый день&nbsp;— всё, что нужно делать.</p>
+    <h2 class="section__title">Что входит в&nbsp;интенсив</h2>
+    <p class="section__lead">Пять шагов, из&nbsp;которых складывается ваша неделя.</p>
 
     <div class="inside__grid">
       <article class="inside-card">
         <span class="inside-card__num">1</span>
-        <h3>Делать шаговую тренировку дома</h3>
-        <p>На&nbsp;~2500&nbsp;шагов&nbsp;— это 20&nbsp;минут в&nbsp;день.</p>
+        <h3>Шаговая тренировка дома</h3>
+        <p>Около 2500&nbsp;шагов&nbsp;— это 20&nbsp;минут в&nbsp;день.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">2</span>
-        <h3>Послушать вебинар от&nbsp;диетолога</h3>
-        <p>Как с&nbsp;помощью питания избавиться от&nbsp;отёков навсегда.</p>
+        <h3>Вебинар диетолога</h3>
+        <p>Как выстроить питание, чтобы отёчность не&nbsp;возвращалась.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">3</span>
-        <h3>Делать самомассаж</h3>
-        <p>5&nbsp;минут в&nbsp;день&nbsp;— чтобы отёки уходили быстрее.</p>
+        <h3>Самомассаж и&nbsp;лимфодренаж</h3>
+        <p>Короткие техники, с&nbsp;которыми отёчность уходит быстрее.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">4</span>
-        <h3>Питаться по&nbsp;простому плану питания</h3>
+        <h3>Готовый план питания</h3>
         <p>Меню «Антиотёк» и&nbsp;мини-подкасты от&nbsp;диетолога.</p>
       </article>
       <article class="inside-card">
         <span class="inside-card__num">5</span>
-        <h3>Общаться в&nbsp;чате</h3>
+        <h3>Чат с&nbsp;куратором</h3>
         <p>Закрытые чаты в&nbsp;Telegram и&nbsp;MAX: поддержка и&nbsp;ответы на&nbsp;вопросы.</p>
       </article>
     </div>
@@ -480,11 +483,11 @@
       <article class="fork__col fork__col--after">
         <h3 class="fork__title">Если пройти интенсив</h3>
         <ul class="fork__list">
-          <li>Минус <b>2–4&nbsp;кг воды</b> и&nbsp;чёткий овал лица</li>
+          <li>Минус <b>2–4&nbsp;кг</b> и&nbsp;чёткий овал лица</li>
           <li>Кольца и&nbsp;обувь снова впору&nbsp;— и&nbsp;утром, и&nbsp;вечером</li>
           <li>Объёмы живота и&nbsp;ног заметно меньше</li>
           <li>Вечером есть силы на&nbsp;себя, а&nbsp;не&nbsp;только на&nbsp;диван</li>
-          <li>Понятно, <b>что именно</b> держало воду&nbsp;— и&nbsp;как не&nbsp;вернуть это снова</li>
+          <li>Понятно, <b>что именно</b> вызывало отёчность&nbsp;— и&nbsp;как её&nbsp;не&nbsp;возвращать</li>
         </ul>
         <a href="#rates" class="btn btn--yellow btn--lg fork__cta" data-metrika-goal="anti-fork-cta">Выбрать тариф</a>
       </article>
@@ -570,6 +573,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=anti-X"></script>
+<script src="script.js?v=anti-Z"></script>
 </body>
 </html>
