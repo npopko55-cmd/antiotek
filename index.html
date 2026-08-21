@@ -26,7 +26,7 @@
         imagesrcset="assets/hero/hero-antiotek-760.webp 600w, assets/hero/hero-antiotek.webp 900w"
         imagesizes="(max-width: 900px) 92vw, 40vw" />
 
-  <link rel="stylesheet" href="styles.css?v=anti-Z3" />
+  <link rel="stylesheet" href="styles.css?v=anti-Z5" />
 </head>
 <body>
 
@@ -222,8 +222,8 @@
 <!-- ============================================================ -->
 <section class="section inside" id="inside">
   <div class="container">
-    <h2 class="section__title">Вам нужно просто шагать под энергичную музыку&nbsp;— остальное за&nbsp;вас сделаем мы:</h2>
-    <p class="section__lead">Пять шагов, из&nbsp;которых складывается ваша неделя.</p>
+    <h2 class="section__title">Вам нужно просто шагать под энергичную музыку&nbsp;— остальное за&nbsp;вас сделаем мы!</h2>
+    <p class="section__lead"><span class="lead-badge">Что входит в&nbsp;интенсив:</span></p>
 
     <div class="inside__grid">
       <article class="inside-card">
@@ -509,9 +509,19 @@
 <!-- ============================================================ -->
 <section class="result">
   <div class="container result__inner">
-    <h2 class="result__title">Забудьте про отёки!</h2>
-    <p class="result__text">Отражение в&nbsp;зеркале будет вас радовать.</p>
-    <a href="#rates" class="btn btn--yellow btn--lg" data-metrika-goal="anti-result-cta">Присоединиться к&nbsp;интенсиву</a>
+    <!-- Волшебное зеркало: арка в золотой раме. Форма и блики собраны на
+         градиентах и border-radius — картинкой не делаем, она на Тильде
+         поехала бы с внешнего CDN. Рама — отдельный слой под стеклом,
+         иначе блик на стекле «переезжает» на золото. -->
+    <div class="mirror">
+      <div class="mirror__glass">
+        <div class="mirror__content">
+          <h2 class="result__title">Забудьте про отёки!</h2>
+          <p class="result__text">Отражение в&nbsp;зеркале будет вас радовать.</p>
+          <a href="#rates" class="btn btn--yellow btn--lg" data-metrika-goal="anti-result-cta">Присоединиться к&nbsp;интенсиву</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -582,6 +592,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=anti-Z3"></script>
+<script src="script.js?v=anti-Z5"></script>
 </body>
 </html>
